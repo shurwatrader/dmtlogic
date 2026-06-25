@@ -1,0 +1,4485 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🏌️‍♂️dmt-swings - Page 3 of 4</title>
+  <style>
+    /* Highlight.js vs2015 theme (inlined for offline use) */
+    pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{background:#1e1e1e;color:#dcdcdc}.hljs-keyword,.hljs-literal,.hljs-name,.hljs-symbol{color:#569cd6}.hljs-link{color:#569cd6;text-decoration:underline}.hljs-built_in,.hljs-type{color:#4ec9b0}.hljs-class,.hljs-number{color:#b8d7a3}.hljs-meta .hljs-string,.hljs-string{color:#d69d85}.hljs-regexp,.hljs-template-tag{color:#9a5334}.hljs-formula,.hljs-function,.hljs-params,.hljs-subst,.hljs-title{color:#dcdcdc}.hljs-comment,.hljs-quote{color:#57a64a;font-style:italic}.hljs-doctag{color:#608b4e}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-tag{color:#9b9b9b}.hljs-template-variable,.hljs-variable{color:#bd63c5}.hljs-attr,.hljs-attribute{color:#9cdcfe}.hljs-section{color:gold}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.hljs-bullet,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-id,.hljs-selector-pseudo,.hljs-selector-tag{color:#d7ba7d}.hljs-addition{background-color:#144212;display:inline-block;width:100%}.hljs-deletion{background-color:#600;display:inline-block;width:100%}
+
+    /* ==== CSS CUSTOM PROPERTIES ==== */
+    :root {
+      --bg-primary: #1e2124;
+      --bg-secondary: #282b30;
+      --bg-tertiary: #2f3136;
+      --bg-hover: rgba(114, 137, 218, 0.08);
+      --text-primary: #dcddde;
+      --text-secondary: #b9bbbe;
+      --text-muted: #72767d;
+      --text-link: #00b0f4;
+      --border-color: #40444b;
+      --accent: #5865f2;
+      --card-bg: rgba(47, 49, 54, 0.6);
+      --card-border: rgba(114, 137, 218, 0.2);
+      --code-bg: #2f3136;
+      --input-bg: #1e1f22;
+    }
+
+    .light-theme {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f2f3f5;
+      --bg-tertiary: #e3e5e8;
+      --bg-hover: rgba(116, 127, 141, 0.08);
+      --text-primary: #2e3338;
+      --text-secondary: #4f5660;
+      --text-muted: #747f8d;
+      --text-link: #0067e0;
+      --border-color: #e3e5e8;
+      --accent: #5865f2;
+      --card-bg: rgba(0, 0, 0, 0.04);
+      --card-border: rgba(0, 0, 0, 0.08);
+      --code-bg: #f2f3f5;
+      --input-bg: #e3e5e8;
+    }
+
+    /* ==== BASE STYLES ==== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-tertiary);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 8px;
+      transition: background-color 200ms ease;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent);
+    }
+
+    /* ==== HEADER ==== */
+    .header {
+      background: var(--bg-secondary);
+      border-bottom: 2px solid;
+      border-image: linear-gradient(90deg, #7289da, var(--accent)) 1;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .header h1 {
+      background: linear-gradient(135deg, #ffffff, #7289da);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .header .meta {
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    /* ==== CONTAINER ==== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* ==== MESSAGES ==== */
+    .message {
+      display: flex;
+      padding: 16px;
+      margin-bottom: 2px;
+      position: relative;
+      transition: background-color 200ms ease;
+      border-radius: 4px;
+    }
+
+    .message:hover {
+      background: var(--bg-hover);
+    }
+
+    .message-left {
+      flex-shrink: 0;
+      width: 60px;
+      padding-right: 16px;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: block;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      transition: transform 200ms ease;
+    }
+
+    .avatar:hover {
+      transform: scale(1.05);
+    }
+
+    .avatar-placeholder {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7289da, #5865f2);
+      box-shadow: 0 2px 8px rgba(114, 137, 218, 0.3);
+    }
+
+    .message-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .message-header {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+
+    .author {
+      font-weight: 600;
+      color: #fff;
+      margin-right: 8px;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .timestamp {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .message-text {
+      color: var(--text-primary);
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    /* ==== TEXT FORMATTING ==== */
+    strong {
+      font-weight: 700;
+      color: #fff;
+    }
+
+    em {
+      font-style: italic;
+      color: #f0f0f0;
+    }
+
+    u {
+      text-decoration: underline;
+    }
+
+    del {
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+
+    /* User mentions */
+    .user-mention {
+      background: rgba(88, 101, 242, 0.3);
+      color: #c9d1ff;
+      padding: 0 4px;
+      border-radius: 3px;
+      font-weight: 500;
+      cursor: default;
+      transition: background 200ms ease;
+    }
+
+    .user-mention:hover {
+      background: rgba(88, 101, 242, 0.5);
+    }
+
+    /* Channel mentions */
+    .channel-mention {
+      background: rgba(60, 66, 112, 0.5);
+      color: #b5c7ff;
+      padding: 0 4px;
+      border-radius: 3px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 200ms ease;
+    }
+
+    .channel-mention:hover {
+      background: rgba(60, 66, 112, 0.7);
+    }
+
+    /* Discord headings */
+    .discord-heading {
+      color: var(--text-primary);
+      margin: 8px 0 4px;
+      line-height: 1.3;
+    }
+
+    h1.discord-heading { font-size: 24px; font-weight: 700; }
+    h2.discord-heading { font-size: 20px; font-weight: 700; }
+    h3.discord-heading { font-size: 16px; font-weight: 700; }
+
+    /* Inline code */
+    .inline-code {
+      background: var(--code-bg);
+      color: #eb459e;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 85%;
+    }
+
+    /* Code blocks */
+    .code-block {
+      background: var(--code-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px;
+      margin: 8px 0;
+      overflow-x: auto;
+    }
+
+    .code-block code {
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+    }
+
+    /* Spoilers */
+    .spoiler {
+      background: #202225;
+      color: transparent;
+      border-radius: 3px;
+      padding: 0 2px;
+      cursor: pointer;
+      transition: all 200ms ease;
+      user-select: none;
+    }
+
+    .spoiler:hover {
+      background: #292b2f;
+    }
+
+    .spoiler-revealed {
+      background: rgba(88, 101, 242, 0.2);
+      color: #dcddde !important;
+    }
+
+    /* Links */
+    a {
+      color: var(--text-link);
+      text-decoration: none;
+      transition: color 200ms ease;
+    }
+
+    a:hover {
+      color: #00d4ff;
+      text-decoration: underline;
+    }
+
+    /* ==== ATTACHMENTS ==== */
+    .attachments {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+      align-items: start;
+    }
+
+    .attachment-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 200ms ease;
+    }
+
+    .attachment-card:hover {
+      background: rgba(47, 49, 54, 0.8);
+      border-color: rgba(114, 137, 218, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .attachment-preview {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Unsupported video format fallback */
+    .video-unsupported {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px;
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--card-border);
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+
+    .video-unsupported-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .video-unsupported-text {
+      line-height: 1.4;
+    }
+
+    .video-unsupported a {
+      color: var(--text-link);
+    }
+
+    /* Image preview — fixed thumbnail, click for lightbox */
+    .attachment-preview-img {
+      max-height: 350px;
+      max-width: 100%;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .attachment-info {
+      padding: 12px;
+    }
+
+    .attachment-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .attachment-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .attachment-name {
+      color: #00b0f4;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex: 1;
+    }
+
+    .attachment-name:hover {
+      text-decoration: underline;
+    }
+
+    .attachment-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #b9bbbe;
+    }
+
+    .attachment-size {
+      color: #b9bbbe;
+    }
+
+    .attachment-badge {
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .attachment-badge.local {
+      background: rgba(88, 214, 141, 0.2);
+      color: #58d68d;
+    }
+
+    .attachment-badge.external {
+      background: rgba(250, 177, 64, 0.2);
+      color: #faa140;
+    }
+
+    /* ==== EMOJIS ==== */
+    .emoji {
+      width: 22px;
+      height: 22px;
+      vertical-align: middle;
+      display: inline-block;
+      object-fit: contain;
+    }
+
+    .emoji-reaction {
+      width: 18px;
+      height: 18px;
+      vertical-align: middle;
+      object-fit: contain;
+    }
+
+    /* ==== REACTIONS ==== */
+    .reactions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .reaction {
+      background: rgba(47, 49, 54, 0.6);
+      border: 2px solid rgba(114, 137, 218, 0.3);
+      border-radius: 8px;
+      padding: 5px 10px;
+      font-size: 13px;
+      color: #b9bbbe;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 200ms ease;
+      cursor: default;
+    }
+
+    .reaction:hover {
+      background: rgba(114, 137, 218, 0.15);
+      border-color: rgba(114, 137, 218, 0.5);
+      transform: scale(1.05);
+    }
+
+    .reaction-count {
+      color: #dcddde;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    /* ==== EMBEDS ==== */
+    .embeds {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .embed {
+      background: rgba(47, 49, 54, 0.4);
+      border-radius: 4px;
+      padding: 12px 16px;
+      max-width: 520px;
+      position: relative;
+    }
+
+    .embed-author {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .embed-author-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+    }
+
+    .embed-author-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: #fff;
+    }
+
+    .embed-title {
+      font-weight: 600;
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .embed-title a {
+      color: #00b0f4;
+    }
+
+    .embed-description {
+      color: #dcddde;
+      font-size: 14px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      margin-bottom: 8px;
+    }
+
+    .embed-fields {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .embed-field {
+      grid-column: span 12;
+    }
+
+    .embed-field-inline {
+      grid-column: span 4;
+    }
+
+    .embed-field-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .embed-field-value {
+      color: #dcddde;
+      font-size: 14px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .embed-thumbnail {
+      float: right;
+      max-width: 80px;
+      max-height: 80px;
+      border-radius: 4px;
+      margin-left: 16px;
+      margin-bottom: 8px;
+    }
+
+    .embed-image {
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin-top: 12px;
+      display: block;
+    }
+
+    .embed-video {
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin-top: 12px;
+      display: block;
+    }
+
+    .embed-footer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      font-size: 12px;
+      color: #b9bbbe;
+    }
+
+    .embed-footer-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+    }
+
+    .embed-footer-text::after {
+      content: " • ";
+      margin: 0 4px;
+    }
+
+    /* ==== EDITED INDICATOR ==== */
+    .edited-indicator {
+      color: #72767d;
+      font-size: 10px;
+      font-weight: 400;
+      cursor: default;
+      user-select: none;
+    }
+
+    .edited-indicator:hover {
+      text-decoration: underline;
+    }
+
+    /* ==== MESSAGE GROUPING ==== */
+    .message-grouped {
+      padding-top: 2px;
+      padding-bottom: 2px;
+    }
+
+    .message-grouped .message-left {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 16px;
+    }
+
+    .grouped-timestamp {
+      font-size: 10px;
+      color: transparent;
+      transition: color 150ms ease;
+    }
+
+    .message-grouped:hover .grouped-timestamp {
+      color: #72767d;
+    }
+
+    /* ==== IMAGE LIGHTBOX ==== */
+    .lightbox-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      animation: lightbox-fade-in 200ms ease;
+    }
+
+    @keyframes lightbox-fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .lightbox-img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(47, 49, 54, 0.8);
+      border: none;
+      color: #dcddde;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 150ms ease;
+      z-index: 2001;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(79, 84, 92, 0.9);
+    }
+
+    .lightbox-nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(47, 49, 54, 0.8);
+      border: none;
+      color: #dcddde;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 150ms ease;
+      z-index: 2001;
+    }
+
+    .lightbox-nav:hover {
+      background: rgba(79, 84, 92, 0.9);
+    }
+
+    .lightbox-nav-prev {
+      left: 16px;
+    }
+
+    .lightbox-nav-next {
+      right: 16px;
+    }
+
+    .lightbox-counter {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #b9bbbe;
+      font-size: 14px;
+      background: rgba(47, 49, 54, 0.8);
+      padding: 4px 12px;
+      border-radius: 4px;
+      z-index: 2001;
+    }
+
+    /* ==== MESSAGE HIGHLIGHT (jump-to-reply) ==== */
+    .message-highlight {
+      animation: highlight-fade 2s ease;
+    }
+
+    @keyframes highlight-fade {
+      0% { background: rgba(88, 101, 242, 0.3); }
+      100% { background: transparent; }
+    }
+
+    /* ==== REPLY BARS ==== */
+    .reply-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      margin-bottom: 4px;
+      border-left: 2px solid #4f545c;
+      border-radius: 0 4px 4px 0;
+      background: rgba(47, 49, 54, 0.3);
+      cursor: pointer;
+      transition: background 150ms ease;
+      font-size: 13px;
+    }
+
+    .reply-bar:hover {
+      background: rgba(47, 49, 54, 0.6);
+    }
+
+    .reply-avatar-small {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .reply-avatar-img {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .reply-avatar-placeholder-small {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7289da, #5865f2);
+      display: inline-block;
+    }
+
+    .reply-author {
+      color: #fff;
+      font-weight: 600;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    .reply-content {
+      color: #b9bbbe;
+      font-size: 12px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .reply-bar-deleted {
+      border-left-color: #f04747;
+      opacity: 0.6;
+    }
+
+    .reply-content-deleted {
+      color: #72767d;
+      font-size: 12px;
+      font-style: italic;
+    }
+
+    /* ==== FORWARDED MESSAGES (#197) ==== */
+    .forward-block {
+      margin-top: 8px;
+      padding: 8px 12px;
+      border-left: 3px solid #4f545c;
+      background: rgba(79, 84, 92, 0.1);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .forward-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .forward-icon {
+      color: #b9bbbe;
+      font-size: 12px;
+    }
+
+    .forward-label {
+      color: #b9bbbe;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .forward-content {
+      color: var(--text-primary);
+      font-size: 14px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .forward-attachments {
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .forward-attachment {
+      color: var(--text-link);
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .forward-attachment:hover {
+      text-decoration: underline;
+    }
+
+    /* ==== THREAD BANNERS ==== */
+    .thread-banner {
+      margin-top: 8px;
+      padding: 0;
+    }
+
+    .thread-banner-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: rgba(88, 101, 242, 0.1);
+      border: 1px solid rgba(88, 101, 242, 0.3);
+      border-radius: 4px;
+      color: #c9d1ff;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 150ms ease, border-color 150ms ease;
+    }
+
+    .thread-banner-link:hover {
+      background: rgba(88, 101, 242, 0.2);
+      border-color: rgba(88, 101, 242, 0.5);
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .thread-banner-icon {
+      font-size: 14px;
+    }
+
+    .thread-banner-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .thread-banner-arrow {
+      color: #72767d;
+    }
+
+    /* ==== THREAD BACK NAVIGATION ==== */
+    .thread-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: #b9bbbe;
+      font-size: 13px;
+      text-decoration: none;
+      margin-bottom: 8px;
+      transition: color 150ms ease;
+    }
+
+    .thread-back-link:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* ==== DATE DIVIDERS ==== */
+    .date-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 16px 0 8px;
+      position: relative;
+    }
+
+    .date-divider::before,
+    .date-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border-color);
+    }
+
+    .date-divider-text {
+      padding: 0 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* ==== SYSTEM MESSAGES ==== */
+    /* Structure mirrors .message so the icon sits where a regular
+       avatar would and the text starts where regular message content
+       starts. Icon column is 40px (= .avatar width), centered, with a
+       right-margin to reach the full .message-left outer width (60 + 16
+       = 76px). That lines text up at the same x-coordinate as .message-
+       content's first character. */
+    .system-message {
+      display: flex;
+      align-items: center;
+      padding: 8px 16px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      min-height: 36px;
+    }
+
+    .system-message-icon {
+      flex-shrink: 0;
+      width: 40px;
+      margin-right: 36px;
+      text-align: center;
+      color: var(--text-muted);
+      opacity: 0.7;
+      /* The inline SVG uses fill=currentColor so it inherits this
+         container's color and light/dark theme changes propagate. */
+    }
+
+    .system-message-icon svg {
+      vertical-align: middle;
+    }
+
+    .system-message-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* Author (always the first <strong> in formatSystemMessage output)
+       picks up its role color from the inline --system-author-color
+       custom property when the guild member has a colored role. Later
+       <strong> tokens (thread names, boost tier content) stay primary. */
+    .system-message-text strong:first-of-type {
+      color: var(--system-author-color, var(--text-primary));
+      font-weight: 600;
+    }
+    .system-message-text strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .system-message-text .system-link {
+      color: var(--link-color, #00b0f4);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .system-message-text .system-link:hover {
+      text-decoration: underline;
+    }
+
+    .system-message-timestamp {
+      font-size: 11px;
+      color: var(--text-muted);
+      opacity: 0.7;
+      margin-left: 4px;
+      white-space: nowrap;
+    }
+
+    .system-message-embed {
+      /* Aligns embed under the text column of the system-message row. */
+      padding: 4px 16px 8px 92px;
+    }
+
+    /* ==== SEARCH BAR ==== */
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .search-input {
+      flex: 1;
+      background: var(--input-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      color: var(--text-primary);
+      padding: 8px 12px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 200ms ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+    }
+
+    .search-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .search-count {
+      color: #72767d;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .search-clear {
+      background: transparent;
+      border: none;
+      color: #72767d;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: color 150ms ease, background 150ms ease;
+    }
+
+    .search-clear:hover {
+      color: #dcddde;
+      background: rgba(79, 84, 92, 0.4);
+    }
+
+    /* Search result styling */
+    .message.search-hidden {
+      display: none;
+    }
+
+    /* Search author label injected into grouped messages during search */
+    .search-author-label {
+      margin-bottom: 4px;
+    }
+
+    .date-divider.search-hidden {
+      display: none;
+    }
+
+    .search-highlight {
+      background: rgba(250, 166, 26, 0.3);
+      border-radius: 2px;
+      padding: 0 1px;
+    }
+
+    /* ==== PAGE NAVIGATION ==== */
+    .nav-btn {
+      background: rgba(88, 101, 242, 0.2);
+      color: #c9d1ff;
+      border: 1px solid rgba(88, 101, 242, 0.3);
+      border-radius: 4px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 200ms ease, border-color 200ms ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-btn:hover {
+      background: rgba(88, 101, 242, 0.35);
+      border-color: rgba(88, 101, 242, 0.5);
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .nav-btn[disabled], .nav-btn.disabled {
+      opacity: 0.3;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .nav-page-info {
+      color: #b9bbbe;
+      font-size: 13px;
+    }
+
+    /* Bottom navigation bar */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(180deg, #282b30 0%, #1e2124 100%);
+      border-top: 1px solid rgba(114, 137, 218, 0.2);
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 99;
+      box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .bottom-nav .nav-btn {
+      padding: 4px 12px;
+      font-size: 12px;
+    }
+
+    .bottom-nav .nav-page-info {
+      font-size: 12px;
+    }
+
+    /* Jump to top button */
+    .jump-top {
+      position: fixed;
+      bottom: 56px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #5865f2;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 200ms ease, transform 200ms ease, background 200ms ease;
+      z-index: 98;
+      pointer-events: none;
+    }
+
+    .jump-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .jump-top:hover {
+      background: #4752c4;
+    }
+
+    /* Add bottom padding to container so content isn't hidden behind bottom nav */
+    .container {
+      padding-bottom: 60px;
+    }
+
+    /* ==== THEME TOGGLE ==== */
+    .theme-toggle {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      color: var(--text-secondary);
+      font-size: 18px;
+      cursor: pointer;
+      padding: 6px 10px;
+      transition: background 150ms ease, color 150ms ease;
+      flex-shrink: 0;
+    }
+
+    .theme-toggle:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
+
+    /* Light theme overrides for elements using hardcoded colors */
+    .light-theme .header h1 {
+      background: linear-gradient(135deg, #2e3338, #5865f2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .light-theme .header {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .light-theme .author {
+      color: #2e3338;
+      text-shadow: none;
+    }
+
+    .light-theme strong {
+      color: #2e3338;
+    }
+
+    .light-theme em {
+      color: #4f5660;
+    }
+
+    .light-theme del {
+      opacity: 0.5;
+    }
+
+    .light-theme .avatar {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .light-theme .avatar-placeholder {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Mentions */
+    .light-theme .user-mention {
+      background: rgba(88, 101, 242, 0.15);
+      color: #5865f2;
+    }
+
+    .light-theme .user-mention:hover {
+      background: rgba(88, 101, 242, 0.25);
+    }
+
+    .light-theme .channel-mention {
+      background: rgba(88, 101, 242, 0.1);
+      color: #4752c4;
+    }
+
+    .light-theme .channel-mention:hover {
+      background: rgba(88, 101, 242, 0.2);
+    }
+
+    /* Code */
+    .light-theme .inline-code {
+      background: #e8e8e8;
+      color: #d63384;
+    }
+
+    .light-theme .code-block {
+      background: #f2f3f5;
+      border-color: #e3e5e8;
+    }
+
+    .light-theme .code-block code {
+      color: #2e3338;
+    }
+
+    .light-theme .hljs {
+      background: #f6f8fa;
+      color: #24292e;
+    }
+
+    /* Spoilers */
+    .light-theme .spoiler {
+      background: #ccc;
+    }
+
+    .light-theme .spoiler:hover {
+      background: #bbb;
+    }
+
+    .light-theme .spoiler-revealed {
+      background: rgba(88, 101, 242, 0.1);
+      color: #2e3338 !important;
+    }
+
+    /* Embeds */
+    .light-theme .embed {
+      background: rgba(0, 0, 0, 0.03);
+      border-left-color: #e3e5e8;
+    }
+
+    .light-theme .embed-title {
+      color: #2e3338;
+    }
+
+    .light-theme .embed-title a {
+      color: #0067e0;
+    }
+
+    .light-theme .embed-description {
+      color: #4f5660;
+    }
+
+    .light-theme .embed-field-name {
+      color: #2e3338;
+    }
+
+    .light-theme .embed-field-value {
+      color: #4f5660;
+    }
+
+    .light-theme .embed-author-name {
+      color: #2e3338;
+    }
+
+    /* Reactions */
+    .light-theme .reaction {
+      background: rgba(0, 0, 0, 0.04);
+      border-color: rgba(0, 0, 0, 0.08);
+    }
+
+    .light-theme .reaction:hover {
+      background: rgba(88, 101, 242, 0.1);
+      border-color: rgba(88, 101, 242, 0.3);
+    }
+
+    .light-theme .reaction-count {
+      color: #4f5660;
+    }
+
+    /* Attachments */
+    .light-theme .attachment-card {
+      background: rgba(0, 0, 0, 0.02);
+      border-color: #e3e5e8;
+    }
+
+    .light-theme .attachment-card:hover {
+      background: rgba(0, 0, 0, 0.04);
+      border-color: #c4c9ce;
+    }
+
+    .light-theme .attachment-name {
+      color: #0067e0;
+    }
+
+    .light-theme .attachment-size {
+      color: #747f8d;
+    }
+
+    .light-theme .attachment-badge.local {
+      background: rgba(67, 181, 129, 0.1);
+      color: #2d8b5e;
+    }
+
+    .light-theme .attachment-badge.external {
+      background: rgba(250, 166, 26, 0.1);
+      color: #b47615;
+    }
+
+    /* Reply bars */
+    .light-theme .reply-bar {
+      background: rgba(0, 0, 0, 0.03);
+      border-left-color: #c4c9ce;
+    }
+
+    .light-theme .reply-bar:hover {
+      background: rgba(0, 0, 0, 0.06);
+    }
+
+    .light-theme .reply-author {
+      color: #2e3338;
+    }
+
+    .light-theme .reply-content {
+      color: #4f5660;
+    }
+
+    /* Thread banners */
+    .light-theme .thread-banner-link {
+      background: rgba(88, 101, 242, 0.06);
+      border-color: rgba(88, 101, 242, 0.15);
+      color: #4752c4;
+    }
+
+    .light-theme .thread-banner-link:hover {
+      background: rgba(88, 101, 242, 0.12);
+      color: #3c45a5;
+    }
+
+    /* Nav buttons */
+    .light-theme .nav-btn {
+      background: rgba(88, 101, 242, 0.08);
+      color: #4752c4;
+      border-color: rgba(88, 101, 242, 0.15);
+    }
+
+    .light-theme .nav-btn:hover {
+      background: rgba(88, 101, 242, 0.15);
+      color: #3c45a5;
+    }
+
+    /* Popups */
+    .light-theme .discrub-popup {
+      background: #fff;
+      border-color: #e3e5e8;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .light-theme .user-popup-banner {
+      opacity: 0.8;
+    }
+
+    .light-theme .user-popup-name {
+      color: #2e3338;
+    }
+
+    .light-theme .user-popup-username {
+      color: #4f5660;
+    }
+
+    .light-theme .user-popup-divider {
+      background: #e3e5e8;
+    }
+
+    .light-theme .user-popup-section-title {
+      color: #747f8d;
+    }
+
+    .light-theme .user-popup-value {
+      color: #2e3338;
+    }
+
+    .light-theme .user-popup-badge {
+      background: #f2f3f5;
+      border-color: #c4c9ce;
+      color: #4f5660;
+    }
+
+    /* Reaction popup */
+    .light-theme .reaction-tab {
+      color: #747f8d;
+    }
+
+    .light-theme .reaction-tab:hover {
+      color: #4f5660;
+    }
+
+    .light-theme .reaction-tab.active {
+      color: #2e3338;
+    }
+
+    .light-theme .reaction-user-name {
+      color: #2e3338;
+    }
+
+    .light-theme .reaction-user-row:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    .light-theme .reaction-search-input {
+      background: #f2f3f5;
+      border-color: #e3e5e8;
+      color: #2e3338;
+    }
+
+    /* Message toolbar */
+    .light-theme .msg-toolbar {
+      background: #fff;
+      border-color: #e3e5e8;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .light-theme .msg-toolbar-btn {
+      border-color: #e3e5e8;
+      color: #747f8d;
+    }
+
+    .light-theme .msg-toolbar-btn:hover {
+      background: rgba(0, 0, 0, 0.04);
+      color: #2e3338;
+    }
+
+    /* Bottom nav */
+    .light-theme .bottom-nav {
+      background: var(--bg-secondary);
+      border-color: var(--border-color);
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Jump to top */
+    .light-theme .jump-top {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Edited indicator */
+    .light-theme .edited-indicator {
+      color: #747f8d;
+    }
+
+    /* Grouped timestamp */
+    .light-theme .message-grouped:hover .grouped-timestamp {
+      color: #747f8d;
+    }
+
+    /* Lightbox adjustments */
+    .light-theme .lightbox-overlay {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    /* Lightbox controls */
+    .light-theme .lightbox-close,
+    .light-theme .lightbox-nav {
+      background: rgba(255, 255, 255, 0.8);
+      color: #2e3338;
+    }
+
+    .light-theme .lightbox-close:hover,
+    .light-theme .lightbox-nav:hover {
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    .light-theme .lightbox-counter {
+      background: rgba(255, 255, 255, 0.8);
+      color: #4f5660;
+    }
+
+    /* Reaction popup extras */
+    .light-theme .reaction-popup-tabs {
+      border-bottom-color: #e3e5e8;
+    }
+
+    .light-theme .reaction-show-more {
+      background: rgba(88, 101, 242, 0.06);
+      border-color: rgba(88, 101, 242, 0.15);
+      color: #4752c4;
+    }
+
+    .light-theme .reaction-show-more:hover {
+      background: rgba(88, 101, 242, 0.12);
+    }
+
+    .light-theme .reaction-count-only {
+      color: #4f5660;
+    }
+
+    .light-theme .reaction-count-text {
+      color: #4f5660;
+    }
+
+    /* Search extras */
+    .light-theme .search-count {
+      color: #747f8d;
+    }
+
+    .light-theme .search-clear {
+      color: #747f8d;
+    }
+
+    .light-theme .search-clear:hover {
+      color: #2e3338;
+      background: rgba(0, 0, 0, 0.06);
+    }
+
+    .light-theme .search-highlight {
+      background: rgba(250, 166, 26, 0.4);
+    }
+
+    /* Reply deleted */
+    .light-theme .reply-bar-deleted {
+      border-left-color: #f04747;
+    }
+
+    .light-theme .reply-content-deleted {
+      color: #747f8d;
+    }
+
+    /* Thread back link */
+    .light-theme .thread-back-link {
+      color: #4f5660;
+    }
+
+    .light-theme .thread-back-link:hover {
+      color: #2e3338;
+    }
+
+    /* Nav page info */
+    .light-theme .nav-page-info {
+      color: #4f5660;
+    }
+
+    /* Link hover */
+    .light-theme a:hover {
+      color: #004db3;
+    }
+
+    /* Embed footer */
+    .light-theme .embed-footer {
+      color: #747f8d;
+    }
+
+    /* Attachment hover */
+    .light-theme .attachment-card:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Jump to top */
+    .light-theme .jump-top {
+      background: #5865f2;
+    }
+
+    .light-theme .jump-top:hover {
+      background: #4752c4;
+    }
+
+    /* ==== RESPONSIVE ==== */
+    @media (max-width: 768px) {
+      .header {
+        padding: 12px 16px;
+      }
+
+      .header h1 {
+        font-size: 22px;
+      }
+
+      .container {
+        padding: 12px;
+      }
+
+      .message {
+        padding: 12px 8px;
+      }
+
+      .avatar {
+        width: 32px;
+        height: 32px;
+      }
+
+      .message-left {
+        width: 48px;
+        padding-right: 12px;
+      }
+
+      .attachments {
+        grid-template-columns: 1fr;
+      }
+
+      .embed {
+        max-width: 100%;
+      }
+
+      .search-bar {
+        flex-wrap: wrap;
+      }
+
+      .search-input {
+        min-width: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header h1 {
+        font-size: 18px;
+      }
+
+      .message-left {
+        width: 40px;
+        padding-right: 8px;
+      }
+
+      .avatar {
+        width: 28px;
+        height: 28px;
+      }
+
+      .message {
+        padding: 10px 6px;
+      }
+
+      .author {
+        font-size: 13px;
+      }
+
+      .message-text {
+        font-size: 14px;
+      }
+
+      .msg-toolbar {
+        right: 4px;
+      }
+
+      .nav-btn {
+        padding: 4px 8px;
+        font-size: 12px;
+      }
+
+      .reaction {
+        padding: 3px 6px;
+        font-size: 12px;
+      }
+    }
+
+    /* ==== EXPORT FOOTER ==== */
+    .export-footer {
+      text-align: center;
+      padding: 32px 20px 80px;
+      border-top: 1px solid var(--border-color);
+      margin-top: 24px;
+    }
+
+    .export-footer-text {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .export-footer-text strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .export-footer-meta {
+      color: var(--text-muted);
+      font-size: 11px;
+      opacity: 0.7;
+    }
+
+    /* ==== REDUCED MOTION ==== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* ==== PRINT STYLES ==== */
+    @media print {
+      .bottom-nav, .jump-top, .search-bar, .theme-toggle {
+        display: none !important;
+      }
+
+      .container {
+        padding-bottom: 0;
+      }
+
+      body, :root {
+        --bg-primary: white;
+        --bg-secondary: white;
+        --text-primary: black;
+        --text-secondary: #333;
+        --text-muted: #666;
+        --border-color: #ddd;
+        --card-bg: #f9f9f9;
+        background: white;
+        color: black;
+      }
+
+      .header {
+        background: white;
+        color: black;
+        border-bottom: 2px solid #ccc;
+        box-shadow: none;
+        position: static;
+      }
+
+      .header h1 {
+        background: none;
+        -webkit-background-clip: unset;
+        -webkit-text-fill-color: black;
+        color: black;
+      }
+
+      .message {
+        page-break-inside: avoid;
+        background: none !important;
+        border-bottom: 1px solid #eee;
+        transform: none !important;
+      }
+
+      .avatar {
+        box-shadow: none;
+        border: 1px solid #ccc;
+      }
+
+      .message-text, .embed-description, .embed-field-value {
+        color: black;
+      }
+
+      .author, .embed-title, .embed-field-name {
+        color: #333;
+      }
+
+      .timestamp, .embed-footer {
+        color: #666;
+      }
+
+      .attachment, .reaction, .embed {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        box-shadow: none;
+      }
+
+      .code-block {
+        background: #f5f5f5;
+        border: 1px solid #ddd;
+      }
+
+      a {
+        color: #0066cc;
+        text-decoration: underline;
+      }
+
+      .embed-image, .embed-video {
+        max-width: 100%;
+        page-break-inside: avoid;
+      }
+
+      .attachment-preview-img {
+        max-height: none;
+      }
+    }
+
+    /* ==== POPUPS ==== */
+    .discrub-popup {
+      background: #18191c;
+      border: 1px solid rgba(114, 137, 218, 0.3);
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+      min-width: 200px;
+      max-width: 400px;
+      max-height: 400px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      animation: popup-fade-in 150ms ease;
+    }
+
+    @keyframes popup-fade-in {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .user-popup-card {
+      overflow: hidden;
+    }
+
+    .user-popup-banner {
+      height: 60px;
+      width: 100%;
+    }
+
+    .user-popup-avatar-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 16px;
+      margin-top: -20px;
+      margin-bottom: 8px;
+    }
+
+    .user-popup-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 4px solid #18191c;
+      object-fit: cover;
+    }
+
+    .user-popup-avatar-placeholder {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 4px solid #18191c;
+      background: linear-gradient(135deg, #7289da, #5865f2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 20px;
+      color: #fff;
+    }
+
+    .user-popup-bot-badge {
+      background: #5865f2;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+
+    .user-popup-name {
+      font-weight: 700;
+      font-size: 18px;
+      color: #fff;
+      padding: 0 16px;
+      margin-bottom: 2px;
+    }
+
+    .user-popup-username {
+      font-size: 14px;
+      color: #b9bbbe;
+      padding: 0 16px;
+      margin-bottom: 4px;
+    }
+
+    .user-popup-divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.06);
+      margin: 8px 16px;
+    }
+
+    .user-popup-section {
+      padding: 0 16px;
+      margin-bottom: 8px;
+    }
+
+    .user-popup-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #b9bbbe;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .user-popup-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2px 16px;
+      font-size: 13px;
+    }
+
+    .user-popup-label {
+      color: #72767d;
+    }
+
+    .user-popup-value {
+      color: #dcddde;
+      font-weight: 500;
+    }
+
+    .user-popup-mono {
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 12px;
+    }
+
+    .user-popup-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .user-popup-badge {
+      background: #2f3136;
+      color: #dcddde;
+      border: 1px solid #7289da;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .user-popup-count {
+      font-size: 13px;
+      color: #b9bbbe;
+      padding: 4px 16px 12px;
+    }
+
+    /* ==== REACTION POPUP ==== */
+    .reaction-popup-card {
+      min-width: 280px;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      max-height: 100%;
+    }
+
+    .reaction-popup-tabs {
+      display: flex;
+      gap: 0;
+      padding: 8px 8px 0;
+      border-bottom: 1px solid #2f3136;
+      overflow-x: auto;
+      flex-shrink: 0;
+    }
+
+    .reaction-tab {
+      background: transparent;
+      border: none;
+      color: #b9bbbe;
+      padding: 8px 12px;
+      font-size: 13px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color 150ms ease, border-color 150ms ease;
+      white-space: nowrap;
+    }
+
+    .reaction-tab:hover {
+      color: #dcddde;
+    }
+
+    .reaction-tab.active {
+      color: #fff;
+      border-bottom-color: #5865f2;
+    }
+
+    .reaction-popup-content {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 8px;
+    }
+
+    .reaction-user-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .reaction-user-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 8px;
+      border-radius: 4px;
+      transition: background 100ms ease;
+    }
+
+    .reaction-user-row:hover {
+      background: rgba(79, 84, 92, 0.4);
+    }
+
+    .reaction-user-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .reaction-user-avatar-placeholder {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7289da, #5865f2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .reaction-user-name {
+      color: #dcddde;
+      font-size: 14px;
+      font-weight: 500;
+      flex: 1;
+    }
+
+    .reaction-user-emoji {
+      font-size: 16px;
+    }
+
+    .reaction-search-bar {
+      padding: 8px 8px 4px;
+      flex-shrink: 0;
+    }
+
+    .reaction-search-input {
+      width: 100%;
+      background: #1e1f22;
+      border: 1px solid #40444b;
+      border-radius: 4px;
+      color: #dcddde;
+      padding: 6px 10px;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 150ms ease;
+    }
+
+    .reaction-search-input:focus {
+      border-color: #5865f2;
+    }
+
+    .reaction-search-input::placeholder {
+      color: #72767d;
+    }
+
+    .reaction-show-more {
+      width: 100%;
+      background: rgba(88, 101, 242, 0.1);
+      border: 1px solid rgba(88, 101, 242, 0.2);
+      border-radius: 4px;
+      color: #c9d1ff;
+      padding: 8px;
+      margin-top: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: background 150ms ease;
+    }
+
+    .reaction-show-more:hover {
+      background: rgba(88, 101, 242, 0.2);
+    }
+
+    .reaction-count-only {
+      padding: 16px;
+      text-align: center;
+      color: #b9bbbe;
+      font-size: 14px;
+    }
+
+    .reaction-count-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 8px;
+    }
+
+    .reaction-count-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 8px;
+    }
+
+    .reaction-count-emoji {
+      font-size: 20px;
+    }
+
+    .reaction-count-text {
+      color: #b9bbbe;
+      font-size: 14px;
+    }
+
+    /* ==== MESSAGE HOVER TOOLBAR ==== */
+    .msg-toolbar {
+      position: absolute;
+      top: -16px;
+      right: 16px;
+      display: flex;
+      gap: 0;
+      background: #2f3136;
+      border: 1px solid #202225;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      animation: popup-fade-in 80ms ease;
+      z-index: 50;
+    }
+
+    .msg-toolbar-btn {
+      background: transparent;
+      border: none;
+      border-right: 1px solid #202225;
+      color: #b9bbbe;
+      cursor: pointer;
+      padding: 6px 10px;
+      font-size: 16px;
+      line-height: 1;
+      transition: background 100ms ease, color 100ms ease;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .msg-toolbar-btn:last-child {
+      border-right: none;
+    }
+
+    .msg-toolbar-btn:hover {
+      background: rgba(79, 84, 92, 0.6);
+      color: #dcddde;
+    }
+
+    .msg-toolbar-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    .msg-toolbar-label {
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="header" role="banner">
+    <h1>#🏌️‍♂️dmt-swings</h1>
+    <div class="meta">
+      50 messages - Page 3 of 4
+      <span style="float: right;">Exported: Jun 24, 2026 6:19 PM</span>
+    </div>
+    <div class="search-bar">
+      <input class="search-input" id="search-input" type="text" placeholder="Search messages..." aria-label="Search messages" />
+      <span class="search-count" id="search-count" aria-live="polite"></span>
+      <button class="search-clear" id="search-clear" style="display:none" aria-label="Clear search">&times;</button>
+      <button class="theme-toggle" id="theme-toggle" title="Toggle light/dark mode" aria-label="Toggle light/dark mode">&#x263E;</button>
+    </div>
+  </div>
+  <main class="container" role="main">
+    <div class="date-divider" id="date-2026-05-04"><span class="date-divider-text">May 4, 2026</span></div>
+          <div class="message" id="msg-1500857779924111391" data-message-id="1500857779924111391">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">05/04/2026 8:52 AM</span>
+              </div>
+              <div class="message-text">They&#039;re chasing 675c now on MU, HOLDING MUU FULLY AND COMPLETELY <img class="emoji" src="emojis/1247044849585225880.webp" alt=":Peepo_Rocket:" title=":Peepo_Rocket:"></div>
+              
+              <div class="attachments">
+               
+                   <div class="attachment-card">
+                     <img class="attachment-preview attachment-preview-img" src="media/attachments/100_1782343165507.png" alt="image.png" loading="lazy" data-action="open-lightbox" data-img-index="0" style="cursor:pointer">
+                     <div class="attachment-info">
+                       <div class="attachment-header">
+                         <span class="attachment-icon">🖼️</span>
+                         <a href="media/attachments/100_1782343165507.png"  class="attachment-name">
+                           image.png
+                         </a>
+                       </div>
+                       <div class="attachment-meta">
+                         <span class="attachment-size">298.51 KB</span>
+                         <span class="attachment-badge local">Local</span>
+                       </div>
+                     </div>
+                   </div>
+                 
+             </div>
+              
+              
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1500854969601884321" data-message-id="1500854969601884321">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">05/04/2026 8:41 AM</span>
+              </div>
+              <div class="message-text">(no content)</div>
+              
+              
+              
+              
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1500854808612175922" data-message-id="1500854808612175922">
+            <div class="message-left">
+              <span class="grouped-timestamp">05/04/2026 8:41 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">Right now MU is cleared for takeoff, no earnings until end of June. All the other memory names are out of the way. They will run it up into MU eps, then probably sell the news on a BLOWOUT RECORD report and everyone will be confused why it&#039;s down when they chased it at 600+</div>
+              
+            </div>
+              
+              
+              
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1500854674343858336" data-message-id="1500854674343858336">
+            <div class="message-left">
+              <span class="grouped-timestamp">05/04/2026 8:40 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">Insane day for the swing port, all-in MUU <img class="emoji" src="emojis/1247044849585225880.webp" alt=":Peepo_Rocket:" title=":Peepo_Rocket:"></div>
+              
+              <div class="attachments">
+               
+                   <div class="attachment-card">
+                     <img class="attachment-preview attachment-preview-img" src="media/attachments/103_1782343166670.png" alt="image.png" loading="lazy" data-action="open-lightbox" data-img-index="1" style="cursor:pointer">
+                     <div class="attachment-info">
+                       <div class="attachment-header">
+                         <span class="attachment-icon">🖼️</span>
+                         <a href="media/attachments/103_1782343166670.png"  class="attachment-name">
+                           image.png
+                         </a>
+                       </div>
+                       <div class="attachment-meta">
+                         <span class="attachment-size">6.87 KB</span>
+                         <span class="attachment-badge local">Local</span>
+                       </div>
+                     </div>
+                   </div>
+                 
+             </div>
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1500854674343858336" data-emoji-key="🔥">
+                     🔥
+                     <span class="reaction-count">1</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        <div class="date-divider" id="date-2026-05-01"><span class="date-divider-text">May 1, 2026</span></div>
+          <div class="message" id="msg-1499798621187477626" data-message-id="1499798621187477626">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">05/01/2026 10:44 AM</span>
+              </div>
+              <div class="message-text">With quantum going, watch INFQ for a catch up, nice sell off to 11s here 👀</div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1499798621187477626" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">5</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1499798527058907228" data-message-id="1499798527058907228">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1499182732549296188">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">Long AAOX 51.5</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">05/01/2026 10:43 AM</span>
+              </div>
+              <div class="message-text">Congrats if you held this, new ATH on AAOI <img class="emoji" src="emojis/1247044849585225880.webp" alt=":Peepo_Rocket:" title=":Peepo_Rocket:"></div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1499798527058907228" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">3</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1499774081711734844" data-message-id="1499774081711734844">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">05/01/2026 9:06 AM</span>
+              </div>
+              <div class="message-text">Beautiful day for the swing port 🐮</div>
+              
+              <div class="attachments">
+               
+                   <div class="attachment-card">
+                     <img class="attachment-preview attachment-preview-img" src="media/attachments/106_1782343168034.png" alt="Screenshot_2026-05-01_at_7.05.48_AM.png" loading="lazy" data-action="open-lightbox" data-img-index="2" style="cursor:pointer">
+                     <div class="attachment-info">
+                       <div class="attachment-header">
+                         <span class="attachment-icon">🖼️</span>
+                         <a href="media/attachments/106_1782343168034.png"  class="attachment-name">
+                           Screenshot_2026-05-01_at_7.05.48_AM.png
+                         </a>
+                       </div>
+                       <div class="attachment-meta">
+                         <span class="attachment-size">7.17 KB</span>
+                         <span class="attachment-badge local">Local</span>
+                       </div>
+                     </div>
+                   </div>
+                 
+             </div>
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1499774081711734844" data-emoji-key="🔥">
+                     🔥
+                     <span class="reaction-count">5</span>
+                   </span>
+                 
+                   <span class="reaction" data-action="show-reactions" data-message-id="1499774081711734844" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">4</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        <div class="date-divider" id="date-2026-04-30"><span class="date-divider-text">April 30, 2026</span></div>
+          <div class="message" id="msg-1499414775652815029" data-message-id="1499414775652815029">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/30/2026 9:19 AM</span>
+              </div>
+              <div class="message-text">Only holding MUU and SIVEF now <img class="emoji" src="emojis/849724412776153098.webp" alt=":diamondhands:" title=":diamondhands:"></div>
+              
+              
+              
+              
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1499414670564524254" data-message-id="1499414670564524254">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1494699577973014910">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">Will scale CVNX 19 &lt;:Lemon:989240524772880404&gt;</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/30/2026 9:18 AM</span>
+              </div>
+              <div class="message-text">Sold the rest of CVNX 22 last night <img class="emoji" src="emojis/989240524772880404.webp" alt=":Lemon:" title=":Lemon:"></div>
+              
+              
+              
+              
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1499413686119301344" data-message-id="1499413686119301344">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/30/2026 9:14 AM</span>
+              </div>
+              <div class="message-text">(no content)</div>
+              
+              <div class="attachments">
+               
+                   <div class="attachment-card">
+                     <img class="attachment-preview attachment-preview-img" src="media/attachments/109_1782343169543.png" alt="Screenshot_2026-04-30_at_6.31.59_AM.png" loading="lazy" data-action="open-lightbox" data-img-index="3" style="cursor:pointer">
+                     <div class="attachment-info">
+                       <div class="attachment-header">
+                         <span class="attachment-icon">🖼️</span>
+                         <a href="media/attachments/109_1782343169543.png"  class="attachment-name">
+                           Screenshot_2026-04-30_at_6.31.59_AM.png
+                         </a>
+                       </div>
+                       <div class="attachment-meta">
+                         <span class="attachment-size">7.38 KB</span>
+                         <span class="attachment-badge local">Local</span>
+                       </div>
+                     </div>
+                   </div>
+                 
+             </div>
+              
+              
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1499413505789657138" data-message-id="1499413505789657138">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/30/2026 9:13 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">Stopped out of MSFU 28 (minus $1), NVDL 102 (minus $2), and took profit on MUU up $15/share, NEBX up $3, AAOX up $4, MRVU up $1.5, and AVGX up $2, overall not bad for about 5% overnight 🏌🏽</div>
+              
+              
+              
+              
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1499413502660706495" data-message-id="1499413502660706495">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/30/2026 9:13 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">Looking to trim MSFT depending on how it reacts to 415, and holding the rest.</div>
+              
+            </div>
+              
+              
+              
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1499412717386338384" data-message-id="1499412717386338384">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/30/2026 9:10 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">Every swing add is up nicely right now into data. Can always reduce exposure if you’re heavy, but I’m going to wait and see how we react to data since we’ve typically been boolish and CL is dropping.</div>
+              
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1499412717386338384" data-emoji-key="❤️">
+                     ❤️
+                     <span class="reaction-count">3</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        <div class="date-divider" id="date-2026-04-29"><span class="date-divider-text">April 29, 2026</span></div>
+          <div class="message" id="msg-1499195023290404977" data-message-id="1499195023290404977">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1498691387921666249">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">Scaling this GGLL into 116 and will likely trade it as a &lt;#1432130520266969309&gt; once the earnings dr...</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/29/2026 6:45 PM</span>
+              </div>
+              <div class="message-text">Got back into GGLL around 117 as a <span class="channel-mention" data-channel-id="1432130520266969309"># unknown-channel</span> and only have 10% overnight, but I’ll likely sell some MSFU on a pop and rotate it into GGLL on a dip <img class="emoji" src="emojis/1132862546504855592.webp" alt=":google:" title=":google:"></div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1499195023290404977" data-emoji-key="✅">
+                     ✅
+                     <span class="reaction-count">1</span>
+                   </span>
+                 
+                   <span class="reaction" data-action="show-reactions" data-message-id="1499195023290404977" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">1</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1499184486662012949" data-message-id="1499184486662012949">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/29/2026 6:03 PM</span>
+              </div>
+              <div class="message-text">Long NVDL 104 <img class="emoji" src="emojis/1037351416072765490.webp" alt=":NVDA:" title=":NVDA:"></div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1499184486662012949" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">7</span>
+                   </span>
+                 
+                   <span class="reaction" data-action="show-reactions" data-message-id="1499184486662012949" data-emoji-key="🚀">
+                     🚀
+                     <span class="reaction-count">3</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1499182732549296188" data-message-id="1499182732549296188">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/29/2026 5:56 PM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">Long AAOX 51.5</div>
+              
+              
+              
+              
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1499178872497770627" data-message-id="1499178872497770627">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/29/2026 5:41 PM</span>
+              </div>
+              <div class="message-text">Long MRVU 84</div>
+              
+              
+              
+              
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1499176625932206152" data-message-id="1499176625932206152">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/29/2026 5:32 PM</span>
+              </div>
+              <div class="message-text">Long AVGX 60</div>
+              
+              
+              
+              
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1499176348118286438" data-message-id="1499176348118286438">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1499047145297149992">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">Trimming more MUU 275 to 280 as some more put flow came in &lt;:Flow:989234631750590474&gt; Just raising c...</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/29/2026 5:31 PM</span>
+              </div>
+              <div class="message-text">Added back some MUU at 275</div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1499176348118286438" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">1</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1499176142035353663" data-message-id="1499176142035353663">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/29/2026 5:30 PM</span>
+              </div>
+              <div class="message-text">Long MSFU 29 <img class="emoji" src="emojis/1227661591160553562.webp" alt=":msft:" title=":msft:"></div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1499176142035353663" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">2</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1499176065975849097" data-message-id="1499176065975849097">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/29/2026 5:30 PM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">Long NEBX 56</div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1499176065975849097" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">2</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1499047145297149992" data-message-id="1499047145297149992">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1498679209751609516">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">Added some MUU back at 252 🐮</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/29/2026 8:58 AM</span>
+              </div>
+              <div class="message-text">Trimming more MUU 275 to 280 as some more put flow came in <img class="emoji" src="emojis/989234631750590474.webp" alt=":Flow:" title=":Flow:"> Just raising capital to take advantage of any fear, but always keeping a significant position going on this name 🐮</div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1499047145297149992" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">3</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        <div class="date-divider" id="date-2026-04-28"><span class="date-divider-text">April 28, 2026</span></div>
+          <div class="message" id="msg-1498691387921666249" data-message-id="1498691387921666249">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1498323508030341312">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">Still holding these GGLL runners, but will trim ahead of EPS Wednesday &lt;:google:1132862546504855592&gt;</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/28/2026 9:24 AM</span>
+              </div>
+              <div class="message-text">Scaling this GGLL into 116 and will likely trade it as a <span class="channel-mention" data-channel-id="1432130520266969309"># unknown-channel</span> once the earnings drop tomorrow in afters <img class="emoji" src="emojis/851737881030033428.webp" alt=":goog:" title=":goog:"></div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1498691387921666249" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">1</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1498689305776750604" data-message-id="1498689305776750604">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/28/2026 9:16 AM</span>
+              </div>
+              <div class="message-text">Nice $20 bounce for the <span class="channel-mention" data-channel-id="1432130520266969309"># unknown-channel</span> ⚖️</div>
+              
+              
+              
+              
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1498689220858872019" data-message-id="1498689220858872019">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/28/2026 9:15 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">I will not let these adds go red if MU loses daily 5s/500 later 🔑</div>
+              
+              
+              
+              
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1498679209751609516" data-message-id="1498679209751609516">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1498319577447403705">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">Scaled some MUU 280, but holding most ⚖️ RMBS (memory name) earnings tonight, and quite a few memory...</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/28/2026 8:36 AM</span>
+              </div>
+              <div class="message-text">Added some MUU back at 252 🐮</div>
+              
+              
+              
+              
+              
+            </div>
+          </div>
+        <div class="date-divider" id="date-2026-04-27"><span class="date-divider-text">April 27, 2026</span></div>
+          <div class="message" id="msg-1498323508030341312" data-message-id="1498323508030341312">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1497267431008239799">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">GGLL 111+ &lt;:google:1132862546504855592&gt; Holding runners, will probably scale end of day and add on d...</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/27/2026 9:02 AM</span>
+              </div>
+              <div class="message-text">Still holding these GGLL runners, but will trim ahead of EPS Wednesday <img class="emoji" src="emojis/1132862546504855592.webp" alt=":google:" title=":google:"></div>
+              
+              
+              
+              
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1498319577447403705" data-message-id="1498319577447403705">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1497215119103492116">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">Filled more MUU 232 overnight as well 🐮</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/27/2026 8:47 AM</span>
+              </div>
+              <div class="message-text">Scaled some MUU 280, but holding most ⚖️ RMBS (memory name) earnings tonight, and quite a few memory earnings this week (including STX, SNDK, WDC) 🧠</div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1498319577447403705" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">3</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1498318763576135760" data-message-id="1498318763576135760">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1497250330583236833">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">Long GLWG 25.5 🏌🏽‍♂️</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/27/2026 8:43 AM</span>
+              </div>
+              <div class="message-text">Trimmed some GLWG this morning as planned around 27, and then got hit b/e on the rest. Still riding MUU as my largest position.</div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1498318763576135760" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">2</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        <div class="date-divider" id="date-2026-04-24"><span class="date-divider-text">April 24, 2026</span></div>
+          <div class="message" id="msg-1497267557894193274" data-message-id="1497267557894193274">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1494364487485231334">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">Buying some ARMG at 11 &lt;:Zyzz:889476942607302678&gt;</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/24/2026 11:06 AM</span>
+              </div>
+              <div class="message-text">Full 100% on ARMG <img class="emoji" src="emojis/889476942607302678.webp" alt=":Zyzz:" title=":Zyzz:"> Will have to look for dips to reload this name as well <img class="emoji" src="emojis/914561402985914418.webp" alt=":money_rain:" title=":money_rain:"></div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1497267557894193274" data-emoji-key="🐐">
+                     🐐
+                     <span class="reaction-count">1</span>
+                   </span>
+                 
+                   <span class="reaction" data-action="show-reactions" data-message-id="1497267557894193274" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">2</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1497267431008239799" data-message-id="1497267431008239799">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1494769750843064480">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">Scaling more GGLL 110+ when it gets there &lt;:google:1132862546504855592&gt;</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/24/2026 11:06 AM</span>
+              </div>
+              <div class="message-text">GGLL 111+ <img class="emoji" src="emojis/1132862546504855592.webp" alt=":google:" title=":google:"> Holding runners, will probably scale end of day and add on dips next week <img class="emoji" src="emojis/1003504093005889537.webp" alt=":runitup:" title=":runitup:"></div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1497267431008239799" data-emoji-key="🐐">
+                     🐐
+                     <span class="reaction-count">1</span>
+                   </span>
+                 
+                   <span class="reaction" data-action="show-reactions" data-message-id="1497267431008239799" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">1</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1497250330583236833" data-message-id="1497250330583236833">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/24/2026 9:58 AM</span>
+              </div>
+              <div class="message-text">Long GLWG 25.5 🏌🏽‍♂️</div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1497250330583236833" data-emoji-key="❤️">
+                     ❤️
+                     <span class="reaction-count">3</span>
+                   </span>
+                 
+                   <span class="reaction" data-action="show-reactions" data-message-id="1497250330583236833" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">4</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1497234423110828052" data-message-id="1497234423110828052">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/24/2026 8:55 AM</span>
+              </div>
+              <div class="message-text">Scaled some MUU 255 ⚖️</div>
+              
+              
+              
+              
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1497215119103492116" data-message-id="1497215119103492116">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/24/2026 7:38 AM</span>
+              </div>
+              <div class="message-text">Filled more MUU 232 overnight as well 🐮</div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1497215119103492116" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">3</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        <div class="date-divider" id="date-2026-04-23"><span class="date-divider-text">April 23, 2026</span></div>
+          <div class="message" id="msg-1497030259588071445" data-message-id="1497030259588071445">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1496726605119225938">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">Added some MUU back 230 overnight 🦘</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/23/2026 7:23 PM</span>
+              </div>
+              <div class="message-text">Added more MUU 238 🦘</div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1497030259588071445" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">2</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1496924203981733992" data-message-id="1496924203981733992">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/23/2026 12:22 PM</span>
+              </div>
+              <div class="message-text">I&#039;m actually going to scale more aggressively on all our swings in case the market pulls further under the daily 5s 649 ⚖️ I&#039;m cutting NEBX for now as well.</div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1496924203981733992" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">5</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1496916021255344228" data-message-id="1496916021255344228">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/23/2026 11:49 AM</span>
+              </div>
+              <div class="message-text">Taking NEBX 73 🏌🏽‍♂️</div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1496916021255344228" data-emoji-key="🔥">
+                     🔥
+                     <span class="reaction-count">1</span>
+                   </span>
+                 
+                   <span class="reaction" data-action="show-reactions" data-message-id="1496916021255344228" data-emoji-key="❤️">
+                     ❤️
+                     <span class="reaction-count">1</span>
+                   </span>
+                 
+                   <span class="reaction" data-action="show-reactions" data-message-id="1496916021255344228" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">1</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1496888801660899450" data-message-id="1496888801660899450">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1496532645562286082">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">Next ARMG scale will be 15+ &lt;:Zyzz:889476942607302678&gt;</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/23/2026 10:01 AM</span>
+              </div>
+              <div class="message-text">ARMG getting down to runners 18+ when it comes <img class="emoji" src="emojis/889476942607302678.webp" alt=":Zyzz:" title=":Zyzz:"> Insane move from 11 <img class="emoji" src="emojis/914561402985914418.webp" alt=":money_rain:" title=":money_rain:"></div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1496888801660899450" data-emoji-key="🔥">
+                     🔥
+                     <span class="reaction-count">3</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1496855586699083808" data-message-id="1496855586699083808">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1494699769216630955">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">Scaled TSLL 13.75 and 14.4 &lt;:TSLA:983382235614937118&gt;</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/23/2026 7:49 AM</span>
+              </div>
+              <div class="message-text">After scaling prior to earnings, and then starting to reload ahead of my weekly 370, my average is higher than I&#039;d like in the high 11s. I will stop out here over 12 to keep whatever profit is left, and watch to see how TSLA acts at 370 before considering getting back in. MUU has been my largest position, and I will continue to increase it on dips.</div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1496855586699083808" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">5</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        <div class="date-divider" id="date-2026-04-22"><span class="date-divider-text">April 22, 2026</span></div>
+          <div class="message" id="msg-1496726605119225938" data-message-id="1496726605119225938">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1496595965136732320">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">Trimmed some MUU into 245, but keeping a good amount overnight ⚖️</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/22/2026 11:17 PM</span>
+              </div>
+              <div class="message-text">Added some MUU back 230 overnight 🦘</div>
+              
+              
+              
+              
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1496641395962675302" data-message-id="1496641395962675302">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/22/2026 5:38 PM</span>
+              </div>
+              <div class="message-text">Added more TSLL 12.5 and have bids at 12.25 if it wicks it later 🎅🏿</div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1496641395962675302" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">4</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1496633382225055876" data-message-id="1496633382225055876">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1496504192553058494">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">Trimmed some TSLL 13.07, holding most of my lots from 10, will look to reload likely after the earni...</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/22/2026 5:06 PM</span>
+              </div>
+              <div class="message-text">Reloading TSLL under 13 and down into 12.75 <img class="emoji" src="emojis/983382235614937118.webp" alt=":TSLA:" title=":TSLA:"></div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1496633382225055876" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">2</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1496595965136732320" data-message-id="1496595965136732320">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1496518446920368308">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">Trimmed some MUU 232 &lt;a:money_rain:914561402985914418&gt;</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/22/2026 2:38 PM</span>
+              </div>
+              <div class="message-text">Trimmed some MUU into 245, but keeping a good amount overnight ⚖️</div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1496595965136732320" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">5</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1496535349638467645" data-message-id="1496535349638467645">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1496532575957815367">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">NMAX about to hit 10+ 🎯</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/22/2026 10:37 AM</span>
+              </div>
+              <div class="message-text">Scaled some NMAX 11 ⚖️ Down to the last 25% and letting it ride, may raise stops to 9s to protect gains <img class="emoji" src="emojis/914561402985914418.webp" alt=":money_rain:" title=":money_rain:"></div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1496535349638467645" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">3</span>
+                   </span>
+                 
+                   <span class="reaction" data-action="show-reactions" data-message-id="1496535349638467645" data-emoji-key="🔥">
+                     🔥
+                     <span class="reaction-count">1</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1496532645562286082" data-message-id="1496532645562286082">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1496505838825766922">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">Scaled some more ARMG at 14.14 &lt;:Zyzz:889476942607302678&gt;</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/22/2026 10:26 AM</span>
+              </div>
+              <div class="message-text">Next ARMG scale will be 15+ <img class="emoji" src="emojis/889476942607302678.webp" alt=":Zyzz:" title=":Zyzz:"></div>
+              
+              
+              
+              
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1496532575957815367" data-message-id="1496532575957815367">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/22/2026 10:26 AM</span>
+              </div>
+              <div class="message-text">NMAX about to hit 10+ 🎯</div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1496532575957815367" data-emoji-key="🔥">
+                     🔥
+                     <span class="reaction-count">4</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1496519833972637696" data-message-id="1496519833972637696">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1496509055793893518">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">NMAX heading for 8+, will take another scale in the 8s &lt;a:Peepo_Rocket:1247044849585225880&gt;</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/22/2026 9:35 AM</span>
+              </div>
+              <div class="message-text">So busy with all our bangers, I didn&#039;t scale anymore NMAX haha will now wait and scale in the 9s and 10s <img class="emoji" src="emojis/914561402985914418.webp" alt=":money_rain:" title=":money_rain:"></div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1496519833972637696" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">2</span>
+                   </span>
+                 
+                   <span class="reaction" data-action="show-reactions" data-message-id="1496519833972637696" data-emoji-key="❤️">
+                     ❤️
+                     <span class="reaction-count">1</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1496518446920368308" data-message-id="1496518446920368308">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1496179129119412396">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">Reloaded some MUU 200 🦘</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/22/2026 9:30 AM</span>
+              </div>
+              <div class="message-text">Trimmed some MUU 232 <img class="emoji" src="emojis/914561402985914418.webp" alt=":money_rain:" title=":money_rain:"></div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1496518446920368308" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">2</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1496509757559803934" data-message-id="1496509757559803934">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1496204245777780826">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">Reloading some TSLL 13 &lt;:TSLA:983382235614937118&gt;</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/22/2026 8:55 AM</span>
+              </div>
+              <div class="message-text">I will scale some more of the 13s every .25 up, 13.25, etc. <img class="emoji" src="emojis/983382235614937118.webp" alt=":TSLA:" title=":TSLA:"></div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1496509757559803934" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">1</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1496509055793893518" data-message-id="1496509055793893518">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1496504311864102963">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content">Trimmed some NMAX 7.60, holding most ⚖️</span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/22/2026 8:52 AM</span>
+              </div>
+              <div class="message-text">NMAX heading for 8+, will take another scale in the 8s <img class="emoji" src="emojis/1247044849585225880.webp" alt=":Peepo_Rocket:" title=":Peepo_Rocket:"></div>
+              
+              
+              
+              
+              
+            </div>
+          </div>
+        
+  </main>
+  <nav class="bottom-nav" role="navigation" aria-label="Page navigation">
+    <a class="nav-btn" href="dmt_swings-page-2.html">← Previous</a>
+    <span class="nav-page-info">Page 3 of 4</span>
+    <a class="nav-btn" href="dmt_swings-page-4.html">Next →</a>
+  </nav>
+  <footer class="export-footer">
+    <div class="export-footer-text">Exported with <strong>Discrub</strong> on June 24, 2026</div>
+    <div class="export-footer-meta">html &middot; 50 messages &middot; Page 3 of 4 &middot; Media included</div>
+  </footer>
+  <button class="jump-top" id="jump-top" title="Scroll to top" aria-label="Scroll to top">↑</button>
+  <script type="application/json" id="export-data">{"page":{"current":3,"total":4,"baseFilename":"dmt_swings"},"users":{"737813392764698665":{"username":"dmtdr","discriminator":"0","displayName":"DMT Dr 🦄💨🙌","avatar":"aa0b1efd7d31990e16284c80dea526d6","avatarUrl":"avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png","bot":false,"messageCount":50,"roleColor":"#3498db","roles":[{"name":"DMT Dr.","color":"#3498db","icon":null,"roleId":"1432129425654419609","unicodeEmoji":null},{"name":"new aminrole","color":"#e91e63","icon":null,"roleId":"1480715133264203868","unicodeEmoji":null},{"name":"Blademap Founding","color":"#d3af37","icon":null,"roleId":"1482449349232296036","unicodeEmoji":null}]},"100424065348534272":{"username":"jzluo.","displayName":"jzluo","messageCount":0},"1252028277128695809":{"username":"moneyman0447","displayName":"Moneyman","messageCount":0},"125687680125239297":{"username":"ikeepittaco","displayName":"IKeepItTaco","messageCount":0},"1303800287563350022":{"username":"tudorsava.17","displayName":"Tudor Sava","messageCount":0},"1318413789883924481":{"username":"rickym100711","displayName":"ric","messageCount":0},"1353282915601223721":{"username":"ivaaaannn0551","displayName":"Ivaaaannn","messageCount":0},"1369679043309604915":{"username":"singhtomoon","displayName":"brrrrr","messageCount":0},"1371632292132556984":{"username":"jtsla4","displayName":"j","messageCount":0},"1389571586322989089":{"username":"mxqq453","displayName":"mxqq453","messageCount":0},"171843916922880003":{"username":"kobeblackmamba","displayName":"Kobeblackmamba","messageCount":0},"216294784229179392":{"username":"shurwa","displayName":"shurwa","messageCount":0},"242816798158880768":{"username":"brunzy88","displayName":"brunzy88","messageCount":0},"255430138735493121":{"username":"big.andy_","displayName":"Big.Andy","messageCount":0},"261693301583773698":{"username":"fuwachu","messageCount":0},"321404651528519680":{"username":"fuckyoutalkingbout_","displayName":"Yung Murda","messageCount":0},"348095844148576256":{"username":"ramii.","displayName":"rami","messageCount":0},"400556863068045314":{"username":"notyetagm","messageCount":0},"402545986502656001":{"username":"adrian8834","displayName":"Adrian","messageCount":0},"412627330918252567":{"username":"psrikant","displayName":"psrikant","messageCount":0},"413911980600983554":{"username":"squirtlesquirtsls","displayName":"SquirtleSquirts","messageCount":0},"437020724524351518":{"username":"who_stole_my_username","displayName":"<=== Y'all seeing this???","messageCount":0},"520523404177047562":{"username":"rep221122","displayName":"Astro","messageCount":0},"702601151677464728":{"username":"southfacearmour","displayName":"Shirhole","messageCount":0},"727277430506520577":{"username":"jakethesnake_98","displayName":"Jake","messageCount":0},"735822971326955540":{"username":"joeyprime","displayName":"JoeyPrime","messageCount":0},"770336033556135976":{"username":"mgoons","displayName":"mgoons","messageCount":0},"779113237399863316":{"username":".kecheob","displayName":"chris","messageCount":0},"791098437784961035":{"username":"liamsan__","displayName":"liamsan","messageCount":0},"813572642144780328":{"username":"l.a.ray","messageCount":0},"906563320243445800":{"username":"flyersfan13","displayName":"MM","messageCount":0},"959888592942039140":{"username":"lw803","displayName":"lw803","messageCount":0},"729674640758276206":{"username":"carolinahodl","displayName":"OutoftheOffice","messageCount":0},"752692173580796054":{"username":"matt762815","displayName":"Matt76","messageCount":0},"1392201842221518888":{"username":"harsha_20854","displayName":"Harsha","messageCount":0},"1460113158919422237":{"username":"jafont819","displayName":"Jafont819","messageCount":0},"966675661966172190":{"username":"stella8461","displayName":"Stella Deng","messageCount":0},"307906735023194117":{"username":"mrfrinkalink","displayName":"MrFrinkALink","messageCount":0},"621539190336913419":{"username":"sukahmeye002x","displayName":"sukahmeye002x","messageCount":0},"338526308424351746":{"username":"trembli0s","displayName":"trembleKiS","messageCount":0}},"threads":{},"reactions":{"1500854674343858336":{"🔥":{"emoji":"🔥","count":1,"users":[{"id":"1371632292132556984","username":"jtsla4","avatarUrl":"avatars/1371632292132556984/99078d3b12c93f99926a0239e8aeca34.png"}]}},"1499798621187477626":{"👍":{"emoji":"👍","count":5,"users":[{"id":"400556863068045314","username":"notyetagm","avatarUrl":"avatars/400556863068045314/ad43819fbfb5f523045e5dc76a9afb92.png"},{"id":"777247326770954306","username":"shaginhekvs","avatarUrl":"avatars/777247326770954306/904caf95bc27eea6d1050a54b796b0cf.png"},{"id":"879712867740426311","username":"et2flash","avatarUrl":""},{"id":"1252028277128695809","username":"moneyman0447","avatarUrl":"avatars/1252028277128695809/4c84bdedd6618eab7e207e902a212809.png"},{"id":"1303388456009076877","username":"gvgv9","avatarUrl":"avatars/1303388456009076877/6d3ebb2fa08b5c79ea8dffb86cafad57.png"}]}},"1499798527058907228":{"👍":{"emoji":"👍","count":3,"users":[{"id":"400556863068045314","username":"notyetagm","avatarUrl":"avatars/400556863068045314/ad43819fbfb5f523045e5dc76a9afb92.png"},{"id":"777247326770954306","username":"shaginhekvs","avatarUrl":"avatars/777247326770954306/904caf95bc27eea6d1050a54b796b0cf.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1499774081711734844":{"🔥":{"emoji":"🔥","count":5,"users":[{"id":"400556863068045314","username":"notyetagm","avatarUrl":"avatars/400556863068045314/ad43819fbfb5f523045e5dc76a9afb92.png"},{"id":"479503193869647890","username":"boost23.","avatarUrl":""},{"id":"777247326770954306","username":"shaginhekvs","avatarUrl":"avatars/777247326770954306/904caf95bc27eea6d1050a54b796b0cf.png"},{"id":"1252028277128695809","username":"moneyman0447","avatarUrl":"avatars/1252028277128695809/4c84bdedd6618eab7e207e902a212809.png"},{"id":"1371632292132556984","username":"jtsla4","avatarUrl":"avatars/1371632292132556984/99078d3b12c93f99926a0239e8aeca34.png"}]},"👍":{"emoji":"👍","count":4,"users":[{"id":"400556863068045314","username":"notyetagm","avatarUrl":"avatars/400556863068045314/ad43819fbfb5f523045e5dc76a9afb92.png"},{"id":"479503193869647890","username":"boost23.","avatarUrl":""},{"id":"777247326770954306","username":"shaginhekvs","avatarUrl":"avatars/777247326770954306/904caf95bc27eea6d1050a54b796b0cf.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1499412717386338384":{"❤️":{"emoji":"❤️","count":3,"users":[{"id":"1012605100855930891","username":"deepika9323","avatarUrl":"avatars/1012605100855930891/1628fc11e7961d85181295493426b775.png"},{"id":"1252028277128695809","username":"moneyman0447","avatarUrl":"avatars/1252028277128695809/4c84bdedd6618eab7e207e902a212809.png"},{"id":"1371632292132556984","username":"jtsla4","avatarUrl":"avatars/1371632292132556984/99078d3b12c93f99926a0239e8aeca34.png"}]}},"1499195023290404977":{"✅":{"emoji":"✅","count":1,"users":[{"id":"321404651528519680","username":"fuckyoutalkingbout_","avatarUrl":"avatars/321404651528519680/a_a78f4948b959cd73f33005bbe791f617.png"}]},"👍":{"emoji":"👍","count":1,"users":[{"id":"1012605100855930891","username":"deepika9323","avatarUrl":"avatars/1012605100855930891/1628fc11e7961d85181295493426b775.png"}]}},"1499184486662012949":{"👍":{"emoji":"👍","count":7,"users":[{"id":"228675684371922944","username":"phronizer","avatarUrl":"avatars/228675684371922944/83ee050caef6aac219235ff093279cdc.png"},{"id":"230735595482251266","username":"eyad61","avatarUrl":""},{"id":"400556863068045314","username":"notyetagm","avatarUrl":"avatars/400556863068045314/ad43819fbfb5f523045e5dc76a9afb92.png"},{"id":"437020724524351518","username":"who_stole_my_username","avatarUrl":"avatars/437020724524351518/231ba024b337662551dbb50d87cbf58f.png"},{"id":"1012605100855930891","username":"deepika9323","avatarUrl":"avatars/1012605100855930891/1628fc11e7961d85181295493426b775.png"},{"id":"1252028277128695809","username":"moneyman0447","avatarUrl":"avatars/1252028277128695809/4c84bdedd6618eab7e207e902a212809.png"},{"id":"1491520237172953149","username":"belshe0438","avatarUrl":""}]},"🚀":{"emoji":"🚀","count":3,"users":[{"id":"479503193869647890","username":"boost23.","avatarUrl":""},{"id":"636302997172912138","username":"allbuttardup","avatarUrl":"avatars/636302997172912138/81eb1f5752fb94210345a1385492a5f9.png"},{"id":"1491520237172953149","username":"belshe0438","avatarUrl":""}]}},"1499176348118286438":{"👍":{"emoji":"👍","count":1,"users":[{"id":"437020724524351518","username":"who_stole_my_username","avatarUrl":"avatars/437020724524351518/231ba024b337662551dbb50d87cbf58f.png"}]}},"1499176142035353663":{"👍":{"emoji":"👍","count":2,"users":[{"id":"230735595482251266","username":"eyad61","avatarUrl":""},{"id":"437020724524351518","username":"who_stole_my_username","avatarUrl":"avatars/437020724524351518/231ba024b337662551dbb50d87cbf58f.png"}]}},"1499176065975849097":{"👍":{"emoji":"👍","count":2,"users":[{"id":"230735595482251266","username":"eyad61","avatarUrl":""},{"id":"437020724524351518","username":"who_stole_my_username","avatarUrl":"avatars/437020724524351518/231ba024b337662551dbb50d87cbf58f.png"}]}},"1499047145297149992":{"👍":{"emoji":"👍","count":3,"users":[{"id":"437020724524351518","username":"who_stole_my_username","avatarUrl":"avatars/437020724524351518/231ba024b337662551dbb50d87cbf58f.png"},{"id":"777247326770954306","username":"shaginhekvs","avatarUrl":"avatars/777247326770954306/904caf95bc27eea6d1050a54b796b0cf.png"},{"id":"1252028277128695809","username":"moneyman0447","avatarUrl":"avatars/1252028277128695809/4c84bdedd6618eab7e207e902a212809.png"}]}},"1498691387921666249":{"👍":{"emoji":"👍","count":1,"users":[{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1498319577447403705":{"👍":{"emoji":"👍","count":3,"users":[{"id":"400556863068045314","username":"notyetagm","avatarUrl":"avatars/400556863068045314/ad43819fbfb5f523045e5dc76a9afb92.png"},{"id":"913781879084294204","username":"shanredd","avatarUrl":""},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1498318763576135760":{"👍":{"emoji":"👍","count":2,"users":[{"id":"400556863068045314","username":"notyetagm","avatarUrl":"avatars/400556863068045314/ad43819fbfb5f523045e5dc76a9afb92.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1497267557894193274":{"🐐":{"emoji":"🐐","count":1,"users":[{"id":"400556863068045314","username":"notyetagm","avatarUrl":"avatars/400556863068045314/ad43819fbfb5f523045e5dc76a9afb92.png"}]},"👍":{"emoji":"👍","count":2,"users":[{"id":"1029588709940670495","username":"manuvallabh1","avatarUrl":"avatars/1029588709940670495/d0a1b01bdf8d090e31c3c5d000448664.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1497267431008239799":{"🐐":{"emoji":"🐐","count":1,"users":[{"id":"400556863068045314","username":"notyetagm","avatarUrl":"avatars/400556863068045314/ad43819fbfb5f523045e5dc76a9afb92.png"}]},"👍":{"emoji":"👍","count":1,"users":[{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1497250330583236833":{"❤️":{"emoji":"❤️","count":3,"users":[{"id":"400556863068045314","username":"notyetagm","avatarUrl":"avatars/400556863068045314/ad43819fbfb5f523045e5dc76a9afb92.png"},{"id":"1252028277128695809","username":"moneyman0447","avatarUrl":"avatars/1252028277128695809/4c84bdedd6618eab7e207e902a212809.png"},{"id":"1303388456009076877","username":"gvgv9","avatarUrl":"avatars/1303388456009076877/6d3ebb2fa08b5c79ea8dffb86cafad57.png"}]},"👍":{"emoji":"👍","count":4,"users":[{"id":"400556863068045314","username":"notyetagm","avatarUrl":"avatars/400556863068045314/ad43819fbfb5f523045e5dc76a9afb92.png"},{"id":"619705173681373185","username":"ibore2563","avatarUrl":"avatars/619705173681373185/ed4cd8b28be8ea1dc9b07fdc64d06abc.png"},{"id":"1303388456009076877","username":"gvgv9","avatarUrl":"avatars/1303388456009076877/6d3ebb2fa08b5c79ea8dffb86cafad57.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1497215119103492116":{"👍":{"emoji":"👍","count":3,"users":[{"id":"777247326770954306","username":"shaginhekvs","avatarUrl":"avatars/777247326770954306/904caf95bc27eea6d1050a54b796b0cf.png"},{"id":"1252028277128695809","username":"moneyman0447","avatarUrl":"avatars/1252028277128695809/4c84bdedd6618eab7e207e902a212809.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1497030259588071445":{"👍":{"emoji":"👍","count":2,"users":[{"id":"216294784229179392","username":"shurwa","avatarUrl":"avatars/216294784229179392/800981edc0603ff52cba137285b1e74f.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1496924203981733992":{"👍":{"emoji":"👍","count":5,"users":[{"id":"533907277363675137","username":"bfm_vinsta","avatarUrl":"avatars/533907277363675137/4051fc75456d49800d7a60e5bf7d7f97.png"},{"id":"1252028277128695809","username":"moneyman0447","avatarUrl":"avatars/1252028277128695809/4c84bdedd6618eab7e207e902a212809.png"},{"id":"1371632292132556984","username":"jtsla4","avatarUrl":"avatars/1371632292132556984/99078d3b12c93f99926a0239e8aeca34.png"},{"id":"1455135556110651402","username":"bw1252","avatarUrl":""},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1496916021255344228":{"🔥":{"emoji":"🔥","count":1,"users":[{"id":"379260136809693184","username":"msimas","avatarUrl":"avatars/379260136809693184/01953c09b5a15cac61d9010a85f0338a.png"}]},"❤️":{"emoji":"❤️","count":1,"users":[{"id":"1252028277128695809","username":"moneyman0447","avatarUrl":"avatars/1252028277128695809/4c84bdedd6618eab7e207e902a212809.png"}]},"👍":{"emoji":"👍","count":1,"users":[{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1496888801660899450":{"🔥":{"emoji":"🔥","count":3,"users":[{"id":"400556863068045314","username":"notyetagm","avatarUrl":"avatars/400556863068045314/ad43819fbfb5f523045e5dc76a9afb92.png"},{"id":"1371632292132556984","username":"jtsla4","avatarUrl":"avatars/1371632292132556984/99078d3b12c93f99926a0239e8aeca34.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1496855586699083808":{"👍":{"emoji":"👍","count":5,"users":[{"id":"293636770120204289","username":"celo_100","avatarUrl":"avatars/293636770120204289/0e715040d364e1d1e0f7ef045353758d.png"},{"id":"321404651528519680","username":"fuckyoutalkingbout_","avatarUrl":"avatars/321404651528519680/a_a78f4948b959cd73f33005bbe791f617.png"},{"id":"742797750638215169","username":"momisawesome.","avatarUrl":"avatars/742797750638215169/fb8a1b000f9ce1020ce5b26f93a572e3.png"},{"id":"1252028277128695809","username":"moneyman0447","avatarUrl":"avatars/1252028277128695809/4c84bdedd6618eab7e207e902a212809.png"},{"id":"1371632292132556984","username":"jtsla4","avatarUrl":"avatars/1371632292132556984/99078d3b12c93f99926a0239e8aeca34.png"}]}},"1496641395962675302":{"👍":{"emoji":"👍","count":4,"users":[{"id":"293636770120204289","username":"celo_100","avatarUrl":"avatars/293636770120204289/0e715040d364e1d1e0f7ef045353758d.png"},{"id":"533907277363675137","username":"bfm_vinsta","avatarUrl":"avatars/533907277363675137/4051fc75456d49800d7a60e5bf7d7f97.png"},{"id":"742797750638215169","username":"momisawesome.","avatarUrl":"avatars/742797750638215169/fb8a1b000f9ce1020ce5b26f93a572e3.png"},{"id":"1252028277128695809","username":"moneyman0447","avatarUrl":"avatars/1252028277128695809/4c84bdedd6618eab7e207e902a212809.png"}]}},"1496633382225055876":{"👍":{"emoji":"👍","count":2,"users":[{"id":"742797750638215169","username":"momisawesome.","avatarUrl":"avatars/742797750638215169/fb8a1b000f9ce1020ce5b26f93a572e3.png"},{"id":"1012605100855930891","username":"deepika9323","avatarUrl":"avatars/1012605100855930891/1628fc11e7961d85181295493426b775.png"}]}},"1496595965136732320":{"👍":{"emoji":"👍","count":5,"users":[{"id":"400556863068045314","username":"notyetagm","avatarUrl":"avatars/400556863068045314/ad43819fbfb5f523045e5dc76a9afb92.png"},{"id":"479503193869647890","username":"boost23.","avatarUrl":""},{"id":"742797750638215169","username":"momisawesome.","avatarUrl":"avatars/742797750638215169/fb8a1b000f9ce1020ce5b26f93a572e3.png"},{"id":"1252028277128695809","username":"moneyman0447","avatarUrl":"avatars/1252028277128695809/4c84bdedd6618eab7e207e902a212809.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1496535349638467645":{"👍":{"emoji":"👍","count":3,"users":[{"id":"400556863068045314","username":"notyetagm","avatarUrl":"avatars/400556863068045314/ad43819fbfb5f523045e5dc76a9afb92.png"},{"id":"742797750638215169","username":"momisawesome.","avatarUrl":"avatars/742797750638215169/fb8a1b000f9ce1020ce5b26f93a572e3.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]},"🔥":{"emoji":"🔥","count":1,"users":[{"id":"1331977636129411094","username":"jmr06425","avatarUrl":"avatars/1331977636129411094/6c5996770c985bcd6e5b68131ff2ba04.png"}]}},"1496532575957815367":{"🔥":{"emoji":"🔥","count":4,"users":[{"id":"636302997172912138","username":"allbuttardup","avatarUrl":"avatars/636302997172912138/81eb1f5752fb94210345a1385492a5f9.png"},{"id":"742797750638215169","username":"momisawesome.","avatarUrl":"avatars/742797750638215169/fb8a1b000f9ce1020ce5b26f93a572e3.png"},{"id":"1252028277128695809","username":"moneyman0447","avatarUrl":"avatars/1252028277128695809/4c84bdedd6618eab7e207e902a212809.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1496519833972637696":{"👍":{"emoji":"👍","count":2,"users":[{"id":"742797750638215169","username":"momisawesome.","avatarUrl":"avatars/742797750638215169/fb8a1b000f9ce1020ce5b26f93a572e3.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]},"❤️":{"emoji":"❤️","count":1,"users":[{"id":"426738248229060609","username":"ab_m1","avatarUrl":"avatars/426738248229060609/ad54d9c757b2134f7cd2d2d1eca5b544.png"}]}},"1496518446920368308":{"👍":{"emoji":"👍","count":2,"users":[{"id":"400556863068045314","username":"notyetagm","avatarUrl":"avatars/400556863068045314/ad43819fbfb5f523045e5dc76a9afb92.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1496509757559803934":{"👍":{"emoji":"👍","count":1,"users":[{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}}}}</script>
+  <script>
+(function() {
+  'use strict';
+
+  // ── Data Access ──────────────────────────────────────────────
+  var dataEl = document.getElementById('export-data');
+  var DATA = dataEl ? JSON.parse(dataEl.textContent || '{}') : {};
+
+  // ── Popup System ─────────────────────────────────────────────
+  var activePopup = null;
+
+  function createPopup(html, anchorEl) {
+    closePopup();
+
+    var popup = document.createElement('div');
+    popup.className = 'discrub-popup';
+    popup.innerHTML = html;
+    popup.setAttribute('role', 'dialog');
+    popup.setAttribute('aria-modal', 'true');
+    document.body.appendChild(popup);
+
+    // Position near anchor
+    positionPopup(popup, anchorEl);
+
+    activePopup = popup;
+
+    // Close on click outside (defer to avoid immediate close)
+    setTimeout(function() {
+      document.addEventListener('click', onOutsideClick);
+    }, 0);
+
+    return popup;
+  }
+
+  function positionPopup(popup, anchor) {
+    var rect = anchor.getBoundingClientRect();
+
+    var top = rect.bottom + 8;
+    var left = rect.left;
+
+    // Use fixed positioning so popup is out of document flow entirely
+    popup.style.position = 'fixed';
+    popup.style.left = left + 'px';
+    popup.style.top = top + 'px';
+    popup.style.zIndex = '1000';
+
+    // After render, check if it overflows viewport
+    requestAnimationFrame(function() {
+      var popupRect = popup.getBoundingClientRect();
+
+      // Flip horizontally if overflowing right
+      if (popupRect.right > window.innerWidth - 16) {
+        popup.style.left = Math.max(16, window.innerWidth - popupRect.width - 16) + 'px';
+      }
+
+      // Flip vertically if overflowing bottom
+      if (popupRect.bottom > window.innerHeight - 16) {
+        popup.style.top = Math.max(16, rect.top - popupRect.height - 8) + 'px';
+      }
+    });
+  }
+
+  function closePopup() {
+    if (activePopup) {
+      activePopup.remove();
+      activePopup = null;
+      document.removeEventListener('click', onOutsideClick);
+    }
+  }
+
+  function onOutsideClick(e) {
+    if (activePopup && !activePopup.contains(e.target)) {
+      closePopup();
+    }
+  }
+
+  // ── Keyboard Handler ─────────────────────────────────────────
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      if (lightboxOverlay) {
+        closeLightbox();
+        e.preventDefault();
+        return;
+      }
+      if (activePopup) {
+        closePopup();
+        e.preventDefault();
+        return;
+      }
+    }
+
+    // Lightbox arrow navigation
+    if (lightboxOverlay) {
+      if (e.key === 'ArrowLeft') { lightboxPrev(); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { lightboxNext(); e.preventDefault(); }
+      return;
+    }
+  });
+
+  // ── Event Delegation ─────────────────────────────────────────
+  document.body.addEventListener('click', function(e) {
+    var target = e.target;
+
+    // Walk up to find element with data-action
+    while (target && target !== document.body) {
+      var action = target.getAttribute('data-action');
+      if (action) {
+        handleAction(action, target, e);
+        return;
+      }
+      target = target.parentElement;
+    }
+  });
+
+  function handleAction(action, el, e) {
+    switch (action) {
+      case 'show-user':
+        showUserPopup(el);
+        e.preventDefault();
+        break;
+      case 'show-reactions':
+        showReactionsPopup(el);
+        e.preventDefault();
+        e.stopPropagation();
+        break;
+      case 'jump-to-reply':
+        jumpToReply(el);
+        e.preventDefault();
+        break;
+      case 'toggle-spoiler':
+        toggleSpoiler(el);
+        e.preventDefault();
+        break;
+      case 'open-lightbox':
+        openLightbox(el);
+        e.preventDefault();
+        break;
+      default:
+        break;
+    }
+  }
+
+  // Also handle clicks on .user-mention spans (generated by discrub-core with data-user-id)
+  document.body.addEventListener('click', function(e) {
+    var target = e.target;
+    while (target && target !== document.body) {
+      if (target.classList && target.classList.contains('user-mention') && target.getAttribute('data-user-id')) {
+        showUserPopup(target);
+        e.preventDefault();
+        return;
+      }
+      target = target.parentElement;
+    }
+  });
+
+  // ── Action Handlers ──────────────────────────────────────────
+
+  // ── User Flag Labels ───────────────────────────────────────────
+  var FLAG_LABELS = {
+    1: 'Discord Staff', 2: 'Partnered Server Owner', 4: 'HypeSquad Events',
+    8: 'Bug Hunter Level 1', 64: 'HypeSquad Bravery', 128: 'HypeSquad Brilliance',
+    256: 'HypeSquad Balance', 512: 'Early Supporter', 16384: 'Bug Hunter Level 2',
+    65536: 'Verified Bot', 131072: 'Early Verified Bot Developer',
+    262144: 'Moderator Programs Alumni', 4194304: 'Active Developer'
+  };
+
+  function getFlagBadges(flags) {
+    if (!flags) return '';
+    var badges = [];
+    for (var bit in FLAG_LABELS) {
+      if (flags & parseInt(bit)) {
+        badges.push('<span class="user-popup-badge">' + FLAG_LABELS[bit] + '</span>');
+      }
+    }
+    return badges.length > 0
+      ? '<div class="user-popup-section"><div class="user-popup-section-title">BADGES</div><div class="user-popup-badges">' + badges.join('') + '</div></div>'
+      : '';
+  }
+
+  function showUserPopup(el) {
+    var userId = el.getAttribute('data-user-id');
+    if (!userId || !DATA.users) return;
+
+    var user = DATA.users[userId];
+    if (!user) return;
+
+    var accentHex = user.accentColor ? '#' + ('000000' + user.accentColor.toString(16)).slice(-6) : '#5865f2';
+    var primaryName = user.displayName || user.username;
+
+    var html = '<div class="user-popup-card">'
+      // Banner / accent strip
+      + '<div class="user-popup-banner" style="background:' + (user.banner ? 'linear-gradient(135deg, ' + accentHex + ', ' + accentHex + 'dd)' : 'linear-gradient(135deg, ' + accentHex + ', ' + accentHex + 'bb)') + '"></div>'
+      // Avatar
+      + '<div class="user-popup-avatar-row">'
+      + (user.avatarUrl
+        ? '<img src="' + user.avatarUrl + '" class="user-popup-avatar" alt="' + escapeHtml(user.username) + '">'
+        : '<div class="user-popup-avatar-placeholder">' + escapeHtml((user.username || '?')[0].toUpperCase()) + '</div>')
+      + (user.bot ? '<span class="user-popup-bot-badge">BOT</span>' : '')
+      + '</div>'
+      // Primary name
+      + '<div class="user-popup-name"' + (user.roleColor ? ' style="color:' + user.roleColor + '"' : '') + '>' + escapeHtml(primaryName) + '</div>'
+      // Username#discriminator
+      + '<div class="user-popup-username">' + escapeHtml(user.username) + (user.discriminator && user.discriminator !== '0' ? '#' + user.discriminator : '') + '</div>'
+      // Divider
+      + '<div class="user-popup-divider"></div>'
+      // Names section (if display name differs from username)
+      + (user.serverNickname
+        ? '<div class="user-popup-row"><span class="user-popup-label">Server Nickname</span><span class="user-popup-value">' + escapeHtml(user.serverNickname) + '</span></div>'
+        : '')
+      + (user.displayName && user.displayName !== user.username
+        ? '<div class="user-popup-row"><span class="user-popup-label">Display Name</span><span class="user-popup-value">' + escapeHtml(user.displayName) + '</span></div>'
+        : '')
+      // Account details
+      + '<div class="user-popup-section"><div class="user-popup-section-title">ACCOUNT DETAILS</div>'
+      + '<div class="user-popup-row"><span class="user-popup-label">User ID</span><span class="user-popup-value user-popup-mono">' + escapeHtml(userId) + '</span></div>'
+      + '</div>'
+      // Badges
+      + getFlagBadges(user.flags)
+      // Roles
+      + (user.roles && user.roles.length > 0
+        ? '<div class="user-popup-section"><div class="user-popup-section-title">ROLES</div><div class="user-popup-badges">'
+          + user.roles.map(function(r) {
+              var style = r.color ? 'background:' + r.color + '22;color:' + r.color + ';border-color:' + r.color + '66' : '';
+              var iconSrc = r.iconLocalUrl
+                ? r.iconLocalUrl
+                : r.icon
+                  ? 'https://cdn.discordapp.com/role-icons/' + r.roleId + '/' + r.icon + '.webp?size=20'
+                  : null;
+              var iconHtml = iconSrc
+                ? '<img src="' + iconSrc + '" style="width:12px;height:12px;vertical-align:middle;margin-right:4px">'
+                : r.unicodeEmoji
+                  ? '<span style="font-size:12px;margin-right:4px;vertical-align:middle">' + r.unicodeEmoji + '</span>'
+                  : r.color
+                    ? '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:' + r.color + ';margin-right:4px;vertical-align:middle"></span>'
+                    : '';
+              return '<span class="user-popup-badge" style="' + style + '">' + iconHtml + escapeHtml(r.name) + '</span>';
+            }).join('')
+          + '</div></div>'
+        : '')
+      // Message count
+      + '<div class="user-popup-divider"></div>'
+      + '<div class="user-popup-count">' + user.messageCount + ' message' + (user.messageCount !== 1 ? 's' : '') + ' in this export</div>'
+      + '</div>';
+
+    createPopup(html, el);
+  }
+
+  // ── Reaction Popup ────────────────────────────────────────────
+
+  var REACTION_PAGE_SIZE = 20;
+
+  function showReactionsPopup(el) {
+    var msgId = el.getAttribute('data-message-id');
+    var clickedKey = el.getAttribute('data-emoji-key');
+    if (!msgId || !DATA.reactions || !DATA.reactions[msgId]) return;
+
+    var msgReactions = DATA.reactions[msgId];
+    var emojiKeys = Object.keys(msgReactions);
+    if (emojiKeys.length === 0) return;
+
+    // Collect all user items per tab (data only, not DOM)
+    var tabData = {};
+    var allItems = [];
+    for (var j = 0; j < emojiKeys.length; j++) {
+      var rk = emojiKeys[j];
+      var rData = msgReactions[rk];
+      var items = [];
+      if (rData.users && rData.users.length > 0) {
+        for (var u = 0; u < rData.users.length; u++) {
+          var item = { user: rData.users[u], emoji: rData.emoji };
+          items.push(item);
+          allItems.push(item);
+        }
+      }
+      tabData[rk] = { items: items, emoji: rData.emoji, count: rData.count };
+    }
+    tabData['all'] = { items: allItems, emoji: '', count: allItems.length };
+
+    var hasUserData = allItems.length > 0;
+
+    // Build tabs
+    var tabsHtml = '<div class="reaction-popup-tabs">';
+    tabsHtml += '<button class="reaction-tab active" data-tab="all">All</button>';
+    for (var i = 0; i < emojiKeys.length; i++) {
+      var key = emojiKeys[i];
+      var rd = msgReactions[key];
+      tabsHtml += '<button class="reaction-tab" data-tab="' + key + '">' + rd.emoji + ' ' + rd.count + '</button>';
+    }
+    tabsHtml += '</div>';
+
+    // Search bar (only if user data exists)
+    var searchHtml = hasUserData
+      ? '<div class="reaction-search-bar"><input class="reaction-search-input" type="text" placeholder="Search users..." /></div>'
+      : '';
+
+    // Content container (will be populated dynamically)
+    var contentHtml = '<div class="reaction-popup-content"></div>';
+
+    var popup = createPopup(
+      '<div class="reaction-popup-card">' + tabsHtml + searchHtml + contentHtml + '</div>',
+      el
+    );
+
+    // State for the popup
+    var currentTab = clickedKey && msgReactions[clickedKey] ? clickedKey : 'all';
+    var currentSearch = '';
+    var loadedCount = 0;
+
+    function getFilteredItems() {
+      var items = tabData[currentTab] ? tabData[currentTab].items : [];
+      if (!currentSearch) return items;
+      var q = currentSearch.toLowerCase();
+      return items.filter(function(item) {
+        return item.user.username.toLowerCase().indexOf(q) !== -1;
+      });
+    }
+
+    function renderContent() {
+      var contentEl = popup.querySelector('.reaction-popup-content');
+      if (!contentEl) return;
+
+      var filtered = getFilteredItems();
+
+      if (!hasUserData) {
+        // Count-only mode
+        var countHtml = '<div class="reaction-count-list">';
+        for (var i = 0; i < emojiKeys.length; i++) {
+          var rd = msgReactions[emojiKeys[i]];
+          countHtml += '<div class="reaction-count-row">'
+            + '<span class="reaction-count-emoji">' + rd.emoji + '</span>'
+            + '<span class="reaction-count-text">' + rd.count + ' user' + (rd.count !== 1 ? 's' : '') + '</span>'
+            + '</div>';
+        }
+        countHtml += '</div>';
+        contentEl.innerHTML = countHtml;
+        return;
+      }
+
+      var showEmoji = currentTab === 'all';
+      var toShow = filtered.slice(0, loadedCount + REACTION_PAGE_SIZE);
+      loadedCount = toShow.length;
+      var remaining = filtered.length - toShow.length;
+
+      var html = '<div class="reaction-user-list">';
+      for (var k = 0; k < toShow.length; k++) {
+        var item = toShow[k];
+        html += '<div class="reaction-user-row">';
+        html += item.user.avatarUrl
+          ? '<img src="' + item.user.avatarUrl + '" class="reaction-user-avatar">'
+          : '<div class="reaction-user-avatar-placeholder">' + escapeHtml((item.user.username || '?')[0].toUpperCase()) + '</div>';
+        html += '<span class="reaction-user-name">' + escapeHtml(item.user.username) + '</span>';
+        if (showEmoji) {
+          html += '<span class="reaction-user-emoji">' + item.emoji + '</span>';
+        }
+        html += '</div>';
+      }
+      html += '</div>';
+
+      if (remaining > 0) {
+        html += '<button class="reaction-show-more">Show more (' + remaining + ' remaining)</button>';
+      }
+
+      if (filtered.length === 0 && currentSearch) {
+        html = '<div class="reaction-count-only">No users matching "' + escapeHtml(currentSearch) + '"</div>';
+      }
+
+      contentEl.innerHTML = html;
+    }
+
+    // Initial render
+    if (clickedKey && msgReactions[clickedKey]) {
+      // Activate the clicked tab
+      var tabs = popup.querySelectorAll('.reaction-tab');
+      for (var t = 0; t < tabs.length; t++) {
+        tabs[t].classList.toggle('active', tabs[t].getAttribute('data-tab') === currentTab);
+      }
+    }
+    renderContent();
+
+    // Wire events
+    popup.addEventListener('click', function(e) {
+      var target = e.target;
+
+      // Tab click
+      if (target.classList && target.classList.contains('reaction-tab')) {
+        currentTab = target.getAttribute('data-tab');
+        loadedCount = 0;
+        var allTabs = popup.querySelectorAll('.reaction-tab');
+        for (var i = 0; i < allTabs.length; i++) {
+          allTabs[i].classList.toggle('active', allTabs[i].getAttribute('data-tab') === currentTab);
+        }
+        renderContent();
+      }
+
+      // Show more click
+      if (target.classList && target.classList.contains('reaction-show-more')) {
+        e.stopPropagation();
+        renderContent();
+      }
+    });
+
+    // Search input
+    var searchInput = popup.querySelector('.reaction-search-input');
+    if (searchInput) {
+      searchInput.addEventListener('input', function() {
+        currentSearch = searchInput.value;
+        loadedCount = 0;
+        renderContent();
+      });
+      // Prevent popup close when clicking search
+      searchInput.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+    }
+  }
+
+  function toggleSpoiler(el) {
+    el.classList.toggle('spoiler-revealed');
+  }
+
+  // ── Image Lightbox ────────────────────────────────────────────
+
+  var lightboxOverlay = null;
+  var lightboxImages = [];
+  var lightboxIndex = 0;
+
+  function collectLightboxImages() {
+    lightboxImages = [];
+    var imgs = document.querySelectorAll('[data-action="open-lightbox"]');
+    for (var i = 0; i < imgs.length; i++) {
+      lightboxImages.push(imgs[i].getAttribute('src'));
+    }
+  }
+
+  function openLightbox(el) {
+    collectLightboxImages();
+    var idx = parseInt(el.getAttribute('data-img-index') || '0', 10);
+    lightboxIndex = idx;
+    showLightboxImage();
+  }
+
+  function showLightboxImage() {
+    closeLightbox();
+
+    if (lightboxImages.length === 0) return;
+    var src = lightboxImages[lightboxIndex];
+
+    var overlay = document.createElement('div');
+    overlay.className = 'lightbox-overlay';
+
+    var img = document.createElement('img');
+    img.className = 'lightbox-img';
+    img.src = src;
+
+    var closeBtn = document.createElement('button');
+    closeBtn.className = 'lightbox-close';
+    closeBtn.innerHTML = '&times;';
+    closeBtn.addEventListener('click', function(e) { e.stopPropagation(); closeLightbox(); });
+
+    overlay.appendChild(img);
+    overlay.appendChild(closeBtn);
+
+    // Navigation arrows (only if multiple images)
+    if (lightboxImages.length > 1) {
+      var prevBtn = document.createElement('button');
+      prevBtn.className = 'lightbox-nav lightbox-nav-prev';
+      prevBtn.innerHTML = '&#8249;';
+      prevBtn.addEventListener('click', function(e) { e.stopPropagation(); lightboxPrev(); });
+
+      var nextBtn = document.createElement('button');
+      nextBtn.className = 'lightbox-nav lightbox-nav-next';
+      nextBtn.innerHTML = '&#8250;';
+      nextBtn.addEventListener('click', function(e) { e.stopPropagation(); lightboxNext(); });
+
+      var counter = document.createElement('div');
+      counter.className = 'lightbox-counter';
+      counter.textContent = (lightboxIndex + 1) + ' / ' + lightboxImages.length;
+
+      overlay.appendChild(prevBtn);
+      overlay.appendChild(nextBtn);
+      overlay.appendChild(counter);
+    }
+
+    // Close on backdrop click
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) closeLightbox();
+    });
+
+    document.body.appendChild(overlay);
+    lightboxOverlay = overlay;
+  }
+
+  function closeLightbox() {
+    if (lightboxOverlay) {
+      lightboxOverlay.remove();
+      lightboxOverlay = null;
+    }
+  }
+
+  function lightboxPrev() {
+    lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length;
+    showLightboxImage();
+  }
+
+  function lightboxNext() {
+    lightboxIndex = (lightboxIndex + 1) % lightboxImages.length;
+    showLightboxImage();
+  }
+
+  // ── Jump to Reply ────────────────────────────────────────────
+
+  function jumpToReply(el) {
+    var targetId = el.getAttribute('data-target-id');
+    if (!targetId) return;
+
+    var targetEl = document.getElementById('msg-' + targetId);
+    if (targetEl) {
+      targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // Brief highlight
+      targetEl.classList.add('message-highlight');
+      setTimeout(function() {
+        targetEl.classList.remove('message-highlight');
+      }, 2000);
+    }
+  }
+
+  // ── Message Hover Toolbar ────────────────────────────────────
+  var activeToolbar = null;
+
+  function createToolbar(messageEl) {
+    removeToolbar();
+
+    var msgId = messageEl.getAttribute('data-message-id');
+    if (!msgId) return;
+
+    // SVG icons (Discord-style, minimal)
+    var ICON_COPY = '<svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>';
+    var ICON_ID = '<svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM6 20V4h5v7h7v9H6z"/></svg>';
+
+    var toolbar = document.createElement('div');
+    toolbar.className = 'msg-toolbar';
+
+    function addBtn(icon, label, handler) {
+      var btn = document.createElement('button');
+      btn.className = 'msg-toolbar-btn';
+      btn.innerHTML = icon + '<span class="msg-toolbar-label">' + label + '</span>';
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        handler();
+      });
+      toolbar.appendChild(btn);
+    }
+
+    // Copy text
+    addBtn(ICON_COPY, 'Copy Text', function() {
+      var textEl = messageEl.querySelector('.message-text');
+      if (textEl) navigator.clipboard.writeText(textEl.textContent || '');
+    });
+
+    // Copy message ID
+    addBtn(ICON_ID, 'Copy ID', function() {
+      navigator.clipboard.writeText(msgId);
+    });
+
+    messageEl.appendChild(toolbar);
+    activeToolbar = toolbar;
+  }
+
+  function removeToolbar() {
+    if (activeToolbar) {
+      activeToolbar.remove();
+      activeToolbar = null;
+    }
+  }
+
+  document.body.addEventListener('mouseover', function(e) {
+    var target = e.target;
+    while (target && target !== document.body) {
+      if (target.classList && target.classList.contains('message') && target.getAttribute('data-message-id')) {
+        if (!activeToolbar || activeToolbar.parentElement !== target) {
+          createToolbar(target);
+        }
+        return;
+      }
+      target = target.parentElement;
+    }
+  });
+
+  document.body.addEventListener('mouseout', function(e) {
+    var target = e.target;
+    var related = e.relatedTarget;
+    // Only remove if we're leaving the message entirely
+    while (target && target !== document.body) {
+      if (target.classList && target.classList.contains('message')) {
+        if (!target.contains(related)) {
+          removeToolbar();
+        }
+        return;
+      }
+      target = target.parentElement;
+    }
+  });
+
+  // ── Utilities ────────────────────────────────────────────────
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  // ── Theme Toggle ──────────────────────────────────────────────
+
+  var themeToggle = document.getElementById('theme-toggle');
+  var THEME_KEY = 'discrub-export-theme';
+  var isEmbeddedInShell = window.parent !== window;
+
+  function applyTheme(isLight) {
+    if (isLight) {
+      document.documentElement.classList.add('light-theme');
+      if (themeToggle) themeToggle.innerHTML = '&#x2600;'; // sun
+    } else {
+      document.documentElement.classList.remove('light-theme');
+      if (themeToggle) themeToggle.innerHTML = '&#x263E;'; // moon
+    }
+  }
+
+  // Hide own theme toggle when embedded in Discord shell (shell has its own toggle)
+  if (isEmbeddedInShell && themeToggle) {
+    themeToggle.style.display = 'none';
+  }
+
+  // Load saved preference (only when standalone, not embedded)
+  if (!isEmbeddedInShell) {
+    try {
+      var saved = localStorage.getItem(THEME_KEY);
+      if (saved === 'light') applyTheme(true);
+    } catch(e) {}
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isLight = !document.documentElement.classList.contains('light-theme');
+      applyTheme(isLight);
+      try { localStorage.setItem(THEME_KEY, isLight ? 'light' : 'dark'); } catch(e) {}
+      // Notify parent shell if embedded
+      if (isEmbeddedInShell) {
+        try { window.parent.postMessage({ type: 'discrub-theme', isLight: isLight }, '*'); } catch(e) {}
+      }
+    });
+  }
+
+  // Listen for theme changes from parent shell
+  window.addEventListener('message', function(e) {
+    if (e.data && e.data.type === 'discrub-theme' && typeof e.data.isLight === 'boolean') {
+      applyTheme(e.data.isLight);
+    }
+  });
+
+  // ── Search ────────────────────────────────────────────────────
+
+  var searchInput = document.getElementById('search-input');
+  var searchCount = document.getElementById('search-count');
+  var searchClear = document.getElementById('search-clear');
+  var searchActive = false;
+
+  if (searchInput) {
+    searchInput.addEventListener('input', function() {
+      performSearch(searchInput.value);
+    });
+
+    searchInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        clearSearch();
+        searchInput.blur();
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    });
+  }
+
+  if (searchClear) {
+    searchClear.addEventListener('click', function(e) {
+      e.stopPropagation();
+      clearSearch();
+    });
+  }
+
+  function performSearch(query) {
+    var messages = document.querySelectorAll('.message');
+    var dividers = document.querySelectorAll('.date-divider');
+
+    if (!query || query.trim() === '') {
+      clearSearch();
+      return;
+    }
+
+    searchActive = true;
+    var q = query.toLowerCase();
+    var matchCount = 0;
+
+    // Remove any previously injected search author labels
+    var oldLabels = document.querySelectorAll('.search-author-label');
+    for (var ol = 0; ol < oldLabels.length; ol++) oldLabels[ol].remove();
+
+    // Build author map: for each message, find its group's author
+    var lastAuthor = '';
+    var lastTimestamp = '';
+    var authorMap = {};
+    for (var m = 0; m < messages.length; m++) {
+      var authorEl = messages[m].querySelector('.author');
+      var tsEl = messages[m].querySelector('.timestamp');
+      if (authorEl) {
+        lastAuthor = authorEl.textContent || '';
+        lastTimestamp = tsEl ? tsEl.textContent || '' : '';
+      }
+      var msgId = messages[m].getAttribute('data-message-id');
+      if (msgId) authorMap[msgId] = { author: lastAuthor, timestamp: lastTimestamp };
+    }
+
+    // Show/hide messages based on search
+    for (var i = 0; i < messages.length; i++) {
+      var msg = messages[i];
+      var textEl = msg.querySelector('.message-text');
+      var searchAuthor = msg.querySelector('.author');
+      var text = (textEl ? textEl.textContent : '') + ' ' + (searchAuthor ? searchAuthor.textContent : '');
+
+      // For grouped messages, also search the group's author name
+      if (msg.classList.contains('message-grouped')) {
+        var mid = msg.getAttribute('data-message-id');
+        if (mid && authorMap[mid]) text += ' ' + authorMap[mid].author;
+      }
+
+      // Also search attachment filenames
+      var attachNames = msg.querySelectorAll('.attachment-name');
+      for (var a = 0; a < attachNames.length; a++) {
+        text += ' ' + attachNames[a].textContent;
+      }
+
+      if (text.toLowerCase().indexOf(q) !== -1) {
+        msg.classList.remove('search-hidden');
+        matchCount++;
+
+        // For grouped messages, inject a temporary author label so the result has context
+        if (msg.classList.contains('message-grouped')) {
+          var gmid = msg.getAttribute('data-message-id');
+          if (gmid && authorMap[gmid]) {
+            var label = document.createElement('div');
+            label.className = 'search-author-label';
+            label.innerHTML = '<span class="author" style="font-size:13px">' + authorMap[gmid].author + '</span> <span class="timestamp" style="font-size:11px">' + authorMap[gmid].timestamp + '</span>';
+            var contentEl = msg.querySelector('.message-content');
+            if (contentEl) contentEl.insertBefore(label, contentEl.firstChild);
+          }
+        }
+      } else {
+        msg.classList.add('search-hidden');
+      }
+    }
+
+    // Hide date dividers that have no visible messages after them
+    for (var d = 0; d < dividers.length; d++) {
+      var divider = dividers[d];
+      var nextEl = divider.nextElementSibling;
+      var hasVisible = false;
+      while (nextEl && !nextEl.classList.contains('date-divider')) {
+        if (nextEl.classList.contains('message') && !nextEl.classList.contains('search-hidden')) {
+          hasVisible = true;
+          break;
+        }
+        nextEl = nextEl.nextElementSibling;
+      }
+      divider.classList.toggle('search-hidden', !hasVisible);
+    }
+
+    // Update count display
+    var total = messages.length;
+    if (searchCount) searchCount.textContent = matchCount + ' of ' + total;
+    if (searchClear) searchClear.style.display = '';
+  }
+
+  function clearSearch() {
+    searchActive = false;
+    var messages = document.querySelectorAll('.message');
+    var dividers = document.querySelectorAll('.date-divider');
+    for (var i = 0; i < messages.length; i++) {
+      messages[i].classList.remove('search-hidden');
+    }
+    for (var d = 0; d < dividers.length; d++) {
+      dividers[d].classList.remove('search-hidden');
+    }
+    // Remove injected search author labels from grouped messages
+    var labels = document.querySelectorAll('.search-author-label');
+    for (var l = 0; l < labels.length; l++) labels[l].remove();
+    if (searchInput) searchInput.value = '';
+    if (searchCount) searchCount.textContent = '';
+    if (searchClear) searchClear.style.display = 'none';
+  }
+
+  // Ctrl+F / Cmd+F to focus search instead of browser find
+  document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+      if (searchInput) {
+        e.preventDefault();
+        searchInput.focus();
+        searchInput.select();
+      }
+    }
+  });
+
+  // ── Jump to Top ───────────────────────────────────────────────
+  var jumpTopBtn = document.getElementById('jump-top');
+  if (jumpTopBtn) {
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 500) {
+        jumpTopBtn.classList.add('visible');
+      } else {
+        jumpTopBtn.classList.remove('visible');
+      }
+    });
+
+    jumpTopBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // ── Keyboard Navigation ──────────────────────────────────────
+  document.addEventListener('keydown', function(e) {
+    // Skip if popup/lightbox/search is open, or user is typing in an input
+    if (activePopup) return;
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+    var page = DATA.page;
+    if (!page || page.total <= 1) return;
+
+    if (e.key === 'ArrowLeft' && page.current > 1) {
+      window.location.href = page.baseFilename + '-page-' + (page.current - 1) + '.html';
+    } else if (e.key === 'ArrowRight' && page.current < page.total) {
+      window.location.href = page.baseFilename + '-page-' + (page.current + 1) + '.html';
+    }
+  });
+
+  // ── Public API (for testing/extension) ───────────────────────
+  window.__discrubExport = {
+    getData: function() { return DATA; },
+    closePopup: closePopup,
+    getActivePopup: function() { return activePopup; },
+  };
+
+})();
+</script>
+</body>
+</html>
+    
