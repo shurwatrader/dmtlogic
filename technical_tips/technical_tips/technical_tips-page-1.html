@@ -1,0 +1,4239 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📈technical-tips</title>
+  <style>
+    /* Highlight.js vs2015 theme (inlined for offline use) */
+    pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{background:#1e1e1e;color:#dcdcdc}.hljs-keyword,.hljs-literal,.hljs-name,.hljs-symbol{color:#569cd6}.hljs-link{color:#569cd6;text-decoration:underline}.hljs-built_in,.hljs-type{color:#4ec9b0}.hljs-class,.hljs-number{color:#b8d7a3}.hljs-meta .hljs-string,.hljs-string{color:#d69d85}.hljs-regexp,.hljs-template-tag{color:#9a5334}.hljs-formula,.hljs-function,.hljs-params,.hljs-subst,.hljs-title{color:#dcdcdc}.hljs-comment,.hljs-quote{color:#57a64a;font-style:italic}.hljs-doctag{color:#608b4e}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-tag{color:#9b9b9b}.hljs-template-variable,.hljs-variable{color:#bd63c5}.hljs-attr,.hljs-attribute{color:#9cdcfe}.hljs-section{color:gold}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.hljs-bullet,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-id,.hljs-selector-pseudo,.hljs-selector-tag{color:#d7ba7d}.hljs-addition{background-color:#144212;display:inline-block;width:100%}.hljs-deletion{background-color:#600;display:inline-block;width:100%}
+
+    /* ==== CSS CUSTOM PROPERTIES ==== */
+    :root {
+      --bg-primary: #1e2124;
+      --bg-secondary: #282b30;
+      --bg-tertiary: #2f3136;
+      --bg-hover: rgba(114, 137, 218, 0.08);
+      --text-primary: #dcddde;
+      --text-secondary: #b9bbbe;
+      --text-muted: #72767d;
+      --text-link: #00b0f4;
+      --border-color: #40444b;
+      --accent: #5865f2;
+      --card-bg: rgba(47, 49, 54, 0.6);
+      --card-border: rgba(114, 137, 218, 0.2);
+      --code-bg: #2f3136;
+      --input-bg: #1e1f22;
+    }
+
+    .light-theme {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f2f3f5;
+      --bg-tertiary: #e3e5e8;
+      --bg-hover: rgba(116, 127, 141, 0.08);
+      --text-primary: #2e3338;
+      --text-secondary: #4f5660;
+      --text-muted: #747f8d;
+      --text-link: #0067e0;
+      --border-color: #e3e5e8;
+      --accent: #5865f2;
+      --card-bg: rgba(0, 0, 0, 0.04);
+      --card-border: rgba(0, 0, 0, 0.08);
+      --code-bg: #f2f3f5;
+      --input-bg: #e3e5e8;
+    }
+
+    /* ==== BASE STYLES ==== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-tertiary);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 8px;
+      transition: background-color 200ms ease;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent);
+    }
+
+    /* ==== HEADER ==== */
+    .header {
+      background: var(--bg-secondary);
+      border-bottom: 2px solid;
+      border-image: linear-gradient(90deg, #7289da, var(--accent)) 1;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .header h1 {
+      background: linear-gradient(135deg, #ffffff, #7289da);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .header .meta {
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    /* ==== CONTAINER ==== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* ==== MESSAGES ==== */
+    .message {
+      display: flex;
+      padding: 16px;
+      margin-bottom: 2px;
+      position: relative;
+      transition: background-color 200ms ease;
+      border-radius: 4px;
+    }
+
+    .message:hover {
+      background: var(--bg-hover);
+    }
+
+    .message-left {
+      flex-shrink: 0;
+      width: 60px;
+      padding-right: 16px;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: block;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      transition: transform 200ms ease;
+    }
+
+    .avatar:hover {
+      transform: scale(1.05);
+    }
+
+    .avatar-placeholder {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7289da, #5865f2);
+      box-shadow: 0 2px 8px rgba(114, 137, 218, 0.3);
+    }
+
+    .message-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .message-header {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+
+    .author {
+      font-weight: 600;
+      color: #fff;
+      margin-right: 8px;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .timestamp {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .message-text {
+      color: var(--text-primary);
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    /* ==== TEXT FORMATTING ==== */
+    strong {
+      font-weight: 700;
+      color: #fff;
+    }
+
+    em {
+      font-style: italic;
+      color: #f0f0f0;
+    }
+
+    u {
+      text-decoration: underline;
+    }
+
+    del {
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+
+    /* User mentions */
+    .user-mention {
+      background: rgba(88, 101, 242, 0.3);
+      color: #c9d1ff;
+      padding: 0 4px;
+      border-radius: 3px;
+      font-weight: 500;
+      cursor: default;
+      transition: background 200ms ease;
+    }
+
+    .user-mention:hover {
+      background: rgba(88, 101, 242, 0.5);
+    }
+
+    /* Channel mentions */
+    .channel-mention {
+      background: rgba(60, 66, 112, 0.5);
+      color: #b5c7ff;
+      padding: 0 4px;
+      border-radius: 3px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 200ms ease;
+    }
+
+    .channel-mention:hover {
+      background: rgba(60, 66, 112, 0.7);
+    }
+
+    /* Discord headings */
+    .discord-heading {
+      color: var(--text-primary);
+      margin: 8px 0 4px;
+      line-height: 1.3;
+    }
+
+    h1.discord-heading { font-size: 24px; font-weight: 700; }
+    h2.discord-heading { font-size: 20px; font-weight: 700; }
+    h3.discord-heading { font-size: 16px; font-weight: 700; }
+
+    /* Inline code */
+    .inline-code {
+      background: var(--code-bg);
+      color: #eb459e;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 85%;
+    }
+
+    /* Code blocks */
+    .code-block {
+      background: var(--code-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px;
+      margin: 8px 0;
+      overflow-x: auto;
+    }
+
+    .code-block code {
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+    }
+
+    /* Spoilers */
+    .spoiler {
+      background: #202225;
+      color: transparent;
+      border-radius: 3px;
+      padding: 0 2px;
+      cursor: pointer;
+      transition: all 200ms ease;
+      user-select: none;
+    }
+
+    .spoiler:hover {
+      background: #292b2f;
+    }
+
+    .spoiler-revealed {
+      background: rgba(88, 101, 242, 0.2);
+      color: #dcddde !important;
+    }
+
+    /* Links */
+    a {
+      color: var(--text-link);
+      text-decoration: none;
+      transition: color 200ms ease;
+    }
+
+    a:hover {
+      color: #00d4ff;
+      text-decoration: underline;
+    }
+
+    /* ==== ATTACHMENTS ==== */
+    .attachments {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+      align-items: start;
+    }
+
+    .attachment-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 200ms ease;
+    }
+
+    .attachment-card:hover {
+      background: rgba(47, 49, 54, 0.8);
+      border-color: rgba(114, 137, 218, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .attachment-preview {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Unsupported video format fallback */
+    .video-unsupported {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px;
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--card-border);
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+
+    .video-unsupported-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .video-unsupported-text {
+      line-height: 1.4;
+    }
+
+    .video-unsupported a {
+      color: var(--text-link);
+    }
+
+    /* Image preview — fixed thumbnail, click for lightbox */
+    .attachment-preview-img {
+      max-height: 350px;
+      max-width: 100%;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .attachment-info {
+      padding: 12px;
+    }
+
+    .attachment-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .attachment-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .attachment-name {
+      color: #00b0f4;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex: 1;
+    }
+
+    .attachment-name:hover {
+      text-decoration: underline;
+    }
+
+    .attachment-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #b9bbbe;
+    }
+
+    .attachment-size {
+      color: #b9bbbe;
+    }
+
+    .attachment-badge {
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .attachment-badge.local {
+      background: rgba(88, 214, 141, 0.2);
+      color: #58d68d;
+    }
+
+    .attachment-badge.external {
+      background: rgba(250, 177, 64, 0.2);
+      color: #faa140;
+    }
+
+    /* ==== EMOJIS ==== */
+    .emoji {
+      width: 22px;
+      height: 22px;
+      vertical-align: middle;
+      display: inline-block;
+      object-fit: contain;
+    }
+
+    .emoji-reaction {
+      width: 18px;
+      height: 18px;
+      vertical-align: middle;
+      object-fit: contain;
+    }
+
+    /* ==== REACTIONS ==== */
+    .reactions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .reaction {
+      background: rgba(47, 49, 54, 0.6);
+      border: 2px solid rgba(114, 137, 218, 0.3);
+      border-radius: 8px;
+      padding: 5px 10px;
+      font-size: 13px;
+      color: #b9bbbe;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 200ms ease;
+      cursor: default;
+    }
+
+    .reaction:hover {
+      background: rgba(114, 137, 218, 0.15);
+      border-color: rgba(114, 137, 218, 0.5);
+      transform: scale(1.05);
+    }
+
+    .reaction-count {
+      color: #dcddde;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    /* ==== EMBEDS ==== */
+    .embeds {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .embed {
+      background: rgba(47, 49, 54, 0.4);
+      border-radius: 4px;
+      padding: 12px 16px;
+      max-width: 520px;
+      position: relative;
+    }
+
+    .embed-author {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .embed-author-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+    }
+
+    .embed-author-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: #fff;
+    }
+
+    .embed-title {
+      font-weight: 600;
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .embed-title a {
+      color: #00b0f4;
+    }
+
+    .embed-description {
+      color: #dcddde;
+      font-size: 14px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      margin-bottom: 8px;
+    }
+
+    .embed-fields {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .embed-field {
+      grid-column: span 12;
+    }
+
+    .embed-field-inline {
+      grid-column: span 4;
+    }
+
+    .embed-field-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .embed-field-value {
+      color: #dcddde;
+      font-size: 14px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .embed-thumbnail {
+      float: right;
+      max-width: 80px;
+      max-height: 80px;
+      border-radius: 4px;
+      margin-left: 16px;
+      margin-bottom: 8px;
+    }
+
+    .embed-image {
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin-top: 12px;
+      display: block;
+    }
+
+    .embed-video {
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin-top: 12px;
+      display: block;
+    }
+
+    .embed-footer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      font-size: 12px;
+      color: #b9bbbe;
+    }
+
+    .embed-footer-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+    }
+
+    .embed-footer-text::after {
+      content: " • ";
+      margin: 0 4px;
+    }
+
+    /* ==== EDITED INDICATOR ==== */
+    .edited-indicator {
+      color: #72767d;
+      font-size: 10px;
+      font-weight: 400;
+      cursor: default;
+      user-select: none;
+    }
+
+    .edited-indicator:hover {
+      text-decoration: underline;
+    }
+
+    /* ==== MESSAGE GROUPING ==== */
+    .message-grouped {
+      padding-top: 2px;
+      padding-bottom: 2px;
+    }
+
+    .message-grouped .message-left {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 16px;
+    }
+
+    .grouped-timestamp {
+      font-size: 10px;
+      color: transparent;
+      transition: color 150ms ease;
+    }
+
+    .message-grouped:hover .grouped-timestamp {
+      color: #72767d;
+    }
+
+    /* ==== IMAGE LIGHTBOX ==== */
+    .lightbox-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      animation: lightbox-fade-in 200ms ease;
+    }
+
+    @keyframes lightbox-fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .lightbox-img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(47, 49, 54, 0.8);
+      border: none;
+      color: #dcddde;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 150ms ease;
+      z-index: 2001;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(79, 84, 92, 0.9);
+    }
+
+    .lightbox-nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(47, 49, 54, 0.8);
+      border: none;
+      color: #dcddde;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 150ms ease;
+      z-index: 2001;
+    }
+
+    .lightbox-nav:hover {
+      background: rgba(79, 84, 92, 0.9);
+    }
+
+    .lightbox-nav-prev {
+      left: 16px;
+    }
+
+    .lightbox-nav-next {
+      right: 16px;
+    }
+
+    .lightbox-counter {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #b9bbbe;
+      font-size: 14px;
+      background: rgba(47, 49, 54, 0.8);
+      padding: 4px 12px;
+      border-radius: 4px;
+      z-index: 2001;
+    }
+
+    /* ==== MESSAGE HIGHLIGHT (jump-to-reply) ==== */
+    .message-highlight {
+      animation: highlight-fade 2s ease;
+    }
+
+    @keyframes highlight-fade {
+      0% { background: rgba(88, 101, 242, 0.3); }
+      100% { background: transparent; }
+    }
+
+    /* ==== REPLY BARS ==== */
+    .reply-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      margin-bottom: 4px;
+      border-left: 2px solid #4f545c;
+      border-radius: 0 4px 4px 0;
+      background: rgba(47, 49, 54, 0.3);
+      cursor: pointer;
+      transition: background 150ms ease;
+      font-size: 13px;
+    }
+
+    .reply-bar:hover {
+      background: rgba(47, 49, 54, 0.6);
+    }
+
+    .reply-avatar-small {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .reply-avatar-img {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .reply-avatar-placeholder-small {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7289da, #5865f2);
+      display: inline-block;
+    }
+
+    .reply-author {
+      color: #fff;
+      font-weight: 600;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    .reply-content {
+      color: #b9bbbe;
+      font-size: 12px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .reply-bar-deleted {
+      border-left-color: #f04747;
+      opacity: 0.6;
+    }
+
+    .reply-content-deleted {
+      color: #72767d;
+      font-size: 12px;
+      font-style: italic;
+    }
+
+    /* ==== FORWARDED MESSAGES (#197) ==== */
+    .forward-block {
+      margin-top: 8px;
+      padding: 8px 12px;
+      border-left: 3px solid #4f545c;
+      background: rgba(79, 84, 92, 0.1);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .forward-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .forward-icon {
+      color: #b9bbbe;
+      font-size: 12px;
+    }
+
+    .forward-label {
+      color: #b9bbbe;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .forward-content {
+      color: var(--text-primary);
+      font-size: 14px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .forward-attachments {
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .forward-attachment {
+      color: var(--text-link);
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .forward-attachment:hover {
+      text-decoration: underline;
+    }
+
+    /* ==== THREAD BANNERS ==== */
+    .thread-banner {
+      margin-top: 8px;
+      padding: 0;
+    }
+
+    .thread-banner-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: rgba(88, 101, 242, 0.1);
+      border: 1px solid rgba(88, 101, 242, 0.3);
+      border-radius: 4px;
+      color: #c9d1ff;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 150ms ease, border-color 150ms ease;
+    }
+
+    .thread-banner-link:hover {
+      background: rgba(88, 101, 242, 0.2);
+      border-color: rgba(88, 101, 242, 0.5);
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .thread-banner-icon {
+      font-size: 14px;
+    }
+
+    .thread-banner-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .thread-banner-arrow {
+      color: #72767d;
+    }
+
+    /* ==== THREAD BACK NAVIGATION ==== */
+    .thread-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: #b9bbbe;
+      font-size: 13px;
+      text-decoration: none;
+      margin-bottom: 8px;
+      transition: color 150ms ease;
+    }
+
+    .thread-back-link:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* ==== DATE DIVIDERS ==== */
+    .date-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 16px 0 8px;
+      position: relative;
+    }
+
+    .date-divider::before,
+    .date-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border-color);
+    }
+
+    .date-divider-text {
+      padding: 0 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* ==== SYSTEM MESSAGES ==== */
+    /* Structure mirrors .message so the icon sits where a regular
+       avatar would and the text starts where regular message content
+       starts. Icon column is 40px (= .avatar width), centered, with a
+       right-margin to reach the full .message-left outer width (60 + 16
+       = 76px). That lines text up at the same x-coordinate as .message-
+       content's first character. */
+    .system-message {
+      display: flex;
+      align-items: center;
+      padding: 8px 16px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      min-height: 36px;
+    }
+
+    .system-message-icon {
+      flex-shrink: 0;
+      width: 40px;
+      margin-right: 36px;
+      text-align: center;
+      color: var(--text-muted);
+      opacity: 0.7;
+      /* The inline SVG uses fill=currentColor so it inherits this
+         container's color and light/dark theme changes propagate. */
+    }
+
+    .system-message-icon svg {
+      vertical-align: middle;
+    }
+
+    .system-message-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* Author (always the first <strong> in formatSystemMessage output)
+       picks up its role color from the inline --system-author-color
+       custom property when the guild member has a colored role. Later
+       <strong> tokens (thread names, boost tier content) stay primary. */
+    .system-message-text strong:first-of-type {
+      color: var(--system-author-color, var(--text-primary));
+      font-weight: 600;
+    }
+    .system-message-text strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .system-message-text .system-link {
+      color: var(--link-color, #00b0f4);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .system-message-text .system-link:hover {
+      text-decoration: underline;
+    }
+
+    .system-message-timestamp {
+      font-size: 11px;
+      color: var(--text-muted);
+      opacity: 0.7;
+      margin-left: 4px;
+      white-space: nowrap;
+    }
+
+    .system-message-embed {
+      /* Aligns embed under the text column of the system-message row. */
+      padding: 4px 16px 8px 92px;
+    }
+
+    /* ==== SEARCH BAR ==== */
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .search-input {
+      flex: 1;
+      background: var(--input-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      color: var(--text-primary);
+      padding: 8px 12px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 200ms ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+    }
+
+    .search-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .search-count {
+      color: #72767d;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .search-clear {
+      background: transparent;
+      border: none;
+      color: #72767d;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: color 150ms ease, background 150ms ease;
+    }
+
+    .search-clear:hover {
+      color: #dcddde;
+      background: rgba(79, 84, 92, 0.4);
+    }
+
+    /* Search result styling */
+    .message.search-hidden {
+      display: none;
+    }
+
+    /* Search author label injected into grouped messages during search */
+    .search-author-label {
+      margin-bottom: 4px;
+    }
+
+    .date-divider.search-hidden {
+      display: none;
+    }
+
+    .search-highlight {
+      background: rgba(250, 166, 26, 0.3);
+      border-radius: 2px;
+      padding: 0 1px;
+    }
+
+    /* ==== PAGE NAVIGATION ==== */
+    .nav-btn {
+      background: rgba(88, 101, 242, 0.2);
+      color: #c9d1ff;
+      border: 1px solid rgba(88, 101, 242, 0.3);
+      border-radius: 4px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 200ms ease, border-color 200ms ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-btn:hover {
+      background: rgba(88, 101, 242, 0.35);
+      border-color: rgba(88, 101, 242, 0.5);
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .nav-btn[disabled], .nav-btn.disabled {
+      opacity: 0.3;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .nav-page-info {
+      color: #b9bbbe;
+      font-size: 13px;
+    }
+
+    /* Bottom navigation bar */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(180deg, #282b30 0%, #1e2124 100%);
+      border-top: 1px solid rgba(114, 137, 218, 0.2);
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 99;
+      box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .bottom-nav .nav-btn {
+      padding: 4px 12px;
+      font-size: 12px;
+    }
+
+    .bottom-nav .nav-page-info {
+      font-size: 12px;
+    }
+
+    /* Jump to top button */
+    .jump-top {
+      position: fixed;
+      bottom: 56px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #5865f2;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 200ms ease, transform 200ms ease, background 200ms ease;
+      z-index: 98;
+      pointer-events: none;
+    }
+
+    .jump-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .jump-top:hover {
+      background: #4752c4;
+    }
+
+    /* Add bottom padding to container so content isn't hidden behind bottom nav */
+    .container {
+      padding-bottom: 60px;
+    }
+
+    /* ==== THEME TOGGLE ==== */
+    .theme-toggle {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      color: var(--text-secondary);
+      font-size: 18px;
+      cursor: pointer;
+      padding: 6px 10px;
+      transition: background 150ms ease, color 150ms ease;
+      flex-shrink: 0;
+    }
+
+    .theme-toggle:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
+
+    /* Light theme overrides for elements using hardcoded colors */
+    .light-theme .header h1 {
+      background: linear-gradient(135deg, #2e3338, #5865f2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .light-theme .header {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .light-theme .author {
+      color: #2e3338;
+      text-shadow: none;
+    }
+
+    .light-theme strong {
+      color: #2e3338;
+    }
+
+    .light-theme em {
+      color: #4f5660;
+    }
+
+    .light-theme del {
+      opacity: 0.5;
+    }
+
+    .light-theme .avatar {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .light-theme .avatar-placeholder {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Mentions */
+    .light-theme .user-mention {
+      background: rgba(88, 101, 242, 0.15);
+      color: #5865f2;
+    }
+
+    .light-theme .user-mention:hover {
+      background: rgba(88, 101, 242, 0.25);
+    }
+
+    .light-theme .channel-mention {
+      background: rgba(88, 101, 242, 0.1);
+      color: #4752c4;
+    }
+
+    .light-theme .channel-mention:hover {
+      background: rgba(88, 101, 242, 0.2);
+    }
+
+    /* Code */
+    .light-theme .inline-code {
+      background: #e8e8e8;
+      color: #d63384;
+    }
+
+    .light-theme .code-block {
+      background: #f2f3f5;
+      border-color: #e3e5e8;
+    }
+
+    .light-theme .code-block code {
+      color: #2e3338;
+    }
+
+    .light-theme .hljs {
+      background: #f6f8fa;
+      color: #24292e;
+    }
+
+    /* Spoilers */
+    .light-theme .spoiler {
+      background: #ccc;
+    }
+
+    .light-theme .spoiler:hover {
+      background: #bbb;
+    }
+
+    .light-theme .spoiler-revealed {
+      background: rgba(88, 101, 242, 0.1);
+      color: #2e3338 !important;
+    }
+
+    /* Embeds */
+    .light-theme .embed {
+      background: rgba(0, 0, 0, 0.03);
+      border-left-color: #e3e5e8;
+    }
+
+    .light-theme .embed-title {
+      color: #2e3338;
+    }
+
+    .light-theme .embed-title a {
+      color: #0067e0;
+    }
+
+    .light-theme .embed-description {
+      color: #4f5660;
+    }
+
+    .light-theme .embed-field-name {
+      color: #2e3338;
+    }
+
+    .light-theme .embed-field-value {
+      color: #4f5660;
+    }
+
+    .light-theme .embed-author-name {
+      color: #2e3338;
+    }
+
+    /* Reactions */
+    .light-theme .reaction {
+      background: rgba(0, 0, 0, 0.04);
+      border-color: rgba(0, 0, 0, 0.08);
+    }
+
+    .light-theme .reaction:hover {
+      background: rgba(88, 101, 242, 0.1);
+      border-color: rgba(88, 101, 242, 0.3);
+    }
+
+    .light-theme .reaction-count {
+      color: #4f5660;
+    }
+
+    /* Attachments */
+    .light-theme .attachment-card {
+      background: rgba(0, 0, 0, 0.02);
+      border-color: #e3e5e8;
+    }
+
+    .light-theme .attachment-card:hover {
+      background: rgba(0, 0, 0, 0.04);
+      border-color: #c4c9ce;
+    }
+
+    .light-theme .attachment-name {
+      color: #0067e0;
+    }
+
+    .light-theme .attachment-size {
+      color: #747f8d;
+    }
+
+    .light-theme .attachment-badge.local {
+      background: rgba(67, 181, 129, 0.1);
+      color: #2d8b5e;
+    }
+
+    .light-theme .attachment-badge.external {
+      background: rgba(250, 166, 26, 0.1);
+      color: #b47615;
+    }
+
+    /* Reply bars */
+    .light-theme .reply-bar {
+      background: rgba(0, 0, 0, 0.03);
+      border-left-color: #c4c9ce;
+    }
+
+    .light-theme .reply-bar:hover {
+      background: rgba(0, 0, 0, 0.06);
+    }
+
+    .light-theme .reply-author {
+      color: #2e3338;
+    }
+
+    .light-theme .reply-content {
+      color: #4f5660;
+    }
+
+    /* Thread banners */
+    .light-theme .thread-banner-link {
+      background: rgba(88, 101, 242, 0.06);
+      border-color: rgba(88, 101, 242, 0.15);
+      color: #4752c4;
+    }
+
+    .light-theme .thread-banner-link:hover {
+      background: rgba(88, 101, 242, 0.12);
+      color: #3c45a5;
+    }
+
+    /* Nav buttons */
+    .light-theme .nav-btn {
+      background: rgba(88, 101, 242, 0.08);
+      color: #4752c4;
+      border-color: rgba(88, 101, 242, 0.15);
+    }
+
+    .light-theme .nav-btn:hover {
+      background: rgba(88, 101, 242, 0.15);
+      color: #3c45a5;
+    }
+
+    /* Popups */
+    .light-theme .discrub-popup {
+      background: #fff;
+      border-color: #e3e5e8;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .light-theme .user-popup-banner {
+      opacity: 0.8;
+    }
+
+    .light-theme .user-popup-name {
+      color: #2e3338;
+    }
+
+    .light-theme .user-popup-username {
+      color: #4f5660;
+    }
+
+    .light-theme .user-popup-divider {
+      background: #e3e5e8;
+    }
+
+    .light-theme .user-popup-section-title {
+      color: #747f8d;
+    }
+
+    .light-theme .user-popup-value {
+      color: #2e3338;
+    }
+
+    .light-theme .user-popup-badge {
+      background: #f2f3f5;
+      border-color: #c4c9ce;
+      color: #4f5660;
+    }
+
+    /* Reaction popup */
+    .light-theme .reaction-tab {
+      color: #747f8d;
+    }
+
+    .light-theme .reaction-tab:hover {
+      color: #4f5660;
+    }
+
+    .light-theme .reaction-tab.active {
+      color: #2e3338;
+    }
+
+    .light-theme .reaction-user-name {
+      color: #2e3338;
+    }
+
+    .light-theme .reaction-user-row:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    .light-theme .reaction-search-input {
+      background: #f2f3f5;
+      border-color: #e3e5e8;
+      color: #2e3338;
+    }
+
+    /* Message toolbar */
+    .light-theme .msg-toolbar {
+      background: #fff;
+      border-color: #e3e5e8;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .light-theme .msg-toolbar-btn {
+      border-color: #e3e5e8;
+      color: #747f8d;
+    }
+
+    .light-theme .msg-toolbar-btn:hover {
+      background: rgba(0, 0, 0, 0.04);
+      color: #2e3338;
+    }
+
+    /* Bottom nav */
+    .light-theme .bottom-nav {
+      background: var(--bg-secondary);
+      border-color: var(--border-color);
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Jump to top */
+    .light-theme .jump-top {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Edited indicator */
+    .light-theme .edited-indicator {
+      color: #747f8d;
+    }
+
+    /* Grouped timestamp */
+    .light-theme .message-grouped:hover .grouped-timestamp {
+      color: #747f8d;
+    }
+
+    /* Lightbox adjustments */
+    .light-theme .lightbox-overlay {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    /* Lightbox controls */
+    .light-theme .lightbox-close,
+    .light-theme .lightbox-nav {
+      background: rgba(255, 255, 255, 0.8);
+      color: #2e3338;
+    }
+
+    .light-theme .lightbox-close:hover,
+    .light-theme .lightbox-nav:hover {
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    .light-theme .lightbox-counter {
+      background: rgba(255, 255, 255, 0.8);
+      color: #4f5660;
+    }
+
+    /* Reaction popup extras */
+    .light-theme .reaction-popup-tabs {
+      border-bottom-color: #e3e5e8;
+    }
+
+    .light-theme .reaction-show-more {
+      background: rgba(88, 101, 242, 0.06);
+      border-color: rgba(88, 101, 242, 0.15);
+      color: #4752c4;
+    }
+
+    .light-theme .reaction-show-more:hover {
+      background: rgba(88, 101, 242, 0.12);
+    }
+
+    .light-theme .reaction-count-only {
+      color: #4f5660;
+    }
+
+    .light-theme .reaction-count-text {
+      color: #4f5660;
+    }
+
+    /* Search extras */
+    .light-theme .search-count {
+      color: #747f8d;
+    }
+
+    .light-theme .search-clear {
+      color: #747f8d;
+    }
+
+    .light-theme .search-clear:hover {
+      color: #2e3338;
+      background: rgba(0, 0, 0, 0.06);
+    }
+
+    .light-theme .search-highlight {
+      background: rgba(250, 166, 26, 0.4);
+    }
+
+    /* Reply deleted */
+    .light-theme .reply-bar-deleted {
+      border-left-color: #f04747;
+    }
+
+    .light-theme .reply-content-deleted {
+      color: #747f8d;
+    }
+
+    /* Thread back link */
+    .light-theme .thread-back-link {
+      color: #4f5660;
+    }
+
+    .light-theme .thread-back-link:hover {
+      color: #2e3338;
+    }
+
+    /* Nav page info */
+    .light-theme .nav-page-info {
+      color: #4f5660;
+    }
+
+    /* Link hover */
+    .light-theme a:hover {
+      color: #004db3;
+    }
+
+    /* Embed footer */
+    .light-theme .embed-footer {
+      color: #747f8d;
+    }
+
+    /* Attachment hover */
+    .light-theme .attachment-card:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Jump to top */
+    .light-theme .jump-top {
+      background: #5865f2;
+    }
+
+    .light-theme .jump-top:hover {
+      background: #4752c4;
+    }
+
+    /* ==== RESPONSIVE ==== */
+    @media (max-width: 768px) {
+      .header {
+        padding: 12px 16px;
+      }
+
+      .header h1 {
+        font-size: 22px;
+      }
+
+      .container {
+        padding: 12px;
+      }
+
+      .message {
+        padding: 12px 8px;
+      }
+
+      .avatar {
+        width: 32px;
+        height: 32px;
+      }
+
+      .message-left {
+        width: 48px;
+        padding-right: 12px;
+      }
+
+      .attachments {
+        grid-template-columns: 1fr;
+      }
+
+      .embed {
+        max-width: 100%;
+      }
+
+      .search-bar {
+        flex-wrap: wrap;
+      }
+
+      .search-input {
+        min-width: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header h1 {
+        font-size: 18px;
+      }
+
+      .message-left {
+        width: 40px;
+        padding-right: 8px;
+      }
+
+      .avatar {
+        width: 28px;
+        height: 28px;
+      }
+
+      .message {
+        padding: 10px 6px;
+      }
+
+      .author {
+        font-size: 13px;
+      }
+
+      .message-text {
+        font-size: 14px;
+      }
+
+      .msg-toolbar {
+        right: 4px;
+      }
+
+      .nav-btn {
+        padding: 4px 8px;
+        font-size: 12px;
+      }
+
+      .reaction {
+        padding: 3px 6px;
+        font-size: 12px;
+      }
+    }
+
+    /* ==== EXPORT FOOTER ==== */
+    .export-footer {
+      text-align: center;
+      padding: 32px 20px 80px;
+      border-top: 1px solid var(--border-color);
+      margin-top: 24px;
+    }
+
+    .export-footer-text {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .export-footer-text strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .export-footer-meta {
+      color: var(--text-muted);
+      font-size: 11px;
+      opacity: 0.7;
+    }
+
+    /* ==== REDUCED MOTION ==== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* ==== PRINT STYLES ==== */
+    @media print {
+      .bottom-nav, .jump-top, .search-bar, .theme-toggle {
+        display: none !important;
+      }
+
+      .container {
+        padding-bottom: 0;
+      }
+
+      body, :root {
+        --bg-primary: white;
+        --bg-secondary: white;
+        --text-primary: black;
+        --text-secondary: #333;
+        --text-muted: #666;
+        --border-color: #ddd;
+        --card-bg: #f9f9f9;
+        background: white;
+        color: black;
+      }
+
+      .header {
+        background: white;
+        color: black;
+        border-bottom: 2px solid #ccc;
+        box-shadow: none;
+        position: static;
+      }
+
+      .header h1 {
+        background: none;
+        -webkit-background-clip: unset;
+        -webkit-text-fill-color: black;
+        color: black;
+      }
+
+      .message {
+        page-break-inside: avoid;
+        background: none !important;
+        border-bottom: 1px solid #eee;
+        transform: none !important;
+      }
+
+      .avatar {
+        box-shadow: none;
+        border: 1px solid #ccc;
+      }
+
+      .message-text, .embed-description, .embed-field-value {
+        color: black;
+      }
+
+      .author, .embed-title, .embed-field-name {
+        color: #333;
+      }
+
+      .timestamp, .embed-footer {
+        color: #666;
+      }
+
+      .attachment, .reaction, .embed {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        box-shadow: none;
+      }
+
+      .code-block {
+        background: #f5f5f5;
+        border: 1px solid #ddd;
+      }
+
+      a {
+        color: #0066cc;
+        text-decoration: underline;
+      }
+
+      .embed-image, .embed-video {
+        max-width: 100%;
+        page-break-inside: avoid;
+      }
+
+      .attachment-preview-img {
+        max-height: none;
+      }
+    }
+
+    /* ==== POPUPS ==== */
+    .discrub-popup {
+      background: #18191c;
+      border: 1px solid rgba(114, 137, 218, 0.3);
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+      min-width: 200px;
+      max-width: 400px;
+      max-height: 400px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      animation: popup-fade-in 150ms ease;
+    }
+
+    @keyframes popup-fade-in {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .user-popup-card {
+      overflow: hidden;
+    }
+
+    .user-popup-banner {
+      height: 60px;
+      width: 100%;
+    }
+
+    .user-popup-avatar-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 16px;
+      margin-top: -20px;
+      margin-bottom: 8px;
+    }
+
+    .user-popup-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 4px solid #18191c;
+      object-fit: cover;
+    }
+
+    .user-popup-avatar-placeholder {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 4px solid #18191c;
+      background: linear-gradient(135deg, #7289da, #5865f2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 20px;
+      color: #fff;
+    }
+
+    .user-popup-bot-badge {
+      background: #5865f2;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+
+    .user-popup-name {
+      font-weight: 700;
+      font-size: 18px;
+      color: #fff;
+      padding: 0 16px;
+      margin-bottom: 2px;
+    }
+
+    .user-popup-username {
+      font-size: 14px;
+      color: #b9bbbe;
+      padding: 0 16px;
+      margin-bottom: 4px;
+    }
+
+    .user-popup-divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.06);
+      margin: 8px 16px;
+    }
+
+    .user-popup-section {
+      padding: 0 16px;
+      margin-bottom: 8px;
+    }
+
+    .user-popup-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #b9bbbe;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .user-popup-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2px 16px;
+      font-size: 13px;
+    }
+
+    .user-popup-label {
+      color: #72767d;
+    }
+
+    .user-popup-value {
+      color: #dcddde;
+      font-weight: 500;
+    }
+
+    .user-popup-mono {
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 12px;
+    }
+
+    .user-popup-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .user-popup-badge {
+      background: #2f3136;
+      color: #dcddde;
+      border: 1px solid #7289da;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .user-popup-count {
+      font-size: 13px;
+      color: #b9bbbe;
+      padding: 4px 16px 12px;
+    }
+
+    /* ==== REACTION POPUP ==== */
+    .reaction-popup-card {
+      min-width: 280px;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      max-height: 100%;
+    }
+
+    .reaction-popup-tabs {
+      display: flex;
+      gap: 0;
+      padding: 8px 8px 0;
+      border-bottom: 1px solid #2f3136;
+      overflow-x: auto;
+      flex-shrink: 0;
+    }
+
+    .reaction-tab {
+      background: transparent;
+      border: none;
+      color: #b9bbbe;
+      padding: 8px 12px;
+      font-size: 13px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color 150ms ease, border-color 150ms ease;
+      white-space: nowrap;
+    }
+
+    .reaction-tab:hover {
+      color: #dcddde;
+    }
+
+    .reaction-tab.active {
+      color: #fff;
+      border-bottom-color: #5865f2;
+    }
+
+    .reaction-popup-content {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 8px;
+    }
+
+    .reaction-user-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .reaction-user-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 8px;
+      border-radius: 4px;
+      transition: background 100ms ease;
+    }
+
+    .reaction-user-row:hover {
+      background: rgba(79, 84, 92, 0.4);
+    }
+
+    .reaction-user-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .reaction-user-avatar-placeholder {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7289da, #5865f2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .reaction-user-name {
+      color: #dcddde;
+      font-size: 14px;
+      font-weight: 500;
+      flex: 1;
+    }
+
+    .reaction-user-emoji {
+      font-size: 16px;
+    }
+
+    .reaction-search-bar {
+      padding: 8px 8px 4px;
+      flex-shrink: 0;
+    }
+
+    .reaction-search-input {
+      width: 100%;
+      background: #1e1f22;
+      border: 1px solid #40444b;
+      border-radius: 4px;
+      color: #dcddde;
+      padding: 6px 10px;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 150ms ease;
+    }
+
+    .reaction-search-input:focus {
+      border-color: #5865f2;
+    }
+
+    .reaction-search-input::placeholder {
+      color: #72767d;
+    }
+
+    .reaction-show-more {
+      width: 100%;
+      background: rgba(88, 101, 242, 0.1);
+      border: 1px solid rgba(88, 101, 242, 0.2);
+      border-radius: 4px;
+      color: #c9d1ff;
+      padding: 8px;
+      margin-top: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: background 150ms ease;
+    }
+
+    .reaction-show-more:hover {
+      background: rgba(88, 101, 242, 0.2);
+    }
+
+    .reaction-count-only {
+      padding: 16px;
+      text-align: center;
+      color: #b9bbbe;
+      font-size: 14px;
+    }
+
+    .reaction-count-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 8px;
+    }
+
+    .reaction-count-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 8px;
+    }
+
+    .reaction-count-emoji {
+      font-size: 20px;
+    }
+
+    .reaction-count-text {
+      color: #b9bbbe;
+      font-size: 14px;
+    }
+
+    /* ==== MESSAGE HOVER TOOLBAR ==== */
+    .msg-toolbar {
+      position: absolute;
+      top: -16px;
+      right: 16px;
+      display: flex;
+      gap: 0;
+      background: #2f3136;
+      border: 1px solid #202225;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      animation: popup-fade-in 80ms ease;
+      z-index: 50;
+    }
+
+    .msg-toolbar-btn {
+      background: transparent;
+      border: none;
+      border-right: 1px solid #202225;
+      color: #b9bbbe;
+      cursor: pointer;
+      padding: 6px 10px;
+      font-size: 16px;
+      line-height: 1;
+      transition: background 100ms ease, color 100ms ease;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .msg-toolbar-btn:last-child {
+      border-right: none;
+    }
+
+    .msg-toolbar-btn:hover {
+      background: rgba(79, 84, 92, 0.6);
+      color: #dcddde;
+    }
+
+    .msg-toolbar-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    .msg-toolbar-label {
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="header" role="banner">
+    <h1>#📈technical-tips</h1>
+    <div class="meta">
+      36 messages
+      <span style="float: right;">Exported: Jun 24, 2026 6:14 PM</span>
+    </div>
+    <div class="search-bar">
+      <input class="search-input" id="search-input" type="text" placeholder="Search messages..." aria-label="Search messages" />
+      <span class="search-count" id="search-count" aria-live="polite"></span>
+      <button class="search-clear" id="search-clear" style="display:none" aria-label="Clear search">&times;</button>
+      <button class="theme-toggle" id="theme-toggle" title="Toggle light/dark mode" aria-label="Toggle light/dark mode">&#x263E;</button>
+    </div>
+  </div>
+  <main class="container" role="main">
+    <div class="date-divider" id="date-2026-06-16"><span class="date-divider-text">June 16, 2026</span></div>
+          <div class="message" id="msg-1516459766753525913" data-message-id="1516459766753525913">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">06/16/2026 10:09 AM</span>
+              </div>
+              <div class="message-text">This is my view on QQQ, always near my other charts. And my BX view. You already know I also have a 10m window up with the 10m and MTF levels as well as a whole bunch of hourlies for different sectors, including smol caps, SPY, VIX, and crypto for sentiment purposes. Finally, I have a window that shows monthly, weekly, daily, 4hr, and hourly. You can see I&#039;m always looking at multiple timeframes and markets to find confluence.</div>
+              
+              <div class="attachments">
+               
+                   <div class="attachment-card">
+                     <img class="attachment-preview attachment-preview-img" src="media/attachments/0_1782342884811.png" alt="image.png" loading="lazy" data-action="open-lightbox" data-img-index="0" style="cursor:pointer">
+                     <div class="attachment-info">
+                       <div class="attachment-header">
+                         <span class="attachment-icon">🖼️</span>
+                         <a href="media/attachments/0_1782342884811.png"  class="attachment-name">
+                           image.png
+                         </a>
+                       </div>
+                       <div class="attachment-meta">
+                         <span class="attachment-size">294.15 KB</span>
+                         <span class="attachment-badge local">Local</span>
+                       </div>
+                     </div>
+                   </div>
+                 
+                   <div class="attachment-card">
+                     <img class="attachment-preview attachment-preview-img" src="media/attachments/0_1782342886411.png" alt="image.png" loading="lazy" data-action="open-lightbox" data-img-index="1" style="cursor:pointer">
+                     <div class="attachment-info">
+                       <div class="attachment-header">
+                         <span class="attachment-icon">🖼️</span>
+                         <a href="media/attachments/0_1782342886411.png"  class="attachment-name">
+                           image.png
+                         </a>
+                       </div>
+                       <div class="attachment-meta">
+                         <span class="attachment-size">678.45 KB</span>
+                         <span class="attachment-badge local">Local</span>
+                       </div>
+                     </div>
+                   </div>
+                 
+                   <div class="attachment-card">
+                     <img class="attachment-preview attachment-preview-img" src="media/attachments/0_1782342887345.png" alt="image.png" loading="lazy" data-action="open-lightbox" data-img-index="2" style="cursor:pointer">
+                     <div class="attachment-info">
+                       <div class="attachment-header">
+                         <span class="attachment-icon">🖼️</span>
+                         <a href="media/attachments/0_1782342887345.png"  class="attachment-name">
+                           image.png
+                         </a>
+                       </div>
+                       <div class="attachment-meta">
+                         <span class="attachment-size">300.98 KB</span>
+                         <span class="attachment-badge local">Local</span>
+                       </div>
+                     </div>
+                   </div>
+                 
+                   <div class="attachment-card">
+                     <img class="attachment-preview attachment-preview-img" src="media/attachments/0_1782342888803.png" alt="image.png" loading="lazy" data-action="open-lightbox" data-img-index="3" style="cursor:pointer">
+                     <div class="attachment-info">
+                       <div class="attachment-header">
+                         <span class="attachment-icon">🖼️</span>
+                         <a href="media/attachments/0_1782342888803.png"  class="attachment-name">
+                           image.png
+                         </a>
+                       </div>
+                       <div class="attachment-meta">
+                         <span class="attachment-size">998.97 KB</span>
+                         <span class="attachment-badge local">Local</span>
+                       </div>
+                     </div>
+                   </div>
+                 
+                   <div class="attachment-card">
+                     <img class="attachment-preview attachment-preview-img" src="media/attachments/0_1782342890406.png" alt="image.png" loading="lazy" data-action="open-lightbox" data-img-index="4" style="cursor:pointer">
+                     <div class="attachment-info">
+                       <div class="attachment-header">
+                         <span class="attachment-icon">🖼️</span>
+                         <a href="media/attachments/0_1782342890406.png"  class="attachment-name">
+                           image.png
+                         </a>
+                       </div>
+                       <div class="attachment-meta">
+                         <span class="attachment-size">2.63 MB</span>
+                         <span class="attachment-badge local">Local</span>
+                       </div>
+                     </div>
+                   </div>
+                 
+             </div>
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1516459766753525913" data-emoji-key="❤️">
+                     ❤️
+                     <span class="reaction-count">5</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1516458610702422066" data-message-id="1516458610702422066">
+            <div class="message-left">
+              <span class="grouped-timestamp">06/16/2026 10:05 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">But for my regular charts I have a four window view, with one of them being a daily chart like this:</div>
+              <div class="forward-attachments"><a class="forward-attachment" href="https://cdn.discordapp.com/attachments/1493807986575933500/1516458610144710817/image.png?ex=6a3d43a3&is=6a3bf223&hm=6f4b4f1a770790e97dda9c46a286cdc62cfcdb002938e3a3b9fa6b2ff9586a98&" target="_blank" rel="noopener noreferrer">image.png</a></div>
+            </div>
+              
+              
+              
+              
+            </div>
+          </div>
+        <div class="date-divider" id="date-2026-06-13"><span class="date-divider-text">June 13, 2026</span></div>
+          <div class="message" id="msg-1515424639269077043" data-message-id="1515424639269077043">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">06/13/2026 1:36 PM</span>
+              </div>
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">Now here is an example of waiting for a retracement after a breakout, or a breakdown in this case. On Friday 6/5/26, TSLA lost the daily 20e and 50e. This is showing on a 10m chart with the 5/12e clouds, but the green and blue bands are MTF bands (multi-timeframe analysis), which just means it&#039;s pulling levels from a daily chart and overlaying them on a 10m chart so you have two charts in one -- for these charts, the green band is the same as the. daily 20e, and the blue bands are the daily 50e. Each white arrow on this chart represents a valid entry, and for each entry, your risk level is the previous 10m candle high (same can be done on a 5m chart using a previous 5m high or low as risk, but it&#039;s a little more aggressive and slightly more likely to get stopped out, but also more likely to get an entry as sometimes the 10m bands are too far away when momentum is very strong). The first entry is the rejection of the daily 20e (green MTF band), the next entry is the bounce back up to the 10m 5/12e cloud, the third entry is the loss of the daily 50e (blue MTF band), the fourth, fifth, or sixth entries would be on a bounce back up into the 10 5/12e cloud. Keep in mind, the further you are from the original breakdown (green or blue band), the more likely it will eventually bounce back up and actually reclaim the red 5/12e cloud, so I wouldn&#039;t really take any lower entries than the ones I pointed out. The first few are obviously the best ones, and you could stay in the trade until there&#039;s a reclaim of the 5/12e cloud, which doesn&#039;t happen until the very end of the day. The arrows could also represent add points if you scaled out of your position and would like to add back along the trend.</div>
+              <div class="forward-attachments"><a class="forward-attachment" href="https://cdn.discordapp.com/attachments/1493807986575933500/1515424639201837156/image.png?ex=6a3d752d&is=6a3c23ad&hm=d13823ca0affbe92ac423885417d42b7db7e646583741e58bd262c62125dd6e9&" target="_blank" rel="noopener noreferrer">image.png</a></div>
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1515424639269077043" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">2</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1515424254785622157" data-message-id="1515424254785622157">
+            <div class="message-left">
+              <span class="grouped-timestamp">06/13/2026 1:34 PM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">By the way, many like to point out an inverse head and shoulders as bullish, but this is really just a changing of structure from lower highs and lower lows, to a higher high and higher lows -- so if you think in terms of structure and who&#039;s on both sides of the market, who stops out where, etc. you don&#039;t have to think too hard about memorizing specific patterns.</div>
+              
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1515424254785622157" data-emoji-key="❤️">
+                     ❤️
+                     <span class="reaction-count">1</span>
+                   </span>
+                 
+                   <span class="reaction" data-action="show-reactions" data-message-id="1515424254785622157" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">1</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1515424226771734599" data-message-id="1515424226771734599">
+            <div class="message-left">
+              <span class="grouped-timestamp">06/13/2026 1:34 PM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">One thing about patterns, I never purely memorize the different pattern names, I think in terms of the psychology of candles (long wicks showing buyers or sellers in control, sides getting trapped, etc.). We all know bear flags, bull flags, head and shoulders, etc. but my favorite way to use a pattern is when a bullish or bearish pattern fails -- from failed moves, come quick moves in the opposite direction. One great example of this is NVDA, which is notorious for failing a giant head and shoudlers pattern before continuing higher. This is one of my favorite ones on NVDA, where we had a large bearish engulfing candle at ATH (ellipse), followed by a retest and failure (double top vibe), and a massive head and shoulders that broke the neckline at 40 (400 pre-split at the time). I know many that shorted the 400 breakdown that day, but the daily candle closed green and reclaimed that major 400 psychological level (circled) -- this was a pure head and shoulder breakdown failure, and led to a <em>very quick</em> retracement and absolutely epic generational run from 400 to nearly 1000 before any major dips.</div>
+              <div class="forward-attachments"><a class="forward-attachment" href="https://cdn.discordapp.com/attachments/1493807986575933500/1515424226624929852/image.png?ex=6a3d74ca&is=6a3c234a&hm=225a0657a38e3ff546812463890c9c98dd5c6a99951ac8a0112ff55ded29bfe9&" target="_blank" rel="noopener noreferrer">image.png</a></div>
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1515424226771734599" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">1</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1515424192731021412" data-message-id="1515424192731021412">
+            <div class="message-left">
+              <span class="grouped-timestamp">06/13/2026 1:34 PM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">Yes, so in 6.5 we discuss macro vs. sneaky pivots vs. second entries. Here&#039;s an example of the sneaky pivot on an hourly on MRVL from this week. See how MRVL tested that level around 272 three times on an hourly over the course of 2-3 days? When it finally reclaims that level, we can expect a push to the next supply zone, which is the hourly upper BB, then the 100s on the hourly (circled). You will also see how the hourly does retrace, but it holds the hourly 5s on the dip, and the hourly candles (even the next day) always close above the entry/sneaky pivot point 🔑 The sneaky pivot would be getting long at 272, but the dip after the pivot would be buying the hourly 5s dip afterwards, and risking to the wick low -- this gives you a better entry, but it may not necessarily always happen if momentum is very strong <img class="emoji" src="https://cdn.discordapp.com/emojis/889476942607302678.webp" alt=":Zyzz:" title=":Zyzz:"> One thing I haven&#039;t discussed much because it&#039;s a little more subjective, but still good to have an understanding of, are chart patterns like harmonics. For example, this harmonic (which isn&#039;t absolutley perfect on the ratios -- you will realize they rarely ever are textbook), shows a potential extension on the C-D leg up to retest the ATH. Typically W shaped harmonics lead to a sell at point D, and M shaped harmonics lead to a bounce at point D; however, in this case, even if there&#039;s a sell at previous ATH retest, I would not necessarily look for a new low, I would just use it as an additional place to take profit/raise stops.</div>
+              <div class="forward-attachments"><a class="forward-attachment" href="https://cdn.discordapp.com/attachments/1493807986575933500/1515424192185630880/image.png?ex=6a3d74c2&is=6a3c2342&hm=7a227ddf958ccece65462743795bab67206124643405e7e49b160d0bee0b4274&" target="_blank" rel="noopener noreferrer">image.png</a><a class="forward-attachment" href="https://cdn.discordapp.com/attachments/1493807986575933500/1515424192453935124/Harmonic-Patterns-1.png?ex=6a3d74c2&is=6a3c2342&hm=25990d2b3f6eb364a331e299cdd874e43257f20d01943a307faf45de16476424&" target="_blank" rel="noopener noreferrer">Harmonic-Patterns-1.png</a></div>
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1515424192731021412" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">1</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        <div class="date-divider" id="date-2026-06-04"><span class="date-divider-text">June 4, 2026</span></div>
+          <div class="message" id="msg-1512257243720978494" data-message-id="1512257243720978494">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">06/04/2026 7:50 PM</span>
+              </div>
+              <div class="message-text">Nice thread on managing daytrades vs. swings, position-sizing, 2x ETFs etc: <a href="https://discord.com/channels/1376363841419743263/1376370215641944074/1512245102536298526" target="_blank" rel="noopener noreferrer">https://discord.com/channels/1376363841419743263/1376370215641944074/1512245102536298526</a></div>
+              
+              
+              
+              
+              
+            </div>
+          </div>
+        <div class="date-divider" id="date-2026-04-15"><span class="date-divider-text">April 15, 2026</span></div>
+          <div class="message" id="msg-1494013537465532598" data-message-id="1494013537465532598">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/15/2026 11:36 AM</span>
+              </div>
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">I daytrade with a smaller account than my swing and long-term accounts. I don&#039;t check my PnL until the end of the month, and then withdraw my profits and reset it. I use full margin leverage in this account, so let&#039;s say 100k to give 400k BP. I would buy 500 shares of TSLA on a dip buy or rejection, risk about $1/share, $2/share (or $1k) tops with slippage, and then get down to runners, meaning the last 50-100 shares overnight, after you locked in about $3k on the bounce from $404 with 400 shares sold, and 100 shares are running still. The 100 shares running used about 40k of your cash, so you have 63k cash and 40k in securities. You get 4x BP on cash and 2x on securities, so your BP tomorrow is now 332k going into tomorrow. Let&#039;s say TSLA gaps up to $414, and you sell the runner, you lock in an extra $1k tomorrow morning, full trade value is over $4k now, and you still have plenty of BP to make another big move tomorrow. On something like a macro level pivot, which was TSLA $372 area breakout <img class="emoji" src="https://cdn.discordapp.com/emojis/1334271810992214127.webp?animated=true" alt=":alert:" title=":alert:"> or a daily 50s reclaim with a very tight daily chart, I would go heavier, essentially using full BP, full 1k shares on something like that with this 100k account, and risk $1-2/share max. Your risk is basically always .5% to max 2% of your account on a stop out, and on bounces/rejections you&#039;re risking .5% and macro level trades, you&#039;re willing to go heavier because these are massive account-building moments that make your quarter/year.</div>
+              
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494013537465532598" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">3</span>
+                   </span>
+                 
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494013537465532598" data-emoji-key="❤️">
+                     ❤️
+                     <span class="reaction-count">3</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494013443542351913" data-message-id="1494013443542351913">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:36 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">I can then scale out of my swing trades partially as they work in my favor and free up capital to recycle shares/trade around a core position ♻️ If I don&#039;t get a full position before the stock I want turns/bottoms, then I can average up when it comes back down but holds a trend line/moving average 🦘 Many times this average up is still much lower than if I were to just blindly buy a full-size position on the first dip.</div>
+              
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494013443542351913" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">2</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494013384230961366" data-message-id="1494013384230961366">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:35 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">This is why I like to average into swings, but never into daytrades. Daytrades I use margin/leverage to take size and I&#039;m right or right out, but with swing trades, I like to use up to three entries tops. If my goal is 1k shares, I will take 250, 250, and then 500 on the lowest entry. The reason for this is that sometimes it&#039;s hard to focus on daytrading and catching swing trades in a different account (I have different accounts for different types of trading to help with organization), and since I&#039;m using less size to swing multiple positions, I am looking more at general areas on a chart vs. very precise entries to the penny.</div>
+              
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494013384230961366" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">2</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494013242018893984" data-message-id="1494013242018893984">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:35 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">A quick note on Lightspeed, they actually do give you time-and-tick on margin even on the leveraged shares, so I tend to trade them intraday now because it gives me maximum leverage (I can take full margin on a 2x name which is insane). The only time I don&#039;t trade them is if I want to short and they&#039;re HTB (hard to borrow).</div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494013242018893984" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">2</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494013239292596416" data-message-id="1494013239292596416">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:35 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">I use leveraged shares in a cash account since you do not get time-and-tick trading them in a margin account. I daytrade with a margin account that starts each day in cash (except for overnight runners -- last 10-20% of a position that closes very strong). With regular shares, if you buy 100k on margin and then sell half, you will replenish your buying power with 50k to use immediately for something else. With leveraged shares, if you buy 100k on margin and sell them, you will not get any replenishment of your buying power until the next day. For this reason, leveraged shares are best used in a cash account, and regular shares in a margin account. The margin <em>is</em> the leverage (4x buying power on the cash in a margin account). The way I trade is to use a set amount in my margin account each month, and then pay myself monthly and return the account back down to that set amount. I only check my P/L monthly so that I am detached from it and I only rate myself based on my execution. I transfer my gains monthly from the daytrading account to my swing accounts and IRAs and then convert that to swing trade and long-term investment capital.</div>
+              
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494013239292596416" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">1</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494012968227311816" data-message-id="1494012968227311816">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:34 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">Yes, so Lightspeed gives you direct market access, but you pay for executions, which is great for intraday trading. Fidelity has excellent fills without payment for order flow, but no overnight access. I also have Schwab/TOS which allows BLUE/overnight access. I trade equity, so for me, direct market access and fast execution is critical, but depending on where you are on your journey and your needs, using BULL and HOOD are fine as well. I do have accounts on both, but they are not my primary accounts.</div>
+              
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494012968227311816" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">1</span>
+                   </span>
+                 
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494012968227311816" data-emoji-key="❤️">
+                     ❤️
+                     <span class="reaction-count">1</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494012903207075910" data-message-id="1494012903207075910">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:33 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">Here are some tips regarding sizing, entries and scaling for swings vs. daytrades, as well as more information on brokers I use:</div>
+              
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494012903207075910" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">1</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1494011105628917982" data-message-id="1494011105628917982">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/15/2026 11:26 AM</span>
+              </div>
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">BIRD is a poster child for the 10m 5/12e clouds, you can see each time it consolidates and the 10m clouds catch up, the next leg up starts <img class="emoji" src="https://cdn.discordapp.com/emojis/1247044849585225880.webp?animated=true" alt=":Peepo_Rocket:" title=":Peepo_Rocket:"> This is why I like using the 10m levels on aggressively trending names when the daily and hourly levels are too far away <img class="emoji" src="https://cdn.discordapp.com/emojis/889476942607302678.webp" alt=":Zyzz:" title=":Zyzz:"></div>
+              <div class="forward-attachments"><a class="forward-attachment" href="https://cdn.discordapp.com/attachments/1493807986575933500/1494011105310412952/image.png?ex=6a3d56c4&is=6a3c0544&hm=b1a80e4bbe828353fcf3cb111d40a8769892ce0e4d2aaaf5cff320b1ac13c55c&" target="_blank" rel="noopener noreferrer">image.png</a></div>
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494011105628917982" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">3</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1494011067108556893" data-message-id="1494011067108556893">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="reply-bar" data-action="jump-to-reply" data-target-id="1494009123409236108">
+                <span class="reply-avatar-small"><img src="https://cdn.discordapp.com/avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png?size=32" class="reply-avatar-img"></span>
+                <span class="reply-author">dmtdr</span>
+                <span class="reply-content"><em>Click to see attachment</em></span>
+              </div>
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/15/2026 11:26 AM</span>
+              </div>
+              <div class="message-text">The Ripster clouds can be found on TradingView with the names above, and I use the default settings on those. I look to buy dips to the clouds on aggressively trending names, like on BIRD today, which I will forward here as an example. I also look at the MTF horizontal bands to hold on dips to buy, or to act as supply for scaling out. These MTF clouds are based on daily moving averages, so it can be helpful because it helps you zoom out while staying on the 10m chart.</div>
+              
+              <div class="attachments">
+               
+                   <div class="attachment-card">
+                     <img class="attachment-preview attachment-preview-img" src="media/attachments/15_1782342891431.png" alt="image.png" loading="lazy" data-action="open-lightbox" data-img-index="5" style="cursor:pointer">
+                     <div class="attachment-info">
+                       <div class="attachment-header">
+                         <span class="attachment-icon">🖼️</span>
+                         <a href="media/attachments/15_1782342891431.png"  class="attachment-name">
+                           image.png
+                         </a>
+                       </div>
+                       <div class="attachment-meta">
+                         <span class="attachment-size">5.52 KB</span>
+                         <span class="attachment-badge local">Local</span>
+                       </div>
+                     </div>
+                   </div>
+                 
+             </div>
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494011067108556893" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">2</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message" id="msg-1494010165437923410" data-message-id="1494010165437923410">
+            <div class="message-left">
+              <img src="avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png" alt="dmtdr" class="avatar" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer">
+            </div>
+            <div class="message-content">
+              
+              <div class="message-header">
+                <span class="author" data-action="show-user" data-user-id="737813392764698665" style="cursor:pointer;color:#3498db">dmtdr</span>
+                <span class="timestamp">04/15/2026 11:23 AM</span>
+              </div>
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">Final piece, the red line for volume point of control (VPOC), is found by looking up &quot;THT Volume Pro&quot; and adding the indicator by &quot;tradinghelpingtraders.&quot;</div>
+              
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494010165437923410" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">2</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494010140784070738" data-message-id="1494010140784070738">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:22 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">This is the market bias indicator (looks similar to a moving average), and the settings for it:</div>
+              <div class="forward-attachments"><a class="forward-attachment" href="https://cdn.discordapp.com/attachments/1493807986575933500/1494010140263714978/image.png?ex=6a3d55de&is=6a3c045e&hm=715748845ff7967eb9f9f9cf866a82771979f3d83be1c1066a5329f5d8f47a6e&" target="_blank" rel="noopener noreferrer">image.png</a><a class="forward-attachment" href="https://cdn.discordapp.com/attachments/1493807986575933500/1494010140519694397/image.png?ex=6a3d55de&is=6a3c045e&hm=4d2138ec1cfa290777cc6f496dfa465f558d025856907c66dd31c318419233a4&" target="_blank" rel="noopener noreferrer">image.png</a></div>
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494010140784070738" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">2</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494010102372630729" data-message-id="1494010102372630729">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:22 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">BX-trender is called &quot;B-Xtrender @Puppytherapy&quot; on TradingView and it&#039;s by QuantTherapy. After you add the indicator, adjust the settings as follows:</div>
+              <div class="forward-attachments"><a class="forward-attachment" href="https://cdn.discordapp.com/attachments/1493807986575933500/1494010102041018429/image.png?ex=6a3d55d5&is=6a3c0455&hm=8fac312532cd5849f943c5c8076305f7d57dd4e1dbe481fa1d009a360243db60&" target="_blank" rel="noopener noreferrer">image.png</a></div>
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494010102372630729" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">3</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494009123409236108" data-message-id="1494009123409236108">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:18 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">A few other technical indicators that I like to use are the BX-trender, which is a combination of MACD + RSI. This indicator is used to show money flowing into and out of a stock, and I primarily use this as a second level of confirmation for swing trades in particular. For intraday scalping, I do like using 10 minute 5/12 and 34/50 EMA clouds, which were popularized by Ripster. These can be wonderful entries for aggressive trends that are too far from an hourly level. I will give examples as these opportunities present throughout the day.</div>
+              
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494009123409236108" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">2</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494008745682927727" data-message-id="1494008745682927727">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:17 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">I now use LightSpeed, which allows me to filter out prints that are only 100 shares or more on the tape, making it much easier to read. I will post examples of this in real-time when the market is open.</div>
+              
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494008745682927727" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">2</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494008620566708474" data-message-id="1494008620566708474">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:16 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">Here&#039;s an example of AAPL building below a key 212 level on the Level 2 and time and sales. You can see waves of red prints (shares transacting on the bid), which shows the price building below the level and is likely to go lower.</div>
+              <div class="forward-attachments"><a class="forward-attachment" href="https://cdn.discordapp.com/attachments/1493807986575933500/1494008620285956197/image.png?ex=6a3d5474&is=6a3c02f4&hm=54df9e53f2698db8e62ed92af5060e6456a313ce5ae69177fa2691c9a842eaa5&" target="_blank" rel="noopener noreferrer">image.png</a></div>
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494008620566708474" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">2</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494008496453320784" data-message-id="1494008496453320784">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:16 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">As it starts building in your direction, rather than sell the entire thing, you need to learn how to scale out in pieces. You will take profit at each level of supply on the way up (or demand on the way down), with the goal of holding a piece of your position for the full MP. Once you start scaling out, I recommend using break even as your stop on the remainder of the position (the balance), especially as you are learning the process and building your account. Using this management strategy means all trades you take are either small losses, break even/small gains, or large gains when they go to full MP. Being sized properly will help you stop out without any fear on trades that do not work (you will simply view it as the cost of doing business). Learning how to hold onto your winners for full MP will be the next hardest thing to master and the best way to actually make significant money in this business. Start small, but give yourself let&#039;s say three shares so that you can learn to scale out in pieces. Using break even on the balance will be your greatest safety net as you learn this skill, and you never want to scale in to positions, because like I said, you&#039;re either going to be right or right out. Rather than adding to your position lower, you will have the opportunity to stop out for a minimal loss and try a new position at a lower demand zone or on another day when the stock has had more time to consolidate.</div>
+              
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494008496453320784" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">3</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494008241334648994" data-message-id="1494008241334648994">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:15 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">There&#039;s other concepts, like premarket highs and lows (PMH/PML), opening range bars and breakouts (ORB), bullish/bearish engulfing candles, etc. Just know that these levels and setups will affect price, and you will gain awareness of all these things over time. So you found a high quality setup and entered the trade, now what? Well, these levels are very specific and so we expect the trade work pretty quickly. You&#039;re either right, or right out. Your initial stop on most of these trades will be about one dollar. As you get more advanced, you can risk to the previous five minute candle high/low, or the previous hourly candle high/low if you want to be more aggressive and this is a very high probability setup with a large MP (e.g. macro level breakout). You swing in a similar fashion by risking to the previous daily candle high/low. After you enter the trade, you will watch it build on the tape. If the pivot is at 500, and you&#039;re long, you want to see waves of green prints on the tape every time it dips below 500. You want to see any large offers get taken on the Level 2, and large bids holding the stock up. This is where screen time will really help you.</div>
+              
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494008241334648994" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">2</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494008190319460473" data-message-id="1494008190319460473">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:15 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">Before I cover management and psychology, I want to mention the importance of Level 2 and watching trades build above or below pivot points. Often times you will see huge orders on the Level 2 at those key levels, and you will recognize the liquidity getting swept on the time and sales (called the tape). This is the most nuanced part of the skill of trading, and will require screen time. I recommend watching the tape so you can see how a stock builds above or below the pivot point. Each stock will have its own personality regarding how it builds a level, and trading the same handful of stocks over and over will help you know the personalities of these stocks very easily and make the entire process very calm. If you ever get nervous while trading, you&#039;re in a bad trade (many times due to being oversized or simply not following the rules of the strategy). It is important to take a deep breath and maintain self-awareness. This is a very psychedelic (mind-manifesting) experience <img class="emoji" src="https://cdn.discordapp.com/emojis/989219105481560064.webp" alt=":DMT:" title=":DMT:"></div>
+              
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494008190319460473" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">3</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494008160141447368" data-message-id="1494008160141447368">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:15 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">The hourly sneaky pivot is when a level is tested multiple times on several hourly candles (e.g. NVDA 1200 pre-split had several hourly candles that topped out at exactly 1199.99 intraday). When a new hourly candle breaks that level, you can use it as a pivot point (e.g. when NVDA broke 1200, we got long with the low of the previous hourly candle as the stop, which was 1195. NVDA then traded up to 1250 that same day, which provided $50 of reward on $5 of risk per share). This setup is similar to a &quot;flat top breakout.&quot; Many of the setups I described above will line up with other setups like bull flags, bear flags, head and shoulders, Fibonacci levels, horizontal and even slanted trendlines that create wedges etc. I see all these patterns as well, and they add confluence; however, I am primarily executing based on the moving averages being reclaimed or rejected. The fact that it coincides with other people&#039;s setups adds momentum, and over the years you will gain awareness of what others are looking for. Every single trade you take, you must consider the other side of the trade, such as where are longs or shorts stopping out? What are other people seeing in this chart? This will help you stay on the right side of the market, but you will never be right 100% of the time (even though it feels like we are close to that sometimes) -- and that&#039;s where trade management and psychology comes in 🧠</div>
+              
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494008160141447368" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">3</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494008135906492539" data-message-id="1494008135906492539">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:14 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">The concept of the second entry is when a stock takes out a pivot and makes a new high (or low), then retraces 30 to 60 cents, before continuing higher (or lower). The second entry is at the first new high (or low) after breaking the pivot. This is a much safer entry, because it confirms there are buyers or sellers in that direction. It&#039;s safer, but there&#039;s also a chance there will be no second entry, especially on macro level breaks. I always take the first entry on macro breaks, and the second entry on continuation moves. I take more size on macro level breaks than I do on continuation moves because they have more value, greater measured potential (MP), and are more likely to work. Let&#039;s say META has a pivot at 500, and it breaks 500 in the morning and makes a new high of 501 before retracing back down to 500.30. The second entry is now 501, and you would use the recent low of 500.30 as your stop. If the bid hits 501, you get long with a 70 cent stop. That new high of day (NHOD) is the confirmation of strength you need to get long at 501. I will cover management of the trade a little bit later.</div>
+              
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494008135906492539" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">4</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494008109788823715" data-message-id="1494008109788823715">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:14 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">We are never trying to guess the closing price; only trying to win our interval intraday. The only thing I keep overnight is a runner from the move earlier in the day, unless the trade was specifically meant to be a swing trade. Previous day&#039;s high (PDH) and low (PDL) are very important because stocks cannot go higher without taking out PDH, and cannot go lower without taking out PDL. You would use those levels are targets to scale out of your position, and then potentially hold a runner in case it closes at the top of the range. If a stock, or the market, is not taking out PDH or PDL, then it&#039;s an inside day, which does not provide much value. You can scalp the top and bottom of the range on days like that, but it only works well with equity. Options will lose premium very quickly on days like that and are untradeable.</div>
+              
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494008109788823715" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">4</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494008083259592954" data-message-id="1494008083259592954">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:14 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">For liquid stocks like AMZN and AAPL, you can leave a bid at the level and then have a stop 50 cents to a dollar below. For stocks that move quickly and are spready, like NFLX or NVDA (especially pre-split), you want to take a remount. What that means is you wait for the stock to break the level, then use the wick low after it broke as your stop/risk level, and buy it on the way back up above that level that broke. A rejection is the same concept, except you’re shorting the stock at supply instead of longing at demand. In the META example above that even if you missed the macro daily 50 SMA breakout, you could take the daily 5 SMA retest on the following day as an excellent remount/dip buy area. This is one of my favorite SMAs for momentum and short term trends. The concept of remounting and rejecting will work at any supply/demand zone, but the higher the time frame and the more lines near a particular level, the better.</div>
+              
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494008083259592954" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">4</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494008048984002672" data-message-id="1494008048984002672">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:14 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">As someone over PDT, I took that trade with shares, and scaled out (I will explain this more later). For you trying to build your account, you can take an option to have more leverage with less money. I would look at slightly out of the money (OTM) call options with at least a week or maybe two until expiry so you can hold at least one contract as a multi-day runner. I like to use the same indicators on the chart of the value of the option contract as well. So for the META 482.5 macro level pivot, you would pull up the META 500c for 6/14 expiry because you know you have room to 500+ in the coming days to weeks. Following this macro level option example, META has now confirmed the macro level break and you have identified the contract you want to buy. You pull up the chart of the contract to find a good entry. The contract LOD was 3.35 (or $335 because options control 100 shares). The daily 10 SMA for the option contract price is 3.45, so I would bid 3.45 (which requires $345 buying power). This would have filled just below the LOD (low of day), and then went as high as 10.80 by the next day (or $1080).
+You would take profit based on the underlying (META going into supply zones) as well as the contract&#039;s supply zones, which were the daily 20 SMA and EMAs, and then the upper Bollinger Band on the next day.</div>
+              <div class="forward-attachments"><a class="forward-attachment" href="https://cdn.discordapp.com/attachments/1493807986575933500/1494008048673489016/image.png?ex=6a3d53ec&is=6a3c026c&hm=0c20d457ea7a3e87356e4a7653a27dbba923763b65cb612d48a4441bda2a1cb8&" target="_blank" rel="noopener noreferrer">image.png</a></div>
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494008048984002672" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">5</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494008015517646898" data-message-id="1494008015517646898">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:14 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">So the macro level pivot is 482.5, because that confirms the top of the daily and weekly range, and confirms the very important 50 day SMA. If META builds above that 482.5 level, we can expect several days or weeks of higher prices. This is the perfect type of trade to take with options because you have a very high measured potential (clear blue sky setup on the daily, and next weekly supply is over 500). And here you can see that after it confirmed 482.5, it rode the daily 5 SMA up each and every single day and then started basing over 500:</div>
+              <div class="forward-attachments"><a class="forward-attachment" href="https://cdn.discordapp.com/attachments/1493807986575933500/1494008015223914618/image.png?ex=6a3d53e4&is=6a3c0264&hm=f770643858e2b7ada93d7039d6b1555b08f84548a740c20834f41366a1c7cd24&" target="_blank" rel="noopener noreferrer">image.png</a></div>
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494008015517646898" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">3</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494007983133294682" data-message-id="1494007983133294682">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:14 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">On the weekly for META, you can see the high from the past month was 482.5:</div>
+              <div class="forward-attachments"><a class="forward-attachment" href="https://cdn.discordapp.com/attachments/1493807986575933500/1494007982671794268/image.png?ex=6a3d53dc&is=6a3c025c&hm=c2955322f0cabdae34fdbfb6faaf96317ccf2433e5e1f0493a5c70f9972788a4&" target="_blank" rel="noopener noreferrer">image.png</a></div>
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494007983133294682" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">3</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494007956826751116" data-message-id="1494007956826751116">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:14 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">You want to focus on macro setups only at first in order to build your account. The 50 day SMA is one of the best macro levels. If a stock consolidates for many days or even weeks and has a tight range, breaking that range is another great macro setup, especially if it&#039;s breaking above or below the 50 day or 200 day SMA.
+Here is an example that I called out on META in the past. Below is a daily chart of META, and you can see that it spent over a full month consolidating in a tight daily range below the 50 day SMA (red line on the chart below). Even better, there is almost no supply above the 50 day moving average except the daily upper BB.</div>
+              <div class="forward-attachments"><a class="forward-attachment" href="https://cdn.discordapp.com/attachments/1493807986575933500/1494007956289753089/image.png?ex=6a3d53d6&is=6a3c0256&hm=2d652c7b4b4157340ef5784c84652beb1e5bfacd2a4fec77ac0116dab6da2f96&" target="_blank" rel="noopener noreferrer">image.png</a></div>
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494007956826751116" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">3</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494007921455923232" data-message-id="1494007921455923232">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:14 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">I like to analyze charts for areas of congestion on higher timeframes (monthly, weekly, daily and hourly) to identify key levels of potential supply and demand. I also use the following moving averages on these timeframes to find my levels of potential supply and demand, and to determine the measured potential of a trade. I only look at VWAP on smaller timeframes like that 5 minute, although anchored VWAP from an all-time high or low can also be an important level that you can work with.</div>
+              <div class="forward-attachments"><a class="forward-attachment" href="https://cdn.discordapp.com/attachments/1493807986575933500/1494007921321840711/image.png?ex=6a3d53cd&is=6a3c024d&hm=63255d70f211429d298d0b264d30f1c5c134e500debd9df358052ef0e800c098&" target="_blank" rel="noopener noreferrer">image.png</a></div>
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494007921455923232" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">3</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494007888035709092" data-message-id="1494007888035709092">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:13 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">I am looking for confluence — areas where supply/demand zones line up on multiple timeframes as well as on the general market you’re trading (in my case the QQQ). What that may look like is the individual stock approaching a remount level at the same time QQQ is, so you expect the general market to bounce as well. This is where relative strength and weakness comes into play. The perfect recent example of relative strength is NVDA — it barely sells off when QQQ does, so you want to buy those dips into demand. TSLA has been relatively weak all year — it barely goes up when QQQ rips, so you want to be sell-biased intraday and short those pops into supply. This changes over time, so always check for relative strength and weakness intraday based on the first 30 minutes to an hour of the day. When the market rests, we rest. We only trade when there’s value. This will preserve your mental and physical capital. The levels are very specific, so you cannot ever chase a trade or else it will alter the reward to risk to no longer be as favorable. The beauty is that there will always be another entry — whether it’s a remount, rejection, second entry or sneaky hourly pivot.</div>
+              
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494007888035709092" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">3</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+          <div class="message message-grouped" id="msg-1494007863272542249" data-message-id="1494007863272542249">
+            <div class="message-left">
+              <span class="grouped-timestamp">04/15/2026 11:13 AM</span>
+            </div>
+            <div class="message-content">
+              <div class="message-text">(no content)</div>
+              
+            <div class="forward-block" data-message-snapshot="true">
+              <div class="forward-header">
+                <span class="forward-icon" aria-hidden="true">&#x21AA;</span>
+                <span class="forward-label">Forwarded</span>
+              </div>
+              <div class="forward-content">Each day I try to identify what type of trading day we are setting up for: either a premium day characterized by macro-level breaks, or a simple cash-flow day. Before I go into detail about macro-level breakouts vs. cash-flow trades like remounts, rejections, and sneaky hourly pivots (as well as other concepts like daily, weekly, and premarket levels), I will begin by outlining all the studies I use on different timeframes, which will help you setup your charts and get an idea of what timeframes to look at (hint: it&#039;s NOT the one minute chart). I typically start my analysis with monthly and weekly charts, especially when analyzing for a swing trade, and to get a quick idea of the overall bigger picture for where price has been leading up to this day. For daytrades, my primarily analysis is through the daily and hourly charts. I do not like to look at charts lower than a 5 minute. It is critical to analyze setups on multiple timeframes to get the full picture of where price has been, and where it has the potential to go from here.</div>
+              
+            </div>
+              
+              
+              <div class="reactions">
+               
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494007863272542249" data-emoji-key="👍">
+                     👍
+                     <span class="reaction-count">3</span>
+                   </span>
+                 
+                   <span class="reaction" data-action="show-reactions" data-message-id="1494007863272542249" data-emoji-key="❤️">
+                     ❤️
+                     <span class="reaction-count">1</span>
+                   </span>
+                 
+             </div>
+              
+            </div>
+          </div>
+        
+  </main>
+  <footer class="export-footer">
+    <div class="export-footer-text">Exported with <strong>Discrub</strong> on June 24, 2026</div>
+    <div class="export-footer-meta">html &middot; 36 messages &middot; Media included</div>
+  </footer>
+  <button class="jump-top" id="jump-top" title="Scroll to top" aria-label="Scroll to top">↑</button>
+  <script type="application/json" id="export-data">{"page":{"current":1,"total":1,"baseFilename":"technical_tips"},"users":{"737813392764698665":{"username":"dmtdr","discriminator":"0","displayName":"DMT Dr 🦄💨🙌","avatar":"aa0b1efd7d31990e16284c80dea526d6","avatarUrl":"avatars/737813392764698665/aa0b1efd7d31990e16284c80dea526d6.png","bot":false,"messageCount":36,"roleColor":"#3498db","roles":[{"name":"DMT Dr.","color":"#3498db","icon":null,"roleId":"1432129425654419609","unicodeEmoji":null},{"name":"new aminrole","color":"#e91e63","icon":null,"roleId":"1480715133264203868","unicodeEmoji":null},{"name":"Blademap Founding","color":"#d3af37","icon":null,"roleId":"1482449349232296036","unicodeEmoji":null}]},"100424065348534272":{"username":"jzluo.","displayName":"jzluo","messageCount":0},"1252028277128695809":{"username":"moneyman0447","displayName":"Moneyman","messageCount":0},"125687680125239297":{"username":"ikeepittaco","displayName":"IKeepItTaco","messageCount":0},"1303800287563350022":{"username":"tudorsava.17","displayName":"Tudor Sava","messageCount":0},"1318413789883924481":{"username":"rickym100711","displayName":"ric","messageCount":0},"1353282915601223721":{"username":"ivaaaannn0551","displayName":"Ivaaaannn","messageCount":0},"1369679043309604915":{"username":"singhtomoon","displayName":"brrrrr","messageCount":0},"1371632292132556984":{"username":"jtsla4","displayName":"j","messageCount":0},"1389571586322989089":{"username":"mxqq453","displayName":"mxqq453","messageCount":0},"171843916922880003":{"username":"kobeblackmamba","displayName":"Kobeblackmamba","messageCount":0},"216294784229179392":{"username":"shurwa","displayName":"shurwa","messageCount":0},"242816798158880768":{"username":"brunzy88","displayName":"brunzy88","messageCount":0},"255430138735493121":{"username":"big.andy_","displayName":"Big.Andy","messageCount":0},"261693301583773698":{"username":"fuwachu","messageCount":0},"321404651528519680":{"username":"fuckyoutalkingbout_","displayName":"Yung Murda","messageCount":0},"348095844148576256":{"username":"ramii.","displayName":"rami","messageCount":0},"400556863068045314":{"username":"notyetagm","messageCount":0},"402545986502656001":{"username":"adrian8834","displayName":"Adrian","messageCount":0},"412627330918252567":{"username":"psrikant","displayName":"psrikant","messageCount":0},"413911980600983554":{"username":"squirtlesquirtsls","displayName":"SquirtleSquirts","messageCount":0},"437020724524351518":{"username":"who_stole_my_username","displayName":"<=== Y'all seeing this???","messageCount":0},"520523404177047562":{"username":"rep221122","displayName":"Astro","messageCount":0},"702601151677464728":{"username":"southfacearmour","displayName":"Shirhole","messageCount":0},"727277430506520577":{"username":"jakethesnake_98","displayName":"Jake","messageCount":0},"735822971326955540":{"username":"joeyprime","displayName":"JoeyPrime","messageCount":0},"770336033556135976":{"username":"mgoons","displayName":"mgoons","messageCount":0},"779113237399863316":{"username":".kecheob","displayName":"chris","messageCount":0},"791098437784961035":{"username":"liamsan__","displayName":"liamsan","messageCount":0},"813572642144780328":{"username":"l.a.ray","messageCount":0},"906563320243445800":{"username":"flyersfan13","displayName":"MM","messageCount":0},"959888592942039140":{"username":"lw803","displayName":"lw803","messageCount":0},"729674640758276206":{"username":"carolinahodl","displayName":"OutoftheOffice","messageCount":0},"752692173580796054":{"username":"matt762815","displayName":"Matt76","messageCount":0},"1392201842221518888":{"username":"harsha_20854","displayName":"Harsha","messageCount":0},"1460113158919422237":{"username":"jafont819","displayName":"Jafont819","messageCount":0},"966675661966172190":{"username":"stella8461","displayName":"Stella Deng","messageCount":0},"307906735023194117":{"username":"mrfrinkalink","displayName":"MrFrinkALink","messageCount":0},"621539190336913419":{"username":"sukahmeye002x","displayName":"sukahmeye002x","messageCount":0},"338526308424351746":{"username":"trembli0s","displayName":"trembleKiS","messageCount":0}},"threads":{},"reactions":{"1516459766753525913":{"❤️":{"emoji":"❤️","count":5,"users":[{"id":"228675684371922944","username":"phronizer","avatarUrl":"avatars/228675684371922944/83ee050caef6aac219235ff093279cdc.png"},{"id":"741005479240663040","username":"brbrbrbrbr9658","avatarUrl":"avatars/741005479240663040/169a3253afa93510bde0680e9b9870b0.png"},{"id":"744037014910926870","username":"rayowa5","avatarUrl":"avatars/744037014910926870/2d59ded6a0fc4b967121472cacdfdd6c.png"},{"id":"1252028277128695809","username":"moneyman0447","avatarUrl":"avatars/1252028277128695809/4c84bdedd6618eab7e207e902a212809.png"},{"id":"1331977636129411094","username":"jmr06425","avatarUrl":"avatars/1331977636129411094/6c5996770c985bcd6e5b68131ff2ba04.png"}]}},"1515424639269077043":{"👍":{"emoji":"👍","count":2,"users":[{"id":"744037014910926870","username":"rayowa5","avatarUrl":"avatars/744037014910926870/2d59ded6a0fc4b967121472cacdfdd6c.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1515424254785622157":{"❤️":{"emoji":"❤️","count":1,"users":[{"id":"939406173067685888","username":"cyatjp","avatarUrl":""}]},"👍":{"emoji":"👍","count":1,"users":[{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1515424226771734599":{"👍":{"emoji":"👍","count":1,"users":[{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1515424192731021412":{"👍":{"emoji":"👍","count":1,"users":[{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494013537465532598":{"👍":{"emoji":"👍","count":3,"users":[{"id":"777247326770954306","username":"shaginhekvs","avatarUrl":"avatars/777247326770954306/904caf95bc27eea6d1050a54b796b0cf.png"},{"id":"1416152947397492900","username":"caseycraner","avatarUrl":"avatars/1416152947397492900/e3ad266820c53805ea021e43e0203560.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]},"❤️":{"emoji":"❤️","count":3,"users":[{"id":"400556863068045314","username":"notyetagm","avatarUrl":"avatars/400556863068045314/ad43819fbfb5f523045e5dc76a9afb92.png"},{"id":"1387528663947415793","username":"z_mike2001","avatarUrl":"avatars/1387528663947415793/0bf3d07195f80ccb59782f3da662661a.png"},{"id":"1416152947397492900","username":"caseycraner","avatarUrl":"avatars/1416152947397492900/e3ad266820c53805ea021e43e0203560.png"}]}},"1494013443542351913":{"👍":{"emoji":"👍","count":2,"users":[{"id":"777247326770954306","username":"shaginhekvs","avatarUrl":"avatars/777247326770954306/904caf95bc27eea6d1050a54b796b0cf.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494013384230961366":{"👍":{"emoji":"👍","count":2,"users":[{"id":"777247326770954306","username":"shaginhekvs","avatarUrl":"avatars/777247326770954306/904caf95bc27eea6d1050a54b796b0cf.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494013242018893984":{"👍":{"emoji":"👍","count":2,"users":[{"id":"777247326770954306","username":"shaginhekvs","avatarUrl":"avatars/777247326770954306/904caf95bc27eea6d1050a54b796b0cf.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494013239292596416":{"👍":{"emoji":"👍","count":1,"users":[{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494012968227311816":{"👍":{"emoji":"👍","count":1,"users":[{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]},"❤️":{"emoji":"❤️","count":1,"users":[{"id":"426738248229060609","username":"ab_m1","avatarUrl":"avatars/426738248229060609/ad54d9c757b2134f7cd2d2d1eca5b544.png"}]}},"1494012903207075910":{"👍":{"emoji":"👍","count":1,"users":[{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494011105628917982":{"👍":{"emoji":"👍","count":3,"users":[{"id":"913781879084294204","username":"shanredd","avatarUrl":""},{"id":"959888592942039140","username":"lw803","avatarUrl":"avatars/959888592942039140/eb17a220c623c401670ea61639ca3539.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494011067108556893":{"👍":{"emoji":"👍","count":2,"users":[{"id":"959888592942039140","username":"lw803","avatarUrl":"avatars/959888592942039140/eb17a220c623c401670ea61639ca3539.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494010165437923410":{"👍":{"emoji":"👍","count":2,"users":[{"id":"959888592942039140","username":"lw803","avatarUrl":"avatars/959888592942039140/eb17a220c623c401670ea61639ca3539.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494010140784070738":{"👍":{"emoji":"👍","count":2,"users":[{"id":"959888592942039140","username":"lw803","avatarUrl":"avatars/959888592942039140/eb17a220c623c401670ea61639ca3539.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494010102372630729":{"👍":{"emoji":"👍","count":3,"users":[{"id":"913781879084294204","username":"shanredd","avatarUrl":""},{"id":"959888592942039140","username":"lw803","avatarUrl":"avatars/959888592942039140/eb17a220c623c401670ea61639ca3539.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494009123409236108":{"👍":{"emoji":"👍","count":2,"users":[{"id":"959888592942039140","username":"lw803","avatarUrl":"avatars/959888592942039140/eb17a220c623c401670ea61639ca3539.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494008745682927727":{"👍":{"emoji":"👍","count":2,"users":[{"id":"959888592942039140","username":"lw803","avatarUrl":"avatars/959888592942039140/eb17a220c623c401670ea61639ca3539.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494008620566708474":{"👍":{"emoji":"👍","count":2,"users":[{"id":"959888592942039140","username":"lw803","avatarUrl":"avatars/959888592942039140/eb17a220c623c401670ea61639ca3539.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494008496453320784":{"👍":{"emoji":"👍","count":3,"users":[{"id":"959888592942039140","username":"lw803","avatarUrl":"avatars/959888592942039140/eb17a220c623c401670ea61639ca3539.png"},{"id":"1303800287563350022","username":"tudorsava.17","avatarUrl":"avatars/1303800287563350022/cde830fc7bb03704f56dc0919c6ccd15.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494008241334648994":{"👍":{"emoji":"👍","count":2,"users":[{"id":"959888592942039140","username":"lw803","avatarUrl":"avatars/959888592942039140/eb17a220c623c401670ea61639ca3539.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494008190319460473":{"👍":{"emoji":"👍","count":3,"users":[{"id":"959888592942039140","username":"lw803","avatarUrl":"avatars/959888592942039140/eb17a220c623c401670ea61639ca3539.png"},{"id":"1303800287563350022","username":"tudorsava.17","avatarUrl":"avatars/1303800287563350022/cde830fc7bb03704f56dc0919c6ccd15.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494008160141447368":{"👍":{"emoji":"👍","count":3,"users":[{"id":"959888592942039140","username":"lw803","avatarUrl":"avatars/959888592942039140/eb17a220c623c401670ea61639ca3539.png"},{"id":"1303800287563350022","username":"tudorsava.17","avatarUrl":"avatars/1303800287563350022/cde830fc7bb03704f56dc0919c6ccd15.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494008135906492539":{"👍":{"emoji":"👍","count":4,"users":[{"id":"959888592942039140","username":"lw803","avatarUrl":"avatars/959888592942039140/eb17a220c623c401670ea61639ca3539.png"},{"id":"1252028277128695809","username":"moneyman0447","avatarUrl":"avatars/1252028277128695809/4c84bdedd6618eab7e207e902a212809.png"},{"id":"1303800287563350022","username":"tudorsava.17","avatarUrl":"avatars/1303800287563350022/cde830fc7bb03704f56dc0919c6ccd15.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494008109788823715":{"👍":{"emoji":"👍","count":4,"users":[{"id":"959888592942039140","username":"lw803","avatarUrl":"avatars/959888592942039140/eb17a220c623c401670ea61639ca3539.png"},{"id":"1252028277128695809","username":"moneyman0447","avatarUrl":"avatars/1252028277128695809/4c84bdedd6618eab7e207e902a212809.png"},{"id":"1303800287563350022","username":"tudorsava.17","avatarUrl":"avatars/1303800287563350022/cde830fc7bb03704f56dc0919c6ccd15.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494008083259592954":{"👍":{"emoji":"👍","count":4,"users":[{"id":"959888592942039140","username":"lw803","avatarUrl":"avatars/959888592942039140/eb17a220c623c401670ea61639ca3539.png"},{"id":"1252028277128695809","username":"moneyman0447","avatarUrl":"avatars/1252028277128695809/4c84bdedd6618eab7e207e902a212809.png"},{"id":"1303800287563350022","username":"tudorsava.17","avatarUrl":"avatars/1303800287563350022/cde830fc7bb03704f56dc0919c6ccd15.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494008048984002672":{"👍":{"emoji":"👍","count":5,"users":[{"id":"879712867740426311","username":"et2flash","avatarUrl":""},{"id":"959888592942039140","username":"lw803","avatarUrl":"avatars/959888592942039140/eb17a220c623c401670ea61639ca3539.png"},{"id":"1252028277128695809","username":"moneyman0447","avatarUrl":"avatars/1252028277128695809/4c84bdedd6618eab7e207e902a212809.png"},{"id":"1303800287563350022","username":"tudorsava.17","avatarUrl":"avatars/1303800287563350022/cde830fc7bb03704f56dc0919c6ccd15.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494008015517646898":{"👍":{"emoji":"👍","count":3,"users":[{"id":"959888592942039140","username":"lw803","avatarUrl":"avatars/959888592942039140/eb17a220c623c401670ea61639ca3539.png"},{"id":"1303800287563350022","username":"tudorsava.17","avatarUrl":"avatars/1303800287563350022/cde830fc7bb03704f56dc0919c6ccd15.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494007983133294682":{"👍":{"emoji":"👍","count":3,"users":[{"id":"959888592942039140","username":"lw803","avatarUrl":"avatars/959888592942039140/eb17a220c623c401670ea61639ca3539.png"},{"id":"1303800287563350022","username":"tudorsava.17","avatarUrl":"avatars/1303800287563350022/cde830fc7bb03704f56dc0919c6ccd15.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494007956826751116":{"👍":{"emoji":"👍","count":3,"users":[{"id":"959888592942039140","username":"lw803","avatarUrl":"avatars/959888592942039140/eb17a220c623c401670ea61639ca3539.png"},{"id":"1303800287563350022","username":"tudorsava.17","avatarUrl":"avatars/1303800287563350022/cde830fc7bb03704f56dc0919c6ccd15.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494007921455923232":{"👍":{"emoji":"👍","count":3,"users":[{"id":"959888592942039140","username":"lw803","avatarUrl":"avatars/959888592942039140/eb17a220c623c401670ea61639ca3539.png"},{"id":"1303800287563350022","username":"tudorsava.17","avatarUrl":"avatars/1303800287563350022/cde830fc7bb03704f56dc0919c6ccd15.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494007888035709092":{"👍":{"emoji":"👍","count":3,"users":[{"id":"959888592942039140","username":"lw803","avatarUrl":"avatars/959888592942039140/eb17a220c623c401670ea61639ca3539.png"},{"id":"1303800287563350022","username":"tudorsava.17","avatarUrl":"avatars/1303800287563350022/cde830fc7bb03704f56dc0919c6ccd15.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]}},"1494007863272542249":{"👍":{"emoji":"👍","count":3,"users":[{"id":"959888592942039140","username":"lw803","avatarUrl":"avatars/959888592942039140/eb17a220c623c401670ea61639ca3539.png"},{"id":"1303800287563350022","username":"tudorsava.17","avatarUrl":"avatars/1303800287563350022/cde830fc7bb03704f56dc0919c6ccd15.png"},{"id":"1457555763697291310","username":"johnan0587","avatarUrl":"avatars/1457555763697291310/157e517cdbf371a47aaead44675714a3.png"}]},"❤️":{"emoji":"❤️","count":1,"users":[{"id":"432318770279743499","username":"den.won","avatarUrl":"avatars/432318770279743499/b764d00d965537288b039cc4075542d7.png"}]}}}}</script>
+  <script>
+(function() {
+  'use strict';
+
+  // ── Data Access ──────────────────────────────────────────────
+  var dataEl = document.getElementById('export-data');
+  var DATA = dataEl ? JSON.parse(dataEl.textContent || '{}') : {};
+
+  // ── Popup System ─────────────────────────────────────────────
+  var activePopup = null;
+
+  function createPopup(html, anchorEl) {
+    closePopup();
+
+    var popup = document.createElement('div');
+    popup.className = 'discrub-popup';
+    popup.innerHTML = html;
+    popup.setAttribute('role', 'dialog');
+    popup.setAttribute('aria-modal', 'true');
+    document.body.appendChild(popup);
+
+    // Position near anchor
+    positionPopup(popup, anchorEl);
+
+    activePopup = popup;
+
+    // Close on click outside (defer to avoid immediate close)
+    setTimeout(function() {
+      document.addEventListener('click', onOutsideClick);
+    }, 0);
+
+    return popup;
+  }
+
+  function positionPopup(popup, anchor) {
+    var rect = anchor.getBoundingClientRect();
+
+    var top = rect.bottom + 8;
+    var left = rect.left;
+
+    // Use fixed positioning so popup is out of document flow entirely
+    popup.style.position = 'fixed';
+    popup.style.left = left + 'px';
+    popup.style.top = top + 'px';
+    popup.style.zIndex = '1000';
+
+    // After render, check if it overflows viewport
+    requestAnimationFrame(function() {
+      var popupRect = popup.getBoundingClientRect();
+
+      // Flip horizontally if overflowing right
+      if (popupRect.right > window.innerWidth - 16) {
+        popup.style.left = Math.max(16, window.innerWidth - popupRect.width - 16) + 'px';
+      }
+
+      // Flip vertically if overflowing bottom
+      if (popupRect.bottom > window.innerHeight - 16) {
+        popup.style.top = Math.max(16, rect.top - popupRect.height - 8) + 'px';
+      }
+    });
+  }
+
+  function closePopup() {
+    if (activePopup) {
+      activePopup.remove();
+      activePopup = null;
+      document.removeEventListener('click', onOutsideClick);
+    }
+  }
+
+  function onOutsideClick(e) {
+    if (activePopup && !activePopup.contains(e.target)) {
+      closePopup();
+    }
+  }
+
+  // ── Keyboard Handler ─────────────────────────────────────────
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      if (lightboxOverlay) {
+        closeLightbox();
+        e.preventDefault();
+        return;
+      }
+      if (activePopup) {
+        closePopup();
+        e.preventDefault();
+        return;
+      }
+    }
+
+    // Lightbox arrow navigation
+    if (lightboxOverlay) {
+      if (e.key === 'ArrowLeft') { lightboxPrev(); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { lightboxNext(); e.preventDefault(); }
+      return;
+    }
+  });
+
+  // ── Event Delegation ─────────────────────────────────────────
+  document.body.addEventListener('click', function(e) {
+    var target = e.target;
+
+    // Walk up to find element with data-action
+    while (target && target !== document.body) {
+      var action = target.getAttribute('data-action');
+      if (action) {
+        handleAction(action, target, e);
+        return;
+      }
+      target = target.parentElement;
+    }
+  });
+
+  function handleAction(action, el, e) {
+    switch (action) {
+      case 'show-user':
+        showUserPopup(el);
+        e.preventDefault();
+        break;
+      case 'show-reactions':
+        showReactionsPopup(el);
+        e.preventDefault();
+        e.stopPropagation();
+        break;
+      case 'jump-to-reply':
+        jumpToReply(el);
+        e.preventDefault();
+        break;
+      case 'toggle-spoiler':
+        toggleSpoiler(el);
+        e.preventDefault();
+        break;
+      case 'open-lightbox':
+        openLightbox(el);
+        e.preventDefault();
+        break;
+      default:
+        break;
+    }
+  }
+
+  // Also handle clicks on .user-mention spans (generated by discrub-core with data-user-id)
+  document.body.addEventListener('click', function(e) {
+    var target = e.target;
+    while (target && target !== document.body) {
+      if (target.classList && target.classList.contains('user-mention') && target.getAttribute('data-user-id')) {
+        showUserPopup(target);
+        e.preventDefault();
+        return;
+      }
+      target = target.parentElement;
+    }
+  });
+
+  // ── Action Handlers ──────────────────────────────────────────
+
+  // ── User Flag Labels ───────────────────────────────────────────
+  var FLAG_LABELS = {
+    1: 'Discord Staff', 2: 'Partnered Server Owner', 4: 'HypeSquad Events',
+    8: 'Bug Hunter Level 1', 64: 'HypeSquad Bravery', 128: 'HypeSquad Brilliance',
+    256: 'HypeSquad Balance', 512: 'Early Supporter', 16384: 'Bug Hunter Level 2',
+    65536: 'Verified Bot', 131072: 'Early Verified Bot Developer',
+    262144: 'Moderator Programs Alumni', 4194304: 'Active Developer'
+  };
+
+  function getFlagBadges(flags) {
+    if (!flags) return '';
+    var badges = [];
+    for (var bit in FLAG_LABELS) {
+      if (flags & parseInt(bit)) {
+        badges.push('<span class="user-popup-badge">' + FLAG_LABELS[bit] + '</span>');
+      }
+    }
+    return badges.length > 0
+      ? '<div class="user-popup-section"><div class="user-popup-section-title">BADGES</div><div class="user-popup-badges">' + badges.join('') + '</div></div>'
+      : '';
+  }
+
+  function showUserPopup(el) {
+    var userId = el.getAttribute('data-user-id');
+    if (!userId || !DATA.users) return;
+
+    var user = DATA.users[userId];
+    if (!user) return;
+
+    var accentHex = user.accentColor ? '#' + ('000000' + user.accentColor.toString(16)).slice(-6) : '#5865f2';
+    var primaryName = user.displayName || user.username;
+
+    var html = '<div class="user-popup-card">'
+      // Banner / accent strip
+      + '<div class="user-popup-banner" style="background:' + (user.banner ? 'linear-gradient(135deg, ' + accentHex + ', ' + accentHex + 'dd)' : 'linear-gradient(135deg, ' + accentHex + ', ' + accentHex + 'bb)') + '"></div>'
+      // Avatar
+      + '<div class="user-popup-avatar-row">'
+      + (user.avatarUrl
+        ? '<img src="' + user.avatarUrl + '" class="user-popup-avatar" alt="' + escapeHtml(user.username) + '">'
+        : '<div class="user-popup-avatar-placeholder">' + escapeHtml((user.username || '?')[0].toUpperCase()) + '</div>')
+      + (user.bot ? '<span class="user-popup-bot-badge">BOT</span>' : '')
+      + '</div>'
+      // Primary name
+      + '<div class="user-popup-name"' + (user.roleColor ? ' style="color:' + user.roleColor + '"' : '') + '>' + escapeHtml(primaryName) + '</div>'
+      // Username#discriminator
+      + '<div class="user-popup-username">' + escapeHtml(user.username) + (user.discriminator && user.discriminator !== '0' ? '#' + user.discriminator : '') + '</div>'
+      // Divider
+      + '<div class="user-popup-divider"></div>'
+      // Names section (if display name differs from username)
+      + (user.serverNickname
+        ? '<div class="user-popup-row"><span class="user-popup-label">Server Nickname</span><span class="user-popup-value">' + escapeHtml(user.serverNickname) + '</span></div>'
+        : '')
+      + (user.displayName && user.displayName !== user.username
+        ? '<div class="user-popup-row"><span class="user-popup-label">Display Name</span><span class="user-popup-value">' + escapeHtml(user.displayName) + '</span></div>'
+        : '')
+      // Account details
+      + '<div class="user-popup-section"><div class="user-popup-section-title">ACCOUNT DETAILS</div>'
+      + '<div class="user-popup-row"><span class="user-popup-label">User ID</span><span class="user-popup-value user-popup-mono">' + escapeHtml(userId) + '</span></div>'
+      + '</div>'
+      // Badges
+      + getFlagBadges(user.flags)
+      // Roles
+      + (user.roles && user.roles.length > 0
+        ? '<div class="user-popup-section"><div class="user-popup-section-title">ROLES</div><div class="user-popup-badges">'
+          + user.roles.map(function(r) {
+              var style = r.color ? 'background:' + r.color + '22;color:' + r.color + ';border-color:' + r.color + '66' : '';
+              var iconSrc = r.iconLocalUrl
+                ? r.iconLocalUrl
+                : r.icon
+                  ? 'https://cdn.discordapp.com/role-icons/' + r.roleId + '/' + r.icon + '.webp?size=20'
+                  : null;
+              var iconHtml = iconSrc
+                ? '<img src="' + iconSrc + '" style="width:12px;height:12px;vertical-align:middle;margin-right:4px">'
+                : r.unicodeEmoji
+                  ? '<span style="font-size:12px;margin-right:4px;vertical-align:middle">' + r.unicodeEmoji + '</span>'
+                  : r.color
+                    ? '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:' + r.color + ';margin-right:4px;vertical-align:middle"></span>'
+                    : '';
+              return '<span class="user-popup-badge" style="' + style + '">' + iconHtml + escapeHtml(r.name) + '</span>';
+            }).join('')
+          + '</div></div>'
+        : '')
+      // Message count
+      + '<div class="user-popup-divider"></div>'
+      + '<div class="user-popup-count">' + user.messageCount + ' message' + (user.messageCount !== 1 ? 's' : '') + ' in this export</div>'
+      + '</div>';
+
+    createPopup(html, el);
+  }
+
+  // ── Reaction Popup ────────────────────────────────────────────
+
+  var REACTION_PAGE_SIZE = 20;
+
+  function showReactionsPopup(el) {
+    var msgId = el.getAttribute('data-message-id');
+    var clickedKey = el.getAttribute('data-emoji-key');
+    if (!msgId || !DATA.reactions || !DATA.reactions[msgId]) return;
+
+    var msgReactions = DATA.reactions[msgId];
+    var emojiKeys = Object.keys(msgReactions);
+    if (emojiKeys.length === 0) return;
+
+    // Collect all user items per tab (data only, not DOM)
+    var tabData = {};
+    var allItems = [];
+    for (var j = 0; j < emojiKeys.length; j++) {
+      var rk = emojiKeys[j];
+      var rData = msgReactions[rk];
+      var items = [];
+      if (rData.users && rData.users.length > 0) {
+        for (var u = 0; u < rData.users.length; u++) {
+          var item = { user: rData.users[u], emoji: rData.emoji };
+          items.push(item);
+          allItems.push(item);
+        }
+      }
+      tabData[rk] = { items: items, emoji: rData.emoji, count: rData.count };
+    }
+    tabData['all'] = { items: allItems, emoji: '', count: allItems.length };
+
+    var hasUserData = allItems.length > 0;
+
+    // Build tabs
+    var tabsHtml = '<div class="reaction-popup-tabs">';
+    tabsHtml += '<button class="reaction-tab active" data-tab="all">All</button>';
+    for (var i = 0; i < emojiKeys.length; i++) {
+      var key = emojiKeys[i];
+      var rd = msgReactions[key];
+      tabsHtml += '<button class="reaction-tab" data-tab="' + key + '">' + rd.emoji + ' ' + rd.count + '</button>';
+    }
+    tabsHtml += '</div>';
+
+    // Search bar (only if user data exists)
+    var searchHtml = hasUserData
+      ? '<div class="reaction-search-bar"><input class="reaction-search-input" type="text" placeholder="Search users..." /></div>'
+      : '';
+
+    // Content container (will be populated dynamically)
+    var contentHtml = '<div class="reaction-popup-content"></div>';
+
+    var popup = createPopup(
+      '<div class="reaction-popup-card">' + tabsHtml + searchHtml + contentHtml + '</div>',
+      el
+    );
+
+    // State for the popup
+    var currentTab = clickedKey && msgReactions[clickedKey] ? clickedKey : 'all';
+    var currentSearch = '';
+    var loadedCount = 0;
+
+    function getFilteredItems() {
+      var items = tabData[currentTab] ? tabData[currentTab].items : [];
+      if (!currentSearch) return items;
+      var q = currentSearch.toLowerCase();
+      return items.filter(function(item) {
+        return item.user.username.toLowerCase().indexOf(q) !== -1;
+      });
+    }
+
+    function renderContent() {
+      var contentEl = popup.querySelector('.reaction-popup-content');
+      if (!contentEl) return;
+
+      var filtered = getFilteredItems();
+
+      if (!hasUserData) {
+        // Count-only mode
+        var countHtml = '<div class="reaction-count-list">';
+        for (var i = 0; i < emojiKeys.length; i++) {
+          var rd = msgReactions[emojiKeys[i]];
+          countHtml += '<div class="reaction-count-row">'
+            + '<span class="reaction-count-emoji">' + rd.emoji + '</span>'
+            + '<span class="reaction-count-text">' + rd.count + ' user' + (rd.count !== 1 ? 's' : '') + '</span>'
+            + '</div>';
+        }
+        countHtml += '</div>';
+        contentEl.innerHTML = countHtml;
+        return;
+      }
+
+      var showEmoji = currentTab === 'all';
+      var toShow = filtered.slice(0, loadedCount + REACTION_PAGE_SIZE);
+      loadedCount = toShow.length;
+      var remaining = filtered.length - toShow.length;
+
+      var html = '<div class="reaction-user-list">';
+      for (var k = 0; k < toShow.length; k++) {
+        var item = toShow[k];
+        html += '<div class="reaction-user-row">';
+        html += item.user.avatarUrl
+          ? '<img src="' + item.user.avatarUrl + '" class="reaction-user-avatar">'
+          : '<div class="reaction-user-avatar-placeholder">' + escapeHtml((item.user.username || '?')[0].toUpperCase()) + '</div>';
+        html += '<span class="reaction-user-name">' + escapeHtml(item.user.username) + '</span>';
+        if (showEmoji) {
+          html += '<span class="reaction-user-emoji">' + item.emoji + '</span>';
+        }
+        html += '</div>';
+      }
+      html += '</div>';
+
+      if (remaining > 0) {
+        html += '<button class="reaction-show-more">Show more (' + remaining + ' remaining)</button>';
+      }
+
+      if (filtered.length === 0 && currentSearch) {
+        html = '<div class="reaction-count-only">No users matching "' + escapeHtml(currentSearch) + '"</div>';
+      }
+
+      contentEl.innerHTML = html;
+    }
+
+    // Initial render
+    if (clickedKey && msgReactions[clickedKey]) {
+      // Activate the clicked tab
+      var tabs = popup.querySelectorAll('.reaction-tab');
+      for (var t = 0; t < tabs.length; t++) {
+        tabs[t].classList.toggle('active', tabs[t].getAttribute('data-tab') === currentTab);
+      }
+    }
+    renderContent();
+
+    // Wire events
+    popup.addEventListener('click', function(e) {
+      var target = e.target;
+
+      // Tab click
+      if (target.classList && target.classList.contains('reaction-tab')) {
+        currentTab = target.getAttribute('data-tab');
+        loadedCount = 0;
+        var allTabs = popup.querySelectorAll('.reaction-tab');
+        for (var i = 0; i < allTabs.length; i++) {
+          allTabs[i].classList.toggle('active', allTabs[i].getAttribute('data-tab') === currentTab);
+        }
+        renderContent();
+      }
+
+      // Show more click
+      if (target.classList && target.classList.contains('reaction-show-more')) {
+        e.stopPropagation();
+        renderContent();
+      }
+    });
+
+    // Search input
+    var searchInput = popup.querySelector('.reaction-search-input');
+    if (searchInput) {
+      searchInput.addEventListener('input', function() {
+        currentSearch = searchInput.value;
+        loadedCount = 0;
+        renderContent();
+      });
+      // Prevent popup close when clicking search
+      searchInput.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+    }
+  }
+
+  function toggleSpoiler(el) {
+    el.classList.toggle('spoiler-revealed');
+  }
+
+  // ── Image Lightbox ────────────────────────────────────────────
+
+  var lightboxOverlay = null;
+  var lightboxImages = [];
+  var lightboxIndex = 0;
+
+  function collectLightboxImages() {
+    lightboxImages = [];
+    var imgs = document.querySelectorAll('[data-action="open-lightbox"]');
+    for (var i = 0; i < imgs.length; i++) {
+      lightboxImages.push(imgs[i].getAttribute('src'));
+    }
+  }
+
+  function openLightbox(el) {
+    collectLightboxImages();
+    var idx = parseInt(el.getAttribute('data-img-index') || '0', 10);
+    lightboxIndex = idx;
+    showLightboxImage();
+  }
+
+  function showLightboxImage() {
+    closeLightbox();
+
+    if (lightboxImages.length === 0) return;
+    var src = lightboxImages[lightboxIndex];
+
+    var overlay = document.createElement('div');
+    overlay.className = 'lightbox-overlay';
+
+    var img = document.createElement('img');
+    img.className = 'lightbox-img';
+    img.src = src;
+
+    var closeBtn = document.createElement('button');
+    closeBtn.className = 'lightbox-close';
+    closeBtn.innerHTML = '&times;';
+    closeBtn.addEventListener('click', function(e) { e.stopPropagation(); closeLightbox(); });
+
+    overlay.appendChild(img);
+    overlay.appendChild(closeBtn);
+
+    // Navigation arrows (only if multiple images)
+    if (lightboxImages.length > 1) {
+      var prevBtn = document.createElement('button');
+      prevBtn.className = 'lightbox-nav lightbox-nav-prev';
+      prevBtn.innerHTML = '&#8249;';
+      prevBtn.addEventListener('click', function(e) { e.stopPropagation(); lightboxPrev(); });
+
+      var nextBtn = document.createElement('button');
+      nextBtn.className = 'lightbox-nav lightbox-nav-next';
+      nextBtn.innerHTML = '&#8250;';
+      nextBtn.addEventListener('click', function(e) { e.stopPropagation(); lightboxNext(); });
+
+      var counter = document.createElement('div');
+      counter.className = 'lightbox-counter';
+      counter.textContent = (lightboxIndex + 1) + ' / ' + lightboxImages.length;
+
+      overlay.appendChild(prevBtn);
+      overlay.appendChild(nextBtn);
+      overlay.appendChild(counter);
+    }
+
+    // Close on backdrop click
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) closeLightbox();
+    });
+
+    document.body.appendChild(overlay);
+    lightboxOverlay = overlay;
+  }
+
+  function closeLightbox() {
+    if (lightboxOverlay) {
+      lightboxOverlay.remove();
+      lightboxOverlay = null;
+    }
+  }
+
+  function lightboxPrev() {
+    lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length;
+    showLightboxImage();
+  }
+
+  function lightboxNext() {
+    lightboxIndex = (lightboxIndex + 1) % lightboxImages.length;
+    showLightboxImage();
+  }
+
+  // ── Jump to Reply ────────────────────────────────────────────
+
+  function jumpToReply(el) {
+    var targetId = el.getAttribute('data-target-id');
+    if (!targetId) return;
+
+    var targetEl = document.getElementById('msg-' + targetId);
+    if (targetEl) {
+      targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // Brief highlight
+      targetEl.classList.add('message-highlight');
+      setTimeout(function() {
+        targetEl.classList.remove('message-highlight');
+      }, 2000);
+    }
+  }
+
+  // ── Message Hover Toolbar ────────────────────────────────────
+  var activeToolbar = null;
+
+  function createToolbar(messageEl) {
+    removeToolbar();
+
+    var msgId = messageEl.getAttribute('data-message-id');
+    if (!msgId) return;
+
+    // SVG icons (Discord-style, minimal)
+    var ICON_COPY = '<svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>';
+    var ICON_ID = '<svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM6 20V4h5v7h7v9H6z"/></svg>';
+
+    var toolbar = document.createElement('div');
+    toolbar.className = 'msg-toolbar';
+
+    function addBtn(icon, label, handler) {
+      var btn = document.createElement('button');
+      btn.className = 'msg-toolbar-btn';
+      btn.innerHTML = icon + '<span class="msg-toolbar-label">' + label + '</span>';
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        handler();
+      });
+      toolbar.appendChild(btn);
+    }
+
+    // Copy text
+    addBtn(ICON_COPY, 'Copy Text', function() {
+      var textEl = messageEl.querySelector('.message-text');
+      if (textEl) navigator.clipboard.writeText(textEl.textContent || '');
+    });
+
+    // Copy message ID
+    addBtn(ICON_ID, 'Copy ID', function() {
+      navigator.clipboard.writeText(msgId);
+    });
+
+    messageEl.appendChild(toolbar);
+    activeToolbar = toolbar;
+  }
+
+  function removeToolbar() {
+    if (activeToolbar) {
+      activeToolbar.remove();
+      activeToolbar = null;
+    }
+  }
+
+  document.body.addEventListener('mouseover', function(e) {
+    var target = e.target;
+    while (target && target !== document.body) {
+      if (target.classList && target.classList.contains('message') && target.getAttribute('data-message-id')) {
+        if (!activeToolbar || activeToolbar.parentElement !== target) {
+          createToolbar(target);
+        }
+        return;
+      }
+      target = target.parentElement;
+    }
+  });
+
+  document.body.addEventListener('mouseout', function(e) {
+    var target = e.target;
+    var related = e.relatedTarget;
+    // Only remove if we're leaving the message entirely
+    while (target && target !== document.body) {
+      if (target.classList && target.classList.contains('message')) {
+        if (!target.contains(related)) {
+          removeToolbar();
+        }
+        return;
+      }
+      target = target.parentElement;
+    }
+  });
+
+  // ── Utilities ────────────────────────────────────────────────
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  // ── Theme Toggle ──────────────────────────────────────────────
+
+  var themeToggle = document.getElementById('theme-toggle');
+  var THEME_KEY = 'discrub-export-theme';
+  var isEmbeddedInShell = window.parent !== window;
+
+  function applyTheme(isLight) {
+    if (isLight) {
+      document.documentElement.classList.add('light-theme');
+      if (themeToggle) themeToggle.innerHTML = '&#x2600;'; // sun
+    } else {
+      document.documentElement.classList.remove('light-theme');
+      if (themeToggle) themeToggle.innerHTML = '&#x263E;'; // moon
+    }
+  }
+
+  // Hide own theme toggle when embedded in Discord shell (shell has its own toggle)
+  if (isEmbeddedInShell && themeToggle) {
+    themeToggle.style.display = 'none';
+  }
+
+  // Load saved preference (only when standalone, not embedded)
+  if (!isEmbeddedInShell) {
+    try {
+      var saved = localStorage.getItem(THEME_KEY);
+      if (saved === 'light') applyTheme(true);
+    } catch(e) {}
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isLight = !document.documentElement.classList.contains('light-theme');
+      applyTheme(isLight);
+      try { localStorage.setItem(THEME_KEY, isLight ? 'light' : 'dark'); } catch(e) {}
+      // Notify parent shell if embedded
+      if (isEmbeddedInShell) {
+        try { window.parent.postMessage({ type: 'discrub-theme', isLight: isLight }, '*'); } catch(e) {}
+      }
+    });
+  }
+
+  // Listen for theme changes from parent shell
+  window.addEventListener('message', function(e) {
+    if (e.data && e.data.type === 'discrub-theme' && typeof e.data.isLight === 'boolean') {
+      applyTheme(e.data.isLight);
+    }
+  });
+
+  // ── Search ────────────────────────────────────────────────────
+
+  var searchInput = document.getElementById('search-input');
+  var searchCount = document.getElementById('search-count');
+  var searchClear = document.getElementById('search-clear');
+  var searchActive = false;
+
+  if (searchInput) {
+    searchInput.addEventListener('input', function() {
+      performSearch(searchInput.value);
+    });
+
+    searchInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        clearSearch();
+        searchInput.blur();
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    });
+  }
+
+  if (searchClear) {
+    searchClear.addEventListener('click', function(e) {
+      e.stopPropagation();
+      clearSearch();
+    });
+  }
+
+  function performSearch(query) {
+    var messages = document.querySelectorAll('.message');
+    var dividers = document.querySelectorAll('.date-divider');
+
+    if (!query || query.trim() === '') {
+      clearSearch();
+      return;
+    }
+
+    searchActive = true;
+    var q = query.toLowerCase();
+    var matchCount = 0;
+
+    // Remove any previously injected search author labels
+    var oldLabels = document.querySelectorAll('.search-author-label');
+    for (var ol = 0; ol < oldLabels.length; ol++) oldLabels[ol].remove();
+
+    // Build author map: for each message, find its group's author
+    var lastAuthor = '';
+    var lastTimestamp = '';
+    var authorMap = {};
+    for (var m = 0; m < messages.length; m++) {
+      var authorEl = messages[m].querySelector('.author');
+      var tsEl = messages[m].querySelector('.timestamp');
+      if (authorEl) {
+        lastAuthor = authorEl.textContent || '';
+        lastTimestamp = tsEl ? tsEl.textContent || '' : '';
+      }
+      var msgId = messages[m].getAttribute('data-message-id');
+      if (msgId) authorMap[msgId] = { author: lastAuthor, timestamp: lastTimestamp };
+    }
+
+    // Show/hide messages based on search
+    for (var i = 0; i < messages.length; i++) {
+      var msg = messages[i];
+      var textEl = msg.querySelector('.message-text');
+      var searchAuthor = msg.querySelector('.author');
+      var text = (textEl ? textEl.textContent : '') + ' ' + (searchAuthor ? searchAuthor.textContent : '');
+
+      // For grouped messages, also search the group's author name
+      if (msg.classList.contains('message-grouped')) {
+        var mid = msg.getAttribute('data-message-id');
+        if (mid && authorMap[mid]) text += ' ' + authorMap[mid].author;
+      }
+
+      // Also search attachment filenames
+      var attachNames = msg.querySelectorAll('.attachment-name');
+      for (var a = 0; a < attachNames.length; a++) {
+        text += ' ' + attachNames[a].textContent;
+      }
+
+      if (text.toLowerCase().indexOf(q) !== -1) {
+        msg.classList.remove('search-hidden');
+        matchCount++;
+
+        // For grouped messages, inject a temporary author label so the result has context
+        if (msg.classList.contains('message-grouped')) {
+          var gmid = msg.getAttribute('data-message-id');
+          if (gmid && authorMap[gmid]) {
+            var label = document.createElement('div');
+            label.className = 'search-author-label';
+            label.innerHTML = '<span class="author" style="font-size:13px">' + authorMap[gmid].author + '</span> <span class="timestamp" style="font-size:11px">' + authorMap[gmid].timestamp + '</span>';
+            var contentEl = msg.querySelector('.message-content');
+            if (contentEl) contentEl.insertBefore(label, contentEl.firstChild);
+          }
+        }
+      } else {
+        msg.classList.add('search-hidden');
+      }
+    }
+
+    // Hide date dividers that have no visible messages after them
+    for (var d = 0; d < dividers.length; d++) {
+      var divider = dividers[d];
+      var nextEl = divider.nextElementSibling;
+      var hasVisible = false;
+      while (nextEl && !nextEl.classList.contains('date-divider')) {
+        if (nextEl.classList.contains('message') && !nextEl.classList.contains('search-hidden')) {
+          hasVisible = true;
+          break;
+        }
+        nextEl = nextEl.nextElementSibling;
+      }
+      divider.classList.toggle('search-hidden', !hasVisible);
+    }
+
+    // Update count display
+    var total = messages.length;
+    if (searchCount) searchCount.textContent = matchCount + ' of ' + total;
+    if (searchClear) searchClear.style.display = '';
+  }
+
+  function clearSearch() {
+    searchActive = false;
+    var messages = document.querySelectorAll('.message');
+    var dividers = document.querySelectorAll('.date-divider');
+    for (var i = 0; i < messages.length; i++) {
+      messages[i].classList.remove('search-hidden');
+    }
+    for (var d = 0; d < dividers.length; d++) {
+      dividers[d].classList.remove('search-hidden');
+    }
+    // Remove injected search author labels from grouped messages
+    var labels = document.querySelectorAll('.search-author-label');
+    for (var l = 0; l < labels.length; l++) labels[l].remove();
+    if (searchInput) searchInput.value = '';
+    if (searchCount) searchCount.textContent = '';
+    if (searchClear) searchClear.style.display = 'none';
+  }
+
+  // Ctrl+F / Cmd+F to focus search instead of browser find
+  document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+      if (searchInput) {
+        e.preventDefault();
+        searchInput.focus();
+        searchInput.select();
+      }
+    }
+  });
+
+  // ── Jump to Top ───────────────────────────────────────────────
+  var jumpTopBtn = document.getElementById('jump-top');
+  if (jumpTopBtn) {
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 500) {
+        jumpTopBtn.classList.add('visible');
+      } else {
+        jumpTopBtn.classList.remove('visible');
+      }
+    });
+
+    jumpTopBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // ── Keyboard Navigation ──────────────────────────────────────
+  document.addEventListener('keydown', function(e) {
+    // Skip if popup/lightbox/search is open, or user is typing in an input
+    if (activePopup) return;
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+    var page = DATA.page;
+    if (!page || page.total <= 1) return;
+
+    if (e.key === 'ArrowLeft' && page.current > 1) {
+      window.location.href = page.baseFilename + '-page-' + (page.current - 1) + '.html';
+    } else if (e.key === 'ArrowRight' && page.current < page.total) {
+      window.location.href = page.baseFilename + '-page-' + (page.current + 1) + '.html';
+    }
+  });
+
+  // ── Public API (for testing/extension) ───────────────────────
+  window.__discrubExport = {
+    getData: function() { return DATA; },
+    closePopup: closePopup,
+    getActivePopup: function() { return activePopup; },
+  };
+
+})();
+</script>
+</body>
+</html>
+    
